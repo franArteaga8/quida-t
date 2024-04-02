@@ -1,11 +1,14 @@
-import { api } from './config.js'
+import api from './config'
 
-export async function login(loginData) {
-    const response = await api.post('/auth/login', loginData)
-    return response
-  }
+export const login = async (loginData) => {
+  const { data } = await api.post('/auth/login', loginData)
+  console.log(data)
+    return data
+}
 
-  export async function signup(signupData) {
-    const response = await api.post('/auth/signup', signupData)
+export const signup = async (signupData) => {
+  const response = await api.post('/auth/signup', signupData)
     return response
-  }
+}
+
+

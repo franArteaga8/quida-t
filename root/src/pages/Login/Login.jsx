@@ -15,6 +15,8 @@ const Login = () => {
     try {
       const loginResponse = await login({email, pass})
      //Do something with the response
+     localStorage.setItem('token', loginResponse.token)
+     navigate('/')
      console.log(loginResponse)
     } catch (error) {
      //Handle the error

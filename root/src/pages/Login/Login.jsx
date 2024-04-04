@@ -68,8 +68,8 @@ const Login = () => {
         </CardContent>
         <Divider />
         <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button onClick={handleFormToggle}>
-            {showRegisterForm ? 'Already have an account? Login' : 'Don\'t have an account? Sign Up'}
+          <Button onClick={handleFormToggle} variant="outlined" sx={{ textTransform: 'none' }} >
+            {showRegisterForm ? <span> Already have an account? Login </span> : <span> Don&apos;t have an account? Sign Up </span> }
           </Button>
           <Button onClick={handleAction} variant="contained" >
             {showRegisterForm ? 'Register' : 'Login'}

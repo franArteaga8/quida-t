@@ -16,10 +16,12 @@ const Login = () => {
   const handleAction = async () => {
     if (showRegisterForm) {
       const signupRes = await postSignup({ email, pass, name, username });
-      console.log(signupRes);
+      console.log(signupRes)
+      localStorage.setItem('token', signupRes.token)
     } else {
       const loginRes = await postLogin({ email, pass });
-      console.log(loginRes);
+      console.log(loginRes)
+      localStorage.setItem('token', loginRes.token)
     }
   };
 

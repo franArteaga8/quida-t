@@ -1,9 +1,12 @@
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
 import { Menu as Menuicon, } from '@mui/icons-material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
+
+
   return (
     <>
         <Box sx={{ flexGrow: 1 }}>
@@ -16,15 +19,25 @@ const Header = () => {
               aria-label="menu"
               sx={{ mr: 2 }}
               >
-              <Menuicon/>
+              <Menuicon className="menu-icon" />
               </IconButton>
+
+            
+              
+                <Link style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}} >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  quida-t
+                quida-t
                 </Typography>
-              <IconButton>
-                <AccountCircleIcon sx={{ color: 'whitesmoke' }} />
+                </Link>
                 
-              </IconButton>
+
+              
+             
+              <Link to={'/profile'} >
+                <IconButton >
+                  <AccountCircleIcon sx={{ color: 'whitesmoke' }} />
+                </IconButton>
+              </Link>
               
             </Toolbar>
 

@@ -6,8 +6,11 @@ const MainLayout = () => {
   return (
     <>
         <Header/>
+    <div style={{display:'flex'}}>
+
         <Sidebar/>
         <Outlet/>
+    </div>
     </>
    
   )

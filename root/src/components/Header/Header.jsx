@@ -1,7 +1,7 @@
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
 import { Menu as Menuicon, } from '@mui/icons-material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link } from "react-router-dom";
+  import { Link } from "react-router-dom";
 
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" >
+          <AppBar position="static"  >
             <Toolbar>
               <IconButton
               size="large"

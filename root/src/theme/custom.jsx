@@ -10,9 +10,8 @@ export const customTheme = createTheme({
           main: '#f50057',
         },
     },
-    spacing: {
-        unit: 8, // example default spacing unit
-    },
+    spacing: 8 // example default spacing unit
+    ,
     typography: {
         fontFamily: 'Roboto, sans-serif', // example font family
         fontSize: 16, // example base font size

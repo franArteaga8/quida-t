@@ -1,27 +1,34 @@
 import { Button, Card, CardActions, CardContent, CardHeader, Divider, TextField } from "@mui/material"
 import { useState } from "react"
 import { postLogin, postSignup } from "../../services/auth"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [pass, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [email, setEmail] = useState('')
+  const [pass, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [showRegisterForm, setShowRegisterForm] = useState(false)
+
+  const navigate = useNavigate()
 
   const handleFormToggle = () => {
     setShowRegisterForm(!showRegisterForm);
   };
 
   const handleAction = async () => {
+    console.log('entró')
     if (showRegisterForm) {
       const signupRes = await postSignup({ email, pass, name, username });
       console.log(signupRes)
       localStorage.setItem('token', signupRes.token)
+      navigate('/home')
     } else {
       const loginRes = await postLogin({ email, pass });
       console.log(loginRes)
       localStorage.setItem('token', loginRes.token)
+      navigate('/home')
+      
     }
   };
 

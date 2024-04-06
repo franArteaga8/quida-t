@@ -22,12 +22,12 @@ const Login = () => {
       const signupRes = await postSignup({ email, pass, name, username });
       console.log(signupRes)
       localStorage.setItem('token', signupRes.token)
-      navigate('/home')
+      navigate('/')
     } else {
       const loginRes = await postLogin({ email, pass });
       console.log(loginRes)
       localStorage.setItem('token', loginRes.token)
-      navigate('/home')
+      navigate('/')
       
     }
   };

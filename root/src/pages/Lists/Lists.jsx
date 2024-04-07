@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { getMyLists } from "../../services/lists"
 import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
+import './Lists.css'
+
 const Lists = () => {
     const [ myLists, setMyLists ] = useState([])
 
@@ -9,6 +11,7 @@ const Lists = () => {
         const result = await getMyLists()
         result && setMyLists(result)
         myLists && console.log(myLists.createdLists)
+        myLists && console.log(myLists.assignedLists)
     }
 
 
@@ -20,6 +23,7 @@ const Lists = () => {
     <>
         <div>Lists</div>
         <ListsDisplay lists={myLists.createdLists} />
+        <ListsDisplay lists={myLists.assignedLists} />
 
     </>
     

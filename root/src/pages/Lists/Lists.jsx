@@ -1,32 +1,25 @@
 import { useEffect, useState } from "react"
-import { getLists } from "../../services/lists"
+import { getMyLists } from "../../services/lists"
+import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
 const Lists = () => {
-    const [ list, setList ] = useState([])
+    const [ myLists, setMyLists ] = useState([])
 
-    const handleList = async () => {
-        const result = await getLists(1)
-        console.log(result)
-       
-     
-        const mappedResult = result.map((t, idx) => 
-            <p key={idx}> { t.title } </p>
-        )
-
-        mappedResult && setList(mappedResult)
-        
+    const handleMyLists = async () => {
+        const result = await getMyLists()
+        result && setMyLists(result)
+        myLists && console.log(myLists.createdLists)
     }
 
-    
 
     useEffect(() => {
-        handleList()
+        handleMyLists()
     }, [])
 
   return (
     <>
         <div>Lists</div>
-        { list }
+        <ListsDisplay lists={myLists.createdLists} />
 
     </>
     

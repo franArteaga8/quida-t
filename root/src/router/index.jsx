@@ -3,6 +3,7 @@ import Home from '../pages/Home/Home'
 import Login from '../pages/Login/Login'
 import MainLayout from '../layout/MainLayout'
 import Profile from '../pages/Profile/Profile'
+import Lists from '../pages/Lists/Lists'
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
             {
                 path: 'profile',
                 element: <Profile/>
+            },
+            {
+                path: 'lists',
+                element: <Lists />
             }
         ]
 

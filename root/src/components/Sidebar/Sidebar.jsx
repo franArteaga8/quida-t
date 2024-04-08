@@ -10,7 +10,7 @@ const Sidebar = () => {
       <CssBaseline />
      
       
-        <Box sx={{  background: green[200], display: 'flex', flexDirection: 'column', gap: 5, padding: 5}}>
+        <Box sx={{  background: green[200], display: 'flex', flexDirection: 'column', gap: 5, padding: 5, height: '100%'}}>
 
           <Link to={'/'} style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}}>
             Home
@@ -21,7 +21,7 @@ const Sidebar = () => {
           </Link>
 
           <Link to={'/lists'} style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}}>
-            Lists
+            Profile
           </Link>
          
      

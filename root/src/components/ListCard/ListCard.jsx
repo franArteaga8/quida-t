@@ -2,17 +2,17 @@ import { useEffect, useState } from "react"
 import { getTasksFromList } from "../../services/tasks"
 
 import PropTypes from 'prop-types'
-import { Typography } from "@mui/material"
-import { getAList } from "../../services/lists"
+import { Box, Typography } from "@mui/material"
 
 const ListCard = ({ list }) => {
 
   const [ tasks , setTasks ] = useState([])
-  const [listId, setListId] = useState(list.id)
+  const [listId, setListId] = useState(list.listId)
   
 
   const handleTasks = async () => {
-    const result = await getTasksFromList(list.id)
+    console.log(list.id)
+    const result = await getTasksFromList(list.listId)
     result && setTasks(result)
   }
 
@@ -25,7 +25,10 @@ const ListCard = ({ list }) => {
 
 
   return (
-    <>
+    <Box sx={{ backgroundColor: 'cyan', border: '2px solid black' }} >  
+        <Typography>
+          List Card
+        </Typography>
         <Typography>
           {list.listId}
         </Typography>
@@ -36,7 +39,7 @@ const ListCard = ({ list }) => {
           )
         })
       }
-    </>
+    </Box>
   )
 }
 

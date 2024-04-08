@@ -9,8 +9,8 @@ const Header = () => {
 
   return (
     <>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static"  >
+        <Box sx={{ flexGrow: 1, height: '7%' }}>
+          <AppBar position="static" sx={{ height: '100%'}} >
             <Toolbar>
               <IconButton
               size="large"

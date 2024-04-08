@@ -21,7 +21,7 @@ const Lists = () => {
     }, [])
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: 'red', width: '100%'}}>
         <div>Lists</div>
         <p> asignadas</p>
         <ListsDisplay lists={myLists.assignedLists} />

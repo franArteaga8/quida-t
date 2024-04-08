@@ -11,7 +11,7 @@ const Sidebar = () => {
       <CssBaseline />
      
       
-        <Box sx={{ textAlign:'left', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', gap: 3, padding: 5, height: '100%'}}>
+        <Box sx={{ textAlign:'left', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', padding: 5, height: '100%'}}>
 
           <Link to={'/'} style={{  textDecoration: 'none', color: 'whitesmoke'}}>
             <Button color="secondary" variant="text" size="large" startIcon={<HomeIcon/>  } >

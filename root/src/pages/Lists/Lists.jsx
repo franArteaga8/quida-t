@@ -3,7 +3,7 @@ import { getMyLists } from "../../services/lists"
 import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
 import './Lists.css'
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
 const Lists = () => {
     const [ myLists, setMyLists ] = useState([])
@@ -21,9 +21,9 @@ const Lists = () => {
     }, [])
 
   return (
-    <Box sx={{ backgroundColor: 'lightpink', height: '100%', padding: '50px'}}>
-        <div>Lists</div>
-        <p> asignadas</p>
+    <Box sx={{  height: '100%', padding: '50px'}}>
+
+        <Typography variant="h4" color={'primary.main'} >Lists</Typography>
         <ListsDisplay lists={myLists.assignedLists} />
 
     </Box>

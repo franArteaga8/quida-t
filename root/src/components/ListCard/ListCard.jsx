@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { getTasksFromList } from "../../services/tasks"
 
 import PropTypes from 'prop-types'
-import { Box, Typography } from "@mui/material"
+import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material"
+import { ArrowDownward } from "@mui/icons-material"
 
 const ListCard = ({ list }) => {
 
@@ -25,21 +26,30 @@ const ListCard = ({ list }) => {
 
 
   return (
-    <Box sx={{ backgroundColor: 'cyan', border: '2px solid black' }} >  
-        <Typography>
-          List Card
-        </Typography>
-        <Typography>
-          {list.listId}
-        </Typography>
-
+    <>
+       
+    <Accordion sx={{ border: '1px green solid', borderColor:'primary.main', borderRadius: '10px'}} >
+        <AccordionSummary
+          expandIcon={<ArrowDownward sx={{ color: 'primary.main'}} />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+          sx={{ backgroundColor: 'primary.main'}}
+        >
+          <Typography color={'secondary.main'}>List {list.listId} </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
         { tasks && tasks.map((t) => {
           return (
-            <p key={t.id}> {t.title }</p>
+            <Typography key={t.id} textAlign={'left'} color={'primary.main'} > {t.title }</Typography>
+            
           )
         })
       }
-    </Box>
+          
+        </AccordionDetails>
+      </Accordion>
+    </>
+   
   )
 }
 

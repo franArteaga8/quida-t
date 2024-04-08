@@ -80,17 +80,22 @@ const Profile = () => {
                 
               {profile.username} 
               </TextField>
+
+             
               
               
           </> 
            : 
            <>
               <Typography variant="h2"  gutterBottom>
-            {profile.username}
-          </Typography>
-          <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
-            { profile.name } { profile.lastname }
-          </Typography>
+                {profile.username}
+              </Typography>
+              <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
+                { profile.name } { profile.lastname }
+              </Typography>
+              <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
+                { profile.role }
+              </Typography>
            </>}
           
          

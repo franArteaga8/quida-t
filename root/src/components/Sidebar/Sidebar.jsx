@@ -1,5 +1,5 @@
 import { Box, Button, CssBaseline} from "@mui/material"
-import { green, purple } from "@mui/material/colors";
+import { blue, purple } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -11,7 +11,7 @@ const Sidebar = () => {
       <CssBaseline />
      
       
-        <Box sx={{  background: green[400], display: 'flex', flexDirection: 'column', gap: 3, padding: 5, height: '100%'}}>
+        <Box sx={{  background: blue[900], display: 'flex', flexDirection: 'column', gap: 3, padding: 5, height: '100%'}}>
 
           <Link to={'/'} style={{ textDecoration: 'none', color: 'whitesmoke'}}>
             Home

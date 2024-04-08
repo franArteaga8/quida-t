@@ -21,7 +21,7 @@ const Sidebar = () => {
           </Link>
 
           <Link to={'/lists'} style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}}>
-            Profile
+            Lists
           </Link>
          
      

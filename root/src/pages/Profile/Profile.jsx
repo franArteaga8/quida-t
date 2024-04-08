@@ -25,7 +25,7 @@ const Profile = () => {
   }, [])
 
   return (
-    <Box sx={{ display: 'flex', width:'100%', justifyContent: 'center',  backgroundColor: 'whitesmoke'}} >
+    <Box sx={{ display: 'flex', height:'100%', justifyContent: 'center',  backgroundColor: 'whitesmoke'}} >
       <Card sx={{ minWidth: 275, width: '85%' , display:'flex', gap:'20px', padding: '10px', marginTop:'100px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
 
         <CardMedia sx={{ display: 'flex', flexDirection: 'column', padding: '10px', width: 'min-content'}} >

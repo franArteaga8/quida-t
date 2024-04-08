@@ -17,3 +17,7 @@ export const customTheme = createTheme({
         // Customize other typography settings as needed
     } */
 })
+
+
+// dark 282828, mint 21F3C1
+// light ECEFD7, lavender 44259D

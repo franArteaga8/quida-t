@@ -28,7 +28,7 @@ const Profile = () => {
     <Box sx={{ display: 'flex', height:'100%', justifyContent: 'center',  backgroundColor: 'background.default'}} >
       <Card sx={{ minWidth: 275, width: '85%' , display:'flex', gap:'20px', padding: '10px', marginTop:'100px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
 
-        <CardMedia sx={{ display: 'flex', flexDirection: 'column', padding: '10px', width: 'min-content'}} >
+        <CardMedia sx={{ display: 'flex', flexDirection: 'column' , alignItems:'center', padding: '10px', width: 'min-content'}} >
           <Face sx={{ fontSize: '8em'}} />
           <Button color="secondary" onClick={handleEditToggle} sx={{ marginTop: 'auto', width: 'max-content', textTransform: 'none'}} size="medium" variant="contained" >
             {showEditProfile ? 'See Profile' : 'Edit Profile'}
@@ -36,7 +36,7 @@ const Profile = () => {
         </CardMedia>
 
 
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', width: 'max-content'}}>
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left', width: 'max-content'}}>
 
           <CardHeader title={showEditProfile ? 'Edit' : 'Profile'}  />
 
@@ -112,7 +112,7 @@ const Profile = () => {
         </CardActions>
           </CardContent>
           <CardContent sx={{ width: '100%', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center'}}>
-            <Typography variant="body2" sx={{ width: '500px', mb: 1, padding: '20px', border: '1px whitesmoke solid', borderRadius:'10px', fontSize: '1em' }} >
+            <Typography variant="body2" sx={{ mb: 1, padding: '20px', border: '1px whitesmoke solid', borderRadius:'10px', fontSize: '1em' }} >
               well meaning and kindly.
             </Typography>
           </CardContent>

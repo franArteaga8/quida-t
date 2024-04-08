@@ -6,13 +6,16 @@ import { Box } from "@mui/material"
 const MainLayout = () => {
   // probar grid: 100px 1fr (header, resto)
   return (
-    <Box sx={{ height: '100vh'}} >
-        <Header />
-        <div style={{display:'flex', height: '93%'}}>
+    <Box sx={{ height: '100vh', display: 'flex', backgroundColor: 'peru'}} >
+      <Sidebar/>
+        
+      <div style={{ width:'100%', height:'100vh', display:'flex', flexDirection:'column', backgroundColor:'lightsalmon' }}>
 
-          <Sidebar/>
-          <Outlet />
-        </div>
+        <Header />
+        <Outlet />
+        
+      </div>
+
     </Box>
    
   )

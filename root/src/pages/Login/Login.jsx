@@ -35,9 +35,9 @@ const Login = () => {
   
 
   return (
-    <Box backgroundColor={'primary.main'} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center',alignItems: 'center', width: '100vw', height: '100vh'}} >
-      <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'whitesmoke', borderRadius: '5%', padding: '10px' }} raised={true} >
-        <CardHeader title={showRegisterForm ? 'Register' : 'Login'} />
+    <Box backgroundColor={'background.lavender'} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center',alignItems: 'center', width: '100vw', height: '100vh'}} >
+      <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'background.main', borderRadius: '5%', padding: '10px' }} raised={true} >
+        <CardHeader sx={{color: 'primary.main'}} title={showRegisterForm ?  'Register' : 'Login'} />
         <CardContent>
           {showRegisterForm && (
             <>
@@ -81,10 +81,10 @@ const Login = () => {
         </CardContent>
         <Divider />
         <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button onClick={handleFormToggle} variant="outlined" color="primary" sx={{ textTransform: 'none', color: 'black', borderColor: 'secondary.main'}} >
+          <Button onClick={handleFormToggle} variant="outlined" color="primary" sx={{ textTransform: 'none', color: 'black', borderColor: 'primary.main'}} >
             {showRegisterForm ? <span> Already have an account? Login </span> : <span> Don&apos;t have an account? Sign Up </span> }
           </Button>
-          <Button onClick={handleAction} variant="contained" color="secondary" sx={{ color: 'whitesmoke'}} >
+          <Button onClick={handleAction} variant="contained" color="primary" sx={{ color: 'whitesmoke'}} >
             {showRegisterForm ? 'Register' : 'Login'}
           </Button>
         </CardActions>

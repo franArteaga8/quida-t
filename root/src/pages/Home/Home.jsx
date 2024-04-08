@@ -40,7 +40,7 @@ const Home = () => {
     <>
     <div className="position">
 
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ }}>
       <AppBar position="static" sx={{ flexGrow: 1 }}>
         <Toolbar sx={{ flexGrow: 1 }} >
 

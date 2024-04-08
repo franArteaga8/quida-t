@@ -12,7 +12,6 @@ const ListCard = ({ list }) => {
   
 
   const handleTasks = async () => {
-    console.log(list.id)
     const result = await getTasksFromList(list.listId)
     result && setTasks(result)
   }
@@ -54,7 +53,7 @@ const ListCard = ({ list }) => {
 }
 
 ListCard.propTypes = {
-  list: PropTypes.array
+  list: PropTypes.object
 }
 
 export default ListCard

@@ -42,13 +42,13 @@ const Home = () => {
 
     <Box sx={{ }}>
       <AppBar position="static" sx={{ flexGrow: 1 }}>
-        <Toolbar sx={{ flexGrow: 1 }} >
+        <Toolbar sx={{ flexGrow: 1, color:'secondary.main' }} >
 
             <label> Task</label>
 
             <LocalizationProvider dateAdapter={AdapterDayjs} >
               <DemoContainer components={['DatePicker']} >
-                <DatePicker value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
+                <DatePicker  value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
                 }}/>
               </DemoContainer>
             </LocalizationProvider>

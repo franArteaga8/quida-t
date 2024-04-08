@@ -10,11 +10,10 @@ export const getAllMyTasks = async () => {
 }
 
 export const getTasksFromList = async (listId) => {
-    const { data } = await api.get(`/${listId}`, {
+    const { data } = await api.get(`/tasks/${listId}`, {
         headers: {
             Authorization: localStorage.getItem('token')
         }
     })
-    console.log(data)
     return data
 }

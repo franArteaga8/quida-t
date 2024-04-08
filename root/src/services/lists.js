@@ -19,4 +19,16 @@ export const getLists = async (listId) => {
     return data
 }
 
+export const getAList = async (listId) => {
+    const { data } = await api.get(`/lists/${listId}`, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+            
+        }
+    })
+
+    return data
+}
+
+
 

@@ -3,6 +3,7 @@ import { getMyLists } from "../../services/lists"
 import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
 import './Lists.css'
+import { Box } from "@mui/material"
 
 const Lists = () => {
     const [ myLists, setMyLists ] = useState([])
@@ -10,8 +11,8 @@ const Lists = () => {
     const handleMyLists = async () => {
         const result = await getMyLists()
         result && setMyLists(result)
-        myLists && console.log(myLists.createdLists)
-        myLists && console.log(myLists.assignedLists)
+
+
     }
 
 
@@ -20,12 +21,12 @@ const Lists = () => {
     }, [])
 
   return (
-    <>
+    <Box>
         <div>Lists</div>
-        <ListsDisplay lists={myLists.createdLists} />
+        <p> asignadas</p>
         <ListsDisplay lists={myLists.assignedLists} />
 
-    </>
+    </Box>
     
   )
 }

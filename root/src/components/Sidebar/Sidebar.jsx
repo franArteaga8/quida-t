@@ -19,6 +19,10 @@ const Sidebar = () => {
           <Link to={'/profile'} style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}}>
             Profile
           </Link>
+
+          <Link to={'/lists'} style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}}>
+            Lists
+          </Link>
          
      
           

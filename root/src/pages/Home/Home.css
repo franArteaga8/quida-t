@@ -1,6 +1,7 @@
 .position{
     display: flex;
+    flex-direction: column;
     background-color: aliceblue;
     width: 100%;
-    padding: 5%;
+    padding: 2%;
 }

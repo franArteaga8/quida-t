@@ -29,7 +29,7 @@ const ListCard = ({ list }) => {
        
     <Accordion sx={{ border: '1px green solid', borderColor:'primary.main', borderRadius: '10px'}} >
         <AccordionSummary
-          expandIcon={<ArrowDownward sx={{ color: 'primary.main'}} />}
+          expandIcon={<ArrowDownward sx={{ color: 'secondary.main'}} />}
           aria-controls="panel1-content"
           id="panel1-header"
           sx={{ backgroundColor: 'primary.main'}}

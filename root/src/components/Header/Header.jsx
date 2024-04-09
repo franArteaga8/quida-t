@@ -35,7 +35,7 @@ const Header = () => {
              
               <Link to={'/profile'} >
                 <IconButton >
-                  <AccountCircleIcon sx={{ color: 'primary.main' }} />
+                  <AccountCircleIcon fontSize="large" sx={{ color: 'primary.main' }} />
                 </IconButton>
               </Link>
               

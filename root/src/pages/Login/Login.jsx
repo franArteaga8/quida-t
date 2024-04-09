@@ -39,7 +39,6 @@ const Login = () => {
       const user = await getProfile()
       user && setUserData(user)
       console.log(user)
-      Object.entries(userData) > 1 && console.log(userData)
       
     }
   };

@@ -10,6 +10,8 @@ import { useContext, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { UserContext } from '../../context/UserData';
 
+import { useCookies } from 'react-cookie'
+
 
 
 const Home = () => {
@@ -33,27 +35,31 @@ const Home = () => {
 
   const { userData } = useContext(UserContext)
 
+  const { user: cookieUser } = useCookies(['user'])[0]
+
+
+
+
 
   useEffect(()=>{
     handleFormatDate()
     
   },[])
 
-  console.log(userData.username)
 
   return (
     <>
-    <div className="position">
+    
       
 
-    <Box  >
+    <Box width={'80%'} maxWidth={'1200px'} >
       <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}}>
 
       <Typography variant='h6'>
         Welcome,
       </Typography>
       <Typography variant='h2'>
-      {userData && userData.username} 
+      {userData && cookieUser.username} 
       </Typography>
 
       </Box>
@@ -77,7 +83,7 @@ const Home = () => {
       </Typography>
     </Box>
     
-    </div>
+    
     </>
   )
 }

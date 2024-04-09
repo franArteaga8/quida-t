@@ -24,7 +24,7 @@ const Profile = () => {
     if(colegiate) update.colegiate = colegiate
 
     const result = await putProfile(update)
-    result && location.reload()
+     result && handleEditToggle() 
   }
 
   const handleEditToggle = () => {
@@ -57,7 +57,7 @@ const Profile = () => {
           <CardHeader title={showEditProfile ? 'Edit' : 'Profile'}  />
 
           {showEditProfile ?
-           <>    console.log(update)
+           <>   
 
               <TextField
                label="Username"
@@ -129,7 +129,7 @@ const Profile = () => {
                onChange={(e)=> setColegiate(e.target.value)}
               >
               </TextField>
-              <Button className="button "variant="contained" color="secondary" onClick={edit()}>submit changes</Button>
+              <Button className="button "variant="contained" color="secondary" onClick={()=>edit()}>submit changes</Button>
 
               
               

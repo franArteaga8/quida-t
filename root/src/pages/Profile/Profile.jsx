@@ -11,6 +11,18 @@ const Profile = () => {
   const [showEditProfile, setShowEditProfile ] = useState(false)
   const [ profile, setProfile ] = useState({})
 
+  const [username, setUserName] = useState('')
+  const [name, setName] = useState('')
+  const [lastname, setLastName] = useState('')
+  const [pass, setPass] = useState('')
+  const [colegiate, setColegiate] = useState('')
+  
+  const edit = ()=>{
+    console.log(username)
+    console.log(name)
+    console.log(lastname)
+    console.log(pass)
+  }
   const handleEditToggle = () => {
     setShowEditProfile(!showEditProfile);
   };
@@ -47,17 +59,33 @@ const Profile = () => {
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               value={profile.username}>
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+               defaultValue={username ? username : profile.username}
+               onChange={(e)=> setUserName(e.target.value)}>
                 
-              {profile.username} 
+              
               </TextField>
-
+               
               <TextField
                label="Name"
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               value={profile.name}>
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+                defaultValue={name ? name : profile.name}
+               onChange={(e)=> setName(e.target.value)}>
                 
               </TextField>
 
@@ -66,9 +94,17 @@ const Profile = () => {
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               value={profile.lastname}>
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+               defaultValue={lastname ? lastname : profile.lastname}
+               onChange={(e)=> setLastName(e.target.value)}>
                 
-              {profile.username} 
+              
               </TextField>
 
               <TextField
@@ -76,12 +112,36 @@ const Profile = () => {
                variant="outlined"
                margin="dense"
                fullWidth={true}
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+               defaultValue={pass && pass }
+               onChange={(e)=> setPass(e.target.value)}
               >
-                
-              {profile.username} 
               </TextField>
 
-             
+              <TextField
+               label="Number colegiate"
+               variant="outlined"
+               margin="dense"
+               fullWidth={true}
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+               defaultValue={colegiate && colegiate }
+               onChange={(e)=> setColegiate(e.target.value)}
+              >
+              </TextField>
+
+             <button onClick={()=> edit()}>submit changes</button>
               
               
           </> 
@@ -91,11 +151,17 @@ const Profile = () => {
                 {profile.username}
               </Typography>
               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
-                { profile.name } { profile.lastname }
+                { profile.name } { profile.lastname } 
               </Typography>
               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
                 { profile.role }
               </Typography>
+
+              {!(profile.colegiate === null) &&
+              <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
+                {profile.colegiate}
+              </Typography>}
+
            </>}
           
          
@@ -105,7 +171,7 @@ const Profile = () => {
            { profile.email}
          </Typography> }
          
-          
+         
           
           
           <CardActions>

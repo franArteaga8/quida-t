@@ -43,10 +43,11 @@ const Home = () => {
     <Box >
       <AppBar position="static">
         <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
-            <LocalizationProvider dateAdapter={AdapterDayjs}   >
-              <DemoContainer components={['DatePicker']}  >
+            <LocalizationProvider dateAdapter={AdapterDayjs}  >
+              <DemoContainer components={['DatePicker']} sx={{padding: 1}}  >
                 <DatePicker value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
-                }}/>
+                }} sx={{backgroundColor: 'secondary.main'}}/>
+               
               </DemoContainer>
             </LocalizationProvider>
         </Toolbar>

@@ -47,7 +47,7 @@ const Home = () => {
       
 
     <Box  >
-      <Box textAlign={'left'} sx={{ marginBottom: '30px'}}>
+      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}}>
 
       <Typography variant='h6'>
         Welcome,

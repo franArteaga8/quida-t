@@ -9,6 +9,8 @@ import { ThemeProvider } from '@emotion/react'
 import { useState } from 'react'
 import { UserContext } from './context/UserData.js'
 
+import { CookiesProvider } from 'react-cookie'
+
 
 function App() {
 
@@ -16,12 +18,16 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{userData, setUserData}} >
-        <ThemeProvider theme={customTheme} >
-          <CssBaseline/>
-            <RouterProvider router={router} />
-        </ThemeProvider>
-      </UserContext.Provider>
+      <CookiesProvider defaultSetOptions={{ path: '/'}} >
+
+        <UserContext.Provider value={{userData, setUserData}} >
+          <ThemeProvider theme={customTheme} >
+            <CssBaseline/>
+              <RouterProvider router={router} />
+          </ThemeProvider>
+        </UserContext.Provider>
+
+      </CookiesProvider>
     </>
   )
 }

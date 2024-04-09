@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { getProfile } from "../../services/user"
+import { getProfile, putProfile } from "../../services/user"
 import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia,  TextField,  Typography } from "@mui/material"
 import { Face } from "@mui/icons-material"
-
 
 
 
@@ -14,15 +13,20 @@ const Profile = () => {
   const [username, setUserName] = useState('')
   const [name, setName] = useState('')
   const [lastname, setLastName] = useState('')
-  const [pass, setPass] = useState('')
   const [colegiate, setColegiate] = useState('')
   
-  const edit = ()=>{
-    console.log(username)
-    console.log(name)
-    console.log(lastname)
-    console.log(pass)
+  const edit = async()=>{
+
+    const update = {}
+    if(username) update.username = username
+    if(name) update.name = name
+    if(lastname) update.lastname = lastname
+    if(colegiate) update.colegiate = colegiate
+
+    const result = await putProfile(update)
+    result && location.reload()
   }
+
   const handleEditToggle = () => {
     setShowEditProfile(!showEditProfile);
   };
@@ -53,7 +57,8 @@ const Profile = () => {
           <CardHeader title={showEditProfile ? 'Edit' : 'Profile'}  />
 
           {showEditProfile ?
-           <>
+           <>    console.log(update)
+
               <TextField
                label="Username"
                variant="outlined"
@@ -71,7 +76,7 @@ const Profile = () => {
                 
               
               </TextField>
-               
+           
               <TextField
                label="Name"
                variant="outlined"
@@ -107,22 +112,6 @@ const Profile = () => {
               
               </TextField>
 
-              <TextField
-               label="Password"
-               variant="outlined"
-               margin="dense"
-               fullWidth={true}
-               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
-               inputProps={
-                {style: { color: '#fff'}
-               }}
-               InputLabelProps={
-                {style: { color: '#fff'}
-               }}
-               defaultValue={pass && pass }
-               onChange={(e)=> setPass(e.target.value)}
-              >
-              </TextField>
 
               <TextField
                label="Number colegiate"
@@ -136,12 +125,12 @@ const Profile = () => {
                InputLabelProps={
                 {style: { color: '#fff'}
                }}
-               defaultValue={colegiate && colegiate }
+               defaultValue={colegiate ? colegiate : profile.colegiate}
                onChange={(e)=> setColegiate(e.target.value)}
               >
               </TextField>
+              <Button className="button "variant="contained" color="secondary" onClick={edit()}>submit changes</Button>
 
-             <button onClick={()=> edit()}>submit changes</button>
               
               
           </> 

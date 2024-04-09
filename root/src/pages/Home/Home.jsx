@@ -19,9 +19,9 @@ const Home = () => {
   const [date, setDate] = useState('')
   const [selectDate, setSelectDate] = useState('')
 
-  const [taskDay, setTaskDay] = useState([])
+ /*  const [taskDay, setTaskDay] = useState([])
   const [taskWeek, setTaskWeek] = useState([])
-  const [taskMonth, setTaskMonth] = useState([])
+  const [taskMonth, setTaskMonth] = useState([]) */
 
   const handleFormatDate = ()=>{
     const dateCurrent = new Date()

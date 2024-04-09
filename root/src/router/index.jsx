@@ -4,6 +4,7 @@ import Login from '../pages/Login/Login'
 import MainLayout from '../layouts/MainLayout'
 import Profile from '../pages/Profile/Profile'
 import Lists from '../pages/Lists/Lists'
+import Patients from '../pages/Patients/Patients'
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: 'lists',
                 element: <Lists />
+            },
+            {
+                path:'patients',
+                element: <Patients/>
             }
         ]
 

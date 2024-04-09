@@ -24,14 +24,14 @@ const Patients = () => {
       <Typography variant="h4" color={"primary.main"}>
         Patients
       </Typography>
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper", marginTop: '20px' }}>
       <ListItemButton
           selected={selectedIndex === 0}
           onClick={(event) => handleListItemClick(event, 0)}
         >
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar alt="Patient 2 " src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
           <ListItemText
             primary="Patient 1"

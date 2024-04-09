@@ -39,6 +39,7 @@ const Home = () => {
     
   },[])
 
+  console.log(userData.username)
 
   return (
     <>
@@ -52,7 +53,7 @@ const Home = () => {
         Welcome,
       </Typography>
       <Typography variant='h2'>
-      {userData.username}
+      {userData && userData.username} 
       </Typography>
 
       </Box>

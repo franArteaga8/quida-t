@@ -27,6 +27,9 @@ const Login = () => {
       console.log(signupRes)
       localStorage.setItem('token', signupRes.token)
       navigate('/')
+      const user = await getProfile()
+      user && setUserData(user)
+      
     } else {
       const loginRes = await postLogin({ email, pass });
       console.log(loginRes)

@@ -25,7 +25,7 @@ const Header = () => {
             
               
                 <Link style={{ flexGrow: '1' , textDecoration: 'none'}} >
-                <Typography variant="h5" component="div" color={'primary.main'}  sx={{ flexGrow: 1 }}>
+                <Typography variant="logo" component="div" color={'primary.main'}  sx={{ flexGrow: 1 }}>
                 quida-t
                 </Typography>
                 </Link>

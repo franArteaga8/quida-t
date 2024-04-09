@@ -21,7 +21,7 @@ const Lists = () => {
     }, [])
 
   return (
-    <Box sx={{  height: '100%', padding: '50px'}}>
+    <Box sx={{ width: '1200px', minWidth: 'max-content', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start'}}>
 
         <Typography variant="h4" color={'primary.main'} >Lists</Typography>
         <ListsDisplay lists={myLists.assignedLists} />

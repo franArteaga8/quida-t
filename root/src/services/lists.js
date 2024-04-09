@@ -30,5 +30,15 @@ export const getAList = async (listId) => {
     return data
 }
 
+export const postAList = async (listData) => {
+    const { data } = await api.post('/lists', listData, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+    console.log(data)
+    return data
+}
+
 
 

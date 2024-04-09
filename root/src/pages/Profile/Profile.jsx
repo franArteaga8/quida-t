@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { getProfile } from "../../services/user"
+import { getProfile, putProfile } from "../../services/user"
 import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia,  TextField,  Typography } from "@mui/material"
 import { Face } from "@mui/icons-material"
-
 
 
 
@@ -10,6 +9,23 @@ const Profile = () => {
 
   const [showEditProfile, setShowEditProfile ] = useState(false)
   const [ profile, setProfile ] = useState({})
+
+  const [username, setUserName] = useState('')
+  const [name, setName] = useState('')
+  const [lastname, setLastName] = useState('')
+  const [colegiate, setColegiate] = useState('')
+  
+  const edit = async()=>{
+
+    const update = {}
+    if(username) update.username = username
+    if(name) update.name = name
+    if(lastname) update.lastname = lastname
+    if(colegiate) update.colegiate = colegiate
+
+    const result = await putProfile(update)
+    result && location.reload()
+  }
 
   const handleEditToggle = () => {
     setShowEditProfile(!showEditProfile);
@@ -41,23 +57,40 @@ const Profile = () => {
           <CardHeader title={showEditProfile ? 'Edit' : 'Profile'}  />
 
           {showEditProfile ?
-           <>
+           <>    console.log(update)
+
               <TextField
                label="Username"
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               value={profile.username}>
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+               defaultValue={username ? username : profile.username}
+               onChange={(e)=> setUserName(e.target.value)}>
                 
-              {profile.username} 
+              
               </TextField>
-
+           
               <TextField
                label="Name"
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               value={profile.name}>
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+                defaultValue={name ? name : profile.name}
+               onChange={(e)=> setName(e.target.value)}>
                 
               </TextField>
 
@@ -66,22 +99,38 @@ const Profile = () => {
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               value={profile.lastname}>
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+               defaultValue={lastname ? lastname : profile.lastname}
+               onChange={(e)=> setLastName(e.target.value)}>
                 
-              {profile.username} 
+              
               </TextField>
 
+
               <TextField
-               label="Password"
+               label="Number colegiate"
                variant="outlined"
                margin="dense"
                fullWidth={true}
+               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               inputProps={
+                {style: { color: '#fff'}
+               }}
+               InputLabelProps={
+                {style: { color: '#fff'}
+               }}
+               defaultValue={colegiate ? colegiate : profile.colegiate}
+               onChange={(e)=> setColegiate(e.target.value)}
               >
-                
-              {profile.username} 
               </TextField>
+              <Button className="button "variant="contained" color="secondary" onClick={edit()}>submit changes</Button>
 
-             
               
               
           </> 
@@ -91,11 +140,17 @@ const Profile = () => {
                 {profile.username}
               </Typography>
               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
-                { profile.name } { profile.lastname }
+                { profile.name } { profile.lastname } 
               </Typography>
               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
                 { profile.role }
               </Typography>
+
+              {!(profile.colegiate === null) &&
+              <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
+                {profile.colegiate}
+              </Typography>}
+
            </>}
           
          
@@ -105,7 +160,7 @@ const Profile = () => {
            { profile.email}
          </Typography> }
          
-          
+         
           
           
           <CardActions>

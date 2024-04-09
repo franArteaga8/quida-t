@@ -19,9 +19,9 @@ const Home = () => {
   const [date, setDate] = useState('')
   const [selectDate, setSelectDate] = useState('')
 
-  const [taskDay, setTaskDay] = useState([])
+ /*  const [taskDay, setTaskDay] = useState([])
   const [taskWeek, setTaskWeek] = useState([])
-  const [taskMonth, setTaskMonth] = useState([])
+  const [taskMonth, setTaskMonth] = useState([]) */
 
   const handleFormatDate = ()=>{
     const dateCurrent = new Date()
@@ -60,10 +60,11 @@ const Home = () => {
       
       <AppBar position="static">
         <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
-            <LocalizationProvider dateAdapter={AdapterDayjs}   >
-              <DemoContainer components={['DatePicker']}  >
+            <LocalizationProvider dateAdapter={AdapterDayjs}  >
+              <DemoContainer components={['DatePicker']} sx={{padding: 1}}  >
                 <DatePicker value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
-                }}/>
+                }} sx={{backgroundColor: 'secondary.main'}}/>
+               
               </DemoContainer>
             </LocalizationProvider>
         </Toolbar>

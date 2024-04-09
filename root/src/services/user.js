@@ -23,3 +23,12 @@ export const putProfile = async (update)=>{
     })
     return data
 }
+
+export const getAllUsers = async () => {
+    const { data } = await api.get('/users/',{
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+    return data
+}

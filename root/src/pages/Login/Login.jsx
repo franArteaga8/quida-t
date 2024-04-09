@@ -1,7 +1,9 @@
 import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, TextField } from "@mui/material"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { postLogin, postSignup } from "../../services/auth"
 import { useNavigate } from "react-router-dom"
+import { getProfile } from "../../services/user"
+import { UserContext } from "../../context/UserData"
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -9,6 +11,8 @@ const Login = () => {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [showRegisterForm, setShowRegisterForm] = useState(false)
+
+  const { setUserData } = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -23,11 +27,21 @@ const Login = () => {
       console.log(signupRes)
       localStorage.setItem('token', signupRes.token)
       navigate('/')
+      const user = await getProfile()
+      user && setUserData(user)
+      
     } else {
       const loginRes = await postLogin({ email, pass });
       console.log(loginRes)
+      
       localStorage.setItem('token', loginRes.token)
+
+
       navigate('/')
+
+      const user = await getProfile()
+      user && setUserData(user)
+      console.log(user)
       
     }
   };
@@ -35,7 +49,7 @@ const Login = () => {
   
 
   return (
-    <Box backgroundColor={'background.lavender'} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center',alignItems: 'center', width: '100vw', height: '100vh'}} >
+    <Box backgroundColor={'primary.main'} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center',alignItems: 'center', width: '100vw', height: '100vh'}} >
       <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'background.main', borderRadius: '5%', padding: '10px' }} raised={true} >
         <CardHeader sx={{color: 'primary.main'}} title={showRegisterForm ?  'Register' : 'Login'} />
         <CardContent>

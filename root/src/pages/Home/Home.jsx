@@ -6,12 +6,15 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
+import { UserContext } from '../../context/UserData';
 
 
 
 const Home = () => {
+
+  
 
   const [date, setDate] = useState('')
   const [selectDate, setSelectDate] = useState('')
@@ -28,6 +31,7 @@ const Home = () => {
     setDate(`${month}/${day}/${year}`)
   }
 
+  const { userData } = useContext(UserContext)
 
 
   useEffect(()=>{
@@ -35,12 +39,25 @@ const Home = () => {
     
   },[])
 
+  console.log(userData.username)
 
   return (
     <>
     <div className="position">
+      
 
-    <Box >
+    <Box  >
+      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}}>
+
+      <Typography variant='h6'>
+        Welcome,
+      </Typography>
+      <Typography variant='h2'>
+      {userData && userData.username} 
+      </Typography>
+
+      </Box>
+      
       <AppBar position="static">
         <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
             <LocalizationProvider dateAdapter={AdapterDayjs}  >

@@ -40,29 +40,25 @@ const Home = () => {
     <>
     <div className="position">
 
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ flexGrow: 1 }}>
-        <Toolbar sx={{ flexGrow: 1 }} >
-
-            <label> Task</label>
-
-            <LocalizationProvider dateAdapter={AdapterDayjs} >
-              <DemoContainer components={['DatePicker']} >
+    <Box >
+      <AppBar position="static">
+        <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
+            <LocalizationProvider dateAdapter={AdapterDayjs}   >
+              <DemoContainer components={['DatePicker']}  >
                 <DatePicker value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
                 }}/>
               </DemoContainer>
             </LocalizationProvider>
-
         </Toolbar>
       </AppBar>
     </Box>
 
     <Box>
       <Typography variant='h1'>
-        
         {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
       </Typography>
     </Box>
+    
     </div>
     </>
   )

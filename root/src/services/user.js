@@ -30,5 +30,6 @@ export const getAllUsers = async () => {
             Authorization: localStorage.getItem('token')
         }
     })
+    console.log(data)
     return data
 }

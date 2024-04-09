@@ -6,15 +6,22 @@ import { customTheme } from './theme/custom.jsx'
 
 import './App.css'
 import { ThemeProvider } from '@emotion/react'
+import { useState } from 'react'
+import { UserContext } from './context/UserData.js'
+
 
 function App() {
 
+  const [ userData, setUserData ] = useState({})
+
   return (
     <>
-      <ThemeProvider theme={customTheme} >
-        <CssBaseline/>
-          <RouterProvider router={router} />
-      </ThemeProvider>
+      <UserContext.Provider value={{userData, setUserData}} >
+        <ThemeProvider theme={customTheme} >
+          <CssBaseline/>
+            <RouterProvider router={router} />
+        </ThemeProvider>
+      </UserContext.Provider>
     </>
   )
 }

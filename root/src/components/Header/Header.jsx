@@ -9,13 +9,13 @@ const Header = () => {
 
   return (
     <>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static"  >
-            <Toolbar>
+        <Box sx={{  height: '50px', width: '100%',  }}>
+          <AppBar position="static" elevation={0} sx={{ height: '100%', display: 'flex', justifyContent: 'center', backgroundColor: 'secondary.main'}} >
+            <Toolbar >
               <IconButton
               size="large"
               edge="start"
-              color="inherit"
+              color="primary.main"
               aria-label="menu"
               sx={{ mr: 2 }}
               >
@@ -24,8 +24,8 @@ const Header = () => {
 
             
               
-                <Link style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}} >
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Link style={{ flexGrow: '1' , textDecoration: 'none'}} >
+                <Typography variant="logo" component="div" color={'primary.main'}  sx={{ flexGrow: 1 }}>
                 quida-t
                 </Typography>
                 </Link>
@@ -35,7 +35,7 @@ const Header = () => {
              
               <Link to={'/profile'} >
                 <IconButton >
-                  <AccountCircleIcon sx={{ color: 'whitesmoke' }} />
+                  <AccountCircleIcon fontSize="large" sx={{ color: 'primary.main' }} />
                 </IconButton>
               </Link>
               

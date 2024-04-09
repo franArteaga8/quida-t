@@ -1,26 +1,60 @@
-import { Box, CssBaseline} from "@mui/material"
-import { green } from "@mui/material/colors";
+import { AccountCircle, FormatListBulleted, Home as HomeIcon, People } from "@mui/icons-material";
+import { Box, Button, CssBaseline} from "@mui/material"
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserData";
 
 const Sidebar = () => {
  
+  const { userData } = useContext(UserContext)
+
+  console.log(userData.role)
+  
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
      
       
-        <Box sx={{  background: green[200], display: 'flex', flexDirection: 'column', gap: 5, padding: 5}}>
+        <Box sx={{ textAlign:'left', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', padding: 5, height: '100%'}}>
 
-          <Link to={'/'} style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}}>
+          <Link to={'/'} style={{  textDecoration: 'none', color: 'whitesmoke'}}>
+            <Button color="secondary" variant="text" size="large" startIcon={<HomeIcon/>  } >
             Home
+            </Button>
+            
           </Link>
 
-          <Link to={'/profile'} style={{ flexGrow: '1' , textDecoration: 'none', color: 'whitesmoke'}}>
+          <Link to={'/profile'} style={{ textDecoration: 'none', color: 'whitesmoke'}}>
+          <Button color="secondary" variant="text" size="large" startIcon={<AccountCircle/>  } >
             Profile
+            </Button>
           </Link>
+
+          <Link to={'/lists'} style={{ textDecoration: 'none', color: 'whitesmoke'}}>
+          <Button color="secondary" variant="text" size="large" startIcon={<FormatListBulleted/>  } >
+            Lists
+            </Button>
+          </Link>
+
+          {userData && userData.validation === true ? 
+           <Link to={'/patients'} style={{ textDecoration: 'none', color: 'whitesmoke'}}>
+           <Button color="secondary" variant="text" size="large" startIcon={<People/>  } >
+             Patients
+             </Button>
+           </Link> 
+          : 
+          null
          
-     
+         }
+          
+         
+          <Button variant="contained" color="secondary"  sx={{ marginTop: 'auto',  textTransform:'none' }} onClick={() => {
+            localStorage.removeItem('token')
+            location.reload()
+        }} >
+            Logout
+          </Button>
           
         </Box>
      

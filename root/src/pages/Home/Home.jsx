@@ -19,9 +19,9 @@ const Home = () => {
   const [date, setDate] = useState('')
   const [selectDate, setSelectDate] = useState('')
 
-  const [taskDay, setTaskDay] = useState([])
+ /*  const [taskDay, setTaskDay] = useState([])
   const [taskWeek, setTaskWeek] = useState([])
-  const [taskMonth, setTaskMonth] = useState([])
+  const [taskMonth, setTaskMonth] = useState([]) */
 
   const handleFormatDate = ()=>{
     const dateCurrent = new Date()
@@ -39,30 +39,32 @@ const Home = () => {
     
   },[])
 
+  console.log(userData.username)
 
   return (
     <>
     <div className="position">
       
 
-    <Box >
-      <Box textAlign={'left'}>
+    <Box  >
+      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}}>
 
       <Typography variant='h6'>
         Welcome,
       </Typography>
       <Typography variant='h2'>
-      {userData.username}
+      {userData && userData.username} 
       </Typography>
 
       </Box>
       
       <AppBar position="static">
         <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
-            <LocalizationProvider dateAdapter={AdapterDayjs}   >
-              <DemoContainer components={['DatePicker']}  >
+            <LocalizationProvider dateAdapter={AdapterDayjs}  >
+              <DemoContainer components={['DatePicker']} sx={{padding: 1}}  >
                 <DatePicker value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
-                }}/>
+                }} sx={{backgroundColor: 'secondary.main'}}/>
+               
               </DemoContainer>
             </LocalizationProvider>
         </Toolbar>

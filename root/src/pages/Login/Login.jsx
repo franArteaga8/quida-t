@@ -12,7 +12,7 @@ const Login = () => {
   const [username, setUsername] = useState('')
   const [showRegisterForm, setShowRegisterForm] = useState(false)
 
-  const { userData, setUserData } = useContext(UserContext)
+  const { setUserData } = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -27,6 +27,9 @@ const Login = () => {
       console.log(signupRes)
       localStorage.setItem('token', signupRes.token)
       navigate('/')
+      const user = await getProfile()
+      user && setUserData(user)
+      
     } else {
       const loginRes = await postLogin({ email, pass });
       console.log(loginRes)

@@ -12,7 +12,7 @@ const Login = () => {
   const [username, setUsername] = useState('')
   const [showRegisterForm, setShowRegisterForm] = useState(false)
 
-  const { userData, setUserData } = useContext(UserContext)
+  const { setUserData } = useContext(UserContext)
 
   const navigate = useNavigate()
 

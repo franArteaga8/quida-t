@@ -45,8 +45,8 @@ const Home = () => {
     <div className="position">
       
 
-    <Box >
-      <Box textAlign={'left'}>
+    <Box  >
+      <Box textAlign={'left'} sx={{ marginBottom: '30px'}}>
 
       <Typography variant='h6'>
         Welcome,

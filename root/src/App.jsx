@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{userData, setUserData}} >
+      <UserContext.Provider value={{ userData, setUserData }} >
         <ThemeProvider theme={customTheme} >
           <CssBaseline/>
             <RouterProvider router={router} />

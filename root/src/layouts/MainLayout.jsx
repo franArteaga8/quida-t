@@ -9,10 +9,10 @@ const MainLayout = () => {
     <Box sx={{ height: '100vh', display: 'flex'}} >
       <Sidebar/>
         
-      <div style={{ width:'100%', height:'100vh', display:'flex', flexDirection:'column', alignItems: 'center', gap: '5em'  }}>
+      <div style={{ width:'100%', height:'100vh', display:'flex', flexDirection:'column', alignItems: 'center', gap: '2em' }}>
 
         <Header />
-        <Outlet />
+        <Outlet  />
         
       </div>
 

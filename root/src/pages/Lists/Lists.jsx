@@ -3,7 +3,7 @@ import { getMyLists, postAList } from "../../services/lists"
 import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
 import './Lists.css'
-import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, TextField, Typography, IconButton } from "@mui/material"
+import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Divider, List, ListItem, TextField, Typography, IconButton } from "@mui/material"
 import { AddCircle } from "@mui/icons-material"
 
 const Lists = () => {
@@ -46,7 +46,7 @@ const Lists = () => {
     }, [createdList])
 
   return (
-    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start'}}>
+    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowX: 'hidden'}}>
 
         <Typography variant="h4" color={'primary.main'} >Lists</Typography>
         <ListsDisplay lists={myLists.assignedLists} />
@@ -56,6 +56,7 @@ const Lists = () => {
         </IconButton>
 
         <Dialog
+        fullWidth
         open={open}
         onClose={handleClose}
         PaperProps={{
@@ -74,8 +75,10 @@ const Lists = () => {
             <DialogContentText>
               Define your new List.
             </DialogContentText>
+          <List>
 
-          <TextField
+            <ListItem>
+            <TextField
             autoFocus
             required
             margin="dense"
@@ -87,7 +90,10 @@ const Lists = () => {
             variant="standard"
             onChange={(e) => setTitle(e.target.value)}
           />
+            </ListItem>
 
+         
+            <ListItem>
           <TextField
             autoFocus
             
@@ -100,6 +106,13 @@ const Lists = () => {
             variant="standard"
             onChange={(e) => setDesc(e.target.value)}
           />
+          </ListItem>
+          <ListItem>
+          <Divider variant="fullWidth"/>
+          </ListItem>
+          </List>
+         
+          
           
         </DialogContent>
 

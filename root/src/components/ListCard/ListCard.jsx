@@ -10,7 +10,7 @@ const ListCard = ({ list }) => {
   const [ tasks , setTasks ] = useState([])
   const [listId, setListId] = useState(list.listId)
 
-  const [ listState, setListState ] = useState({})
+  const [ listState, setListState ] = useState({ list })
   
 
   const handleTasks = async () => {
@@ -25,7 +25,7 @@ const ListCard = ({ list }) => {
 
   useEffect(() => {
     handleTasks()
-  }, [])
+  }, [listState])
 
 
 
@@ -41,7 +41,7 @@ const ListCard = ({ list }) => {
           id="panel1-header"
           sx={{ backgroundColor: 'primary.main'}}
         >
-          <Typography color={'secondary.main'}>List {list.listId} eeeee {list.title} </Typography>
+          <Typography color={'secondary.main'}>List {list.listId} {listState.title} </Typography>
         </AccordionSummary>
         <AccordionDetails>
         { tasks && tasks.map((t) => {

@@ -14,8 +14,6 @@ const ListCard = ({ list }) => {
   
 
   const handleTasks = async () => {
-    setListState(list)
-    listState && console.log( listState.title )
 
     const result = await getTasksFromList(list.listId)
     result && setTasks(result)

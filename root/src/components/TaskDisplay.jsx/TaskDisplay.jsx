@@ -9,6 +9,7 @@ import { getTasksFromList, postATask } from '../../services/tasks'
 const TaskDisplay = ({ list }) => {
 
   const [ tasks , setTasks ] = useState([])
+  const [ deletedTask, setDeleteTask ] = useState({})
 
   const [open, setOpen] = useState(false);
   const [title, setTitle ] = useState('')
@@ -39,7 +40,7 @@ const TaskDisplay = ({ list }) => {
 
   useEffect(() => {
     handleTasks()
-  }, [createdTask])
+  }, [createdTask, deletedTask])
 
 
 
@@ -133,7 +134,7 @@ const TaskDisplay = ({ list }) => {
       {tasks && tasks.map((t) => {
         return (
 
-           <TaskCard key={t.id} task={t} />
+           <TaskCard key={t.id} task={t} setDeleteTask={setDeleteTask}/>
         
         )
       })}

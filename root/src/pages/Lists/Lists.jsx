@@ -66,13 +66,17 @@ const Lists = () => {
 
         <Divider sx={{ margin: '20px'}}/>
 
+        <Box display={'flex'} alignItems={'center'} padding={'10px'} >
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'} >My Lists</Typography>
+        <IconButton onClick={() => {handleClickOpen()}} sx={{ width:'min-content', marginLeft:'auto', color: 'primary.main', backgroundColor: 'peru' }}>
+          <AddCircle sx={{ fontSize: '2em'}} />
+        </IconButton>
+        </Box>
+        
         <ListsDisplay lists={myLists} />
 
 
-        <IconButton onClick={() => {handleClickOpen()}} sx={{ position: 'absolute', bottom: '50px', width:'min-content', color: 'primary.main', backgroundColor: 'peru' }}>
-          <AddCircle sx={{ fontSize: '2em'}} />
-        </IconButton>
+        
 
         <Dialog
         fullWidth

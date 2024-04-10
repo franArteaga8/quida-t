@@ -39,7 +39,9 @@ const ListCard = ({ list }) => {
           sx={{ backgroundColor: 'primary.main'}}
         >
           <Typography color={'secondary.main'}>List {list.listId} {list.title} </Typography>
+
         </AccordionSummary>
+        
         <AccordionDetails>
         { tasks && tasks.map((t) => {
           return (

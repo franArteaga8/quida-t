@@ -60,13 +60,15 @@ const Lists = () => {
     }, [createdList])
 
   return (
-    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowX: 'hidden'}}>
+    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowY: 'scroll'}}>
 
         <Typography variant="h4" color={'primary.main'} >Lists</Typography>
-
+        <Divider sx={{ margin: '20px'}}/>
 
         <Typography variant="h5" color={'primary.main'} > Assigned Lists</Typography>
-        <ListsDisplay lists={assignedLists} />
+        <ListsDisplay  lists={assignedLists} />
+
+        <Divider sx={{ margin: '20px'}}/>
 
         <Typography variant="h5" color={'primary.main'} >My Lists</Typography>
         <ListsDisplay lists={myLists} />

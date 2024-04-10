@@ -24,9 +24,6 @@ const TaskCard = ({ task, editable, setDeleteTask }) => {
 
         {editable ? 
         <>
-        <Typography variant='h6' >
-            {task.title}
-        </Typography>
           <IconButton sx={{ marginLeft:'auto'}} >
             <Edit color='primary' />
         </IconButton>

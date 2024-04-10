@@ -7,10 +7,11 @@ import {
 } from "@mui/material";
 import { ArrowDownward } from "@mui/icons-material";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const PatientList = ({patient}) => {
 
-  
+
 
   return (
     <>
@@ -21,6 +22,7 @@ const PatientList = ({patient}) => {
             border: "1px green solid",
             borderColor: "primary.main",
             borderRadius: "10px",
+            width: "100%"
           }}
         >
          
@@ -46,7 +48,7 @@ const PatientList = ({patient}) => {
 };
 
 PatientList.propTypes = {
-  Patient: PropTypes.object,
+  patient: PropTypes.object,
 };
 
 export default PatientList;

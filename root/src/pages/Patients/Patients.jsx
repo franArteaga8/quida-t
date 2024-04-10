@@ -6,10 +6,14 @@ import {
 
 import PatientList from "../../components/PatientsList/PatientList";
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../services/user";
+import { getAllUsers, putPsychologist } from "../../services/user";
 import { TextField, Button, Divider } from "@mui/material";
 
+import { useCookies } from 'react-cookie'
+
 const Patients = () => {
+
+  const { user: cookieUser } = useCookies(['user'])[0]
 
   const [listUser, setListUser] = useState([]);
   const [search, setSearch] = useState('')
@@ -17,23 +21,31 @@ const Patients = () => {
 
   const handleSearch = ()=>{
     setFilter(search)
+    if(search === '') setFilter(' ')
   }
   
   const handleUsers = async () => {
     const result = await getAllUsers();
     setListUser(result)
-  };
+  };-
 
   useEffect(() => {
     handleUsers();
     
-  }, [])
+  }, [listUser])
 
+  const addPatient = async(id)=>{
+    const result = await putPsychologist(id)
+    
+  }
+
+  const addList = (list)=>{
+    console.log('añadio lista' +  list)
+  }
   return (
+
     <Box  sx={{maxWidth: '1200px', minWidth: 'max-content', width: '90%',height: '90%', display: 'flex', 
-    flexDirection: 'column', justifyContent: 'start','&::-webkit-scrollbar-track': {
-   
-    }}}>
+    flexDirection: 'column', justifyContent: 'start'}}>
 
         <Typography variant="h4" color={'primary.main'}> Patients </Typography>
 
@@ -51,24 +63,42 @@ const Patients = () => {
                 Search</Button>
         
         <Box  sx={{ overflowY:'auto', display: 'flex', flexDirection: 'column', gap: '20px', color:'primary.main', padding:'20px', border:'2px  solid', borderColor:'primary.main', borderRadius: '20px'}} >
-        Patients
+        
+        <Typography variant="h5" color={'primary.main'} > Patients</Typography>
         <Divider/>
-        { filter && listUser.filter((p)=> p['username'].includes(filter)).map((p) => {
+
+        { filter && listUser.filter((p)=> p['username'].includes(filter)|| ' ' === filter).filter((p)=> p['psychologist'] !== cookieUser.id).map((p) => {
             return(
-                <PatientList key={p.id} patient={p} />
+              
+              <Box key={p.id} sx={{display: 'flex',alignItems: 'center', gap: '20px'}}>
+
+                <PatientList  key={p.id} patient={p}/>
+                <Button  color="primary" variant="contained" onClick={()=> addPatient(p.id)}>Add</Button>
+              </Box>
+              
             )
          })
         } 
-        My patients
+
+        <Typography variant="h5" color={'primary.main'} > My patients</Typography>
         <Divider/>     
          
         
-        { listUser && listUser.map((p) => {
-            return(
-                <PatientList key={p.id} patient={p} />
-            )
-         })
-        }
+        {cookieUser && cookieUser.validation === true ? 
+             listUser && listUser.filter((p)=> p['psychologist'] === cookieUser.id).map((p) => {
+              return(
+                  <Box key={p.id} sx={{display: 'flex',alignItems: 'center', gap: '20px'}}>
+
+                    <PatientList key={p.id} patient={p} />
+                    <Button  color="primary" variant="contained" onClick={()=> addList('2')} sx={{height: 'fit-content', fontSize: 'small'}}>Add List</Button>
+                  </Box>
+              )
+           })
+          
+          : 
+          null
+         
+         }
           
         </Box>
 

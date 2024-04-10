@@ -32,3 +32,14 @@ export const getAllUsers = async () => {
     })
     return data
 }
+
+export const putPsychologist = async (id) =>{
+   
+    const { data } = await api.put(`/users/${id}`,{},{
+        headers:{
+            Authorization: localStorage.getItem('token')
+        }
+    })
+    
+    return data
+}

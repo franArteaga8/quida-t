@@ -41,14 +41,11 @@ export const postAList = async (listData) => {
 }
 
 export const postListAssigned = async(listId, userId)=>{
-    console.log('entro')
     const {data} =  await api.post(`/lists/${listId}/${userId}`,{},{
         headers:{
             Authorization: localStorage.getItem('token')
         }
     })
-    console.log('no leega')
-    console.log(data)
     return data
 }
 

@@ -50,8 +50,7 @@ const Patients = () => {
   }
 
   const addListAPatient = async (l)=>{
-    console.log(l)
-    console.log(addListUser && addListUser)
+    
     const result = await postListAssigned( l, addListUser)
   
     result && setMylist([])
@@ -97,13 +96,16 @@ const Patients = () => {
         } 
 
         <Typography variant="h5" color={'primary.main'} > My patients</Typography>
-        <Divider/>     
-        {myList &&
+        <Divider/>  
+
+        {myList.length ?
         <Box   sx={{display: 'flex', alignSelf: 'center', width: 'min-content', gap: '5px'}}>
           {myList.map((l)=> <Button variant="outlined" sx={{width: 'min-content', alignSelf: 'center'}} key={l.id} onClick={()=> addListAPatient(l.id)}> {l.title} </Button>)}
-
+          <Button variant="outlined" color="primary" sx={{width: 'min-content', alignSelf: 'center'}}  onClick={()=> setMylist([])}>exit</Button>
+         
         </Box>
-        }
+        : null
+}
         {cookieUser && cookieUser.validation === true ? 
              listUser && listUser.filter((p)=> p['psychologist'] === cookieUser.id).map((p) => {
               return(

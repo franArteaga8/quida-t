@@ -55,8 +55,10 @@ const Lists = () => {
         
     }, [createdList])
 
+    
+
   return (
-    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowY: 'scroll', padding:'20px'}}>
+    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowY: 'scroll', padding:'20px', scrollbarWidth: 'none'}}>
 
         <Typography variant="h2" color={'primary.main'} >Lists</Typography>
         <Divider sx={{ margin: '20px'}}/>

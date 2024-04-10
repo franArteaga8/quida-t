@@ -30,7 +30,7 @@ const TaskCard = ({ task, setDeleteTask }) => {
         </Box>
        <Divider/>
         <Typography margin={'10px'} textAlign={'left'}>
-           description {task.description}
+          {task.description}
         </Typography>
     </Card>
     

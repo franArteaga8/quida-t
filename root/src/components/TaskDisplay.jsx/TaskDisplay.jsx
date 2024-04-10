@@ -6,7 +6,8 @@ import { AddCircle } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
 import { getTasksFromList, postATask } from '../../services/tasks'
 
-const TaskDisplay = ({ list }) => {
+const TaskDisplay = ({ list, editable }) => {
+
 
   const [ tasks , setTasks ] = useState([])
 
@@ -64,7 +65,10 @@ const TaskDisplay = ({ list }) => {
       <Typography variant='h4' sx={{ margin: '10px'}}>
           {tasks.length ? 'Tasks' : 'No tasks yet, mate'} 
        </Typography>
-       <IconButton onClick={() => {handleClickOpen()}} sx={{ marginLeft:'auto'}} >
+      
+      {editable ? 
+      <>
+         <IconButton onClick={() => {handleClickOpen()}} sx={{ marginLeft:'auto'}} >
             <AddCircle fontSize='large' color='primary' />
         </IconButton>
         <Dialog
@@ -134,6 +138,13 @@ const TaskDisplay = ({ list }) => {
         </DialogActions>
 
       </Dialog>
+      </>
+      
+      :
+      null}
+
+
+      
       </Box>
 
       <Divider/>
@@ -141,7 +152,7 @@ const TaskDisplay = ({ list }) => {
       {tasks && tasks.map((t) => {
         return (
 
-           <TaskCard key={t.id} task={t} setDeleteTask={setDeleteTask}/>
+           <TaskCard key={t.id} task={t} editable={editable} setDeleteTask={setDeleteTask} />
         
         )
       })}

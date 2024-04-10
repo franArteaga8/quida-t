@@ -7,6 +7,7 @@ import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, Dia
 import { AddCircle } from "@mui/icons-material"
 
 const Lists = () => {
+  
     const [ myLists, setMyLists ] = useState([])
     const [ assignedLists, setAssignedLists ] = useState([])
 
@@ -65,7 +66,7 @@ const Lists = () => {
         <Divider sx={{ margin: '20px'}}/>
 
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'}> Assigned Lists</Typography>
-        <ListsDisplay  lists={assignedLists} />
+        <ListsDisplay  lists={assignedLists} editable= {false} />
 
         <Divider sx={{ margin: '20px'}}/>
 
@@ -76,7 +77,7 @@ const Lists = () => {
         </IconButton>
         </Box>
         
-        <ListsDisplay lists={myLists} setDeletedList={setDeletedList} />
+        <ListsDisplay lists={myLists} setDeletedList={setDeletedList} editable={true} />
 
 
         

@@ -4,7 +4,7 @@ import { Edit, RemoveCircle } from '@mui/icons-material'
 import { Box,  Card, Divider, IconButton, Typography } from '@mui/material'
 import { deleteTask } from '../../services/tasks'
 
-const TaskCard = ({ task, setDeleteTask }) => {
+const TaskCard = ({ task, editable, setDeleteTask }) => {
 
 
   const handleDeleteTask = async () => {
@@ -17,16 +17,28 @@ const TaskCard = ({ task, setDeleteTask }) => {
 
   return (
     <Card sx={{ backgroundColor: 'peru', borderRadius:'10px', marginBottom: '20px', padding: '20px'}} >
-        <Box display={'flex'} justifyContent={'center'} alignItems={'center'}  >
+        <Box display={'flex'} justifyContent={'left'} alignItems={'left'}  >
         <Typography variant='h6' >
             {task.title}
         </Typography>
-        <IconButton sx={{ marginLeft:'auto'}} >
+
+        {editable ? 
+        <>
+        <Typography variant='h6' >
+            {task.title}
+        </Typography>
+          <IconButton sx={{ marginLeft:'auto'}} >
             <Edit color='primary' />
         </IconButton>
         <IconButton onClick={() => handleDeleteTask()} >
             <RemoveCircle color='primary' />
         </IconButton>
+        </> 
+        : null}
+
+        
+
+
         </Box>
        <Divider/>
         <Typography margin={'10px'} textAlign={'left'}>
@@ -39,6 +51,7 @@ const TaskCard = ({ task, setDeleteTask }) => {
 
 TaskCard.propTypes = {
     task: PropTypes.object,
+    editable: PropTypes.bool,
     setDeleteTask: PropTypes.func
   }
 

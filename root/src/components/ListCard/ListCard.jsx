@@ -6,7 +6,9 @@ import TaskDisplay from "../TaskDisplay.jsx/TaskDisplay"
 import { useState } from 'react'
 import { deleteAList } from '../../services/lists'
 
-const ListCard = ({ list, setDeletedList }) => {
+const ListCard = ({ list, setDeletedList, editable }) => {
+
+  console.log(editable)
 
   
   const [open, setOpen] = useState(false);
@@ -44,19 +46,23 @@ const ListCard = ({ list, setDeletedList }) => {
           sx={{ backgroundColor: 'primary.main'}}
         >
           <Typography variant="h5" color={'secondary.main'}> {list.title} </Typography>
+          { editable ? 
           <IconButton onClick={handleClickOpen} sx={{ width:'min-content', marginLeft:'auto', color: 'secondary.main',  }}>
           <RemoveCircle sx={{ fontSize: '1em'}} />
         </IconButton>
+         :
+         null}
+          
 
         </AccordionSummary>
         
         <AccordionDetails>
         
-        <Typography variant="subtitle2" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description} </Typography>
+        <Typography variant="subtitle1" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description} </Typography>
 
         <Divider/>
 
-        { list && <TaskDisplay list={list} >
+        { list && <TaskDisplay list={list} editable={editable} >
 
           </TaskDisplay>}
 
@@ -93,7 +99,8 @@ const ListCard = ({ list, setDeletedList }) => {
 
 ListCard.propTypes = {
   list: PropTypes.object,
-  setDeletedList: PropTypes.func
+  setDeletedList: PropTypes.func,
+  editable: PropTypes.bool
 }
 
 export default ListCard

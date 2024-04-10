@@ -33,6 +33,7 @@ const Login = () => {
       navigate('/')
       const user = await getProfile()
       user && setUserData(user)
+      user && setCookie('user', user)
       
     } else {
       const loginRes = await postLogin({ email, pass });

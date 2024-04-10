@@ -49,5 +49,15 @@ export const postListAssigned = async(listId, userId)=>{
     return data
 }
 
+export const getListAssigned = async()=>{
+    const data =  await api.get(`/lists/listAssigned`,{
+        headers:{
+            Authorization: localStorage.getItem('token')
+        }
+    })
+    console.log(data)
+    return data
+}
+
 
 

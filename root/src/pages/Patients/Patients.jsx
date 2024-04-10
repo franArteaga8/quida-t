@@ -10,7 +10,7 @@ import { getAllUsers, putPsychologist } from "../../services/user";
 import { TextField, Button, Divider } from "@mui/material";
 
 import { useCookies } from 'react-cookie'
-import { getMyLists, postListAssigned } from "../../services/lists";
+import { getListAssigned, getMyLists, postListAssigned } from "../../services/lists";
 
 const Patients = () => {
 
@@ -50,7 +50,7 @@ const Patients = () => {
   }
 
   const addListAPatient = async (l)=>{
-    
+    getListAssigned()
     const result = await postListAssigned( l, addListUser)
   
     result && setMylist([])

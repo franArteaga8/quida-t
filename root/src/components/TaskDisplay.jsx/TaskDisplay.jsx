@@ -9,6 +9,7 @@ import { getTasksFromList, postATask } from '../../services/tasks'
 const TaskDisplay = ({ list }) => {
 
   const [ tasks , setTasks ] = useState([])
+
   const [ deletedTask, setDeleteTask ] = useState({})
 
   const [open, setOpen] = useState(false);
@@ -33,6 +34,7 @@ const TaskDisplay = ({ list }) => {
   const handleTasks = async () => {
 
     const result = await getTasksFromList(list.id)
+    result.length && console.log(result)
     result && setTasks(result)
   }
 
@@ -40,13 +42,22 @@ const TaskDisplay = ({ list }) => {
 
   useEffect(() => {
     handleTasks()
-  }, [createdTask, deletedTask])
+  },[createdTask, deletedTask])
+
+ /*  useEffect(()=>{
+    handleTasks()
+  },[deletedTask]) */
+
 
 
 
 
   const handleCreateTask = async () => {
-    const result = await postATask( {listId: tasks[0]['listId'],  taskData: {title, description} })
+    console.log('a')
+    tasks.length>1 && console.log(tasks)
+    const result = await postATask( {listId: list.id,  taskData: {title, description} })
+    console.log('ee')
+    result && console.log(result)
     result && setCreatedTask(result)
   }
 
@@ -123,7 +134,7 @@ const TaskDisplay = ({ list }) => {
 
           <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={handleCreateTask}>Create</Button>
+          <Button type="submit" onClick={() => handleCreateTask()}>Create</Button>
         </DialogActions>
 
       </Dialog>

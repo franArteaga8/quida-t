@@ -38,7 +38,8 @@ const TaskCard = ({ task, setDeleteTask }) => {
 }
 
 TaskCard.propTypes = {
-    task: PropTypes.object
+    task: PropTypes.object,
+    setDeleteTask: PropTypes.func
   }
 
 export default TaskCard

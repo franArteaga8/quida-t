@@ -6,9 +6,8 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import { UserContext } from '../../context/UserData';
 
 import { useCookies } from 'react-cookie'
 
@@ -33,7 +32,6 @@ const Home = () => {
     setDate(`${month}/${day}/${year}`)
   }
 
-  const { userData } = useContext(UserContext)
 
   const { user: cookieUser } = useCookies(['user'])[0]
 
@@ -59,7 +57,7 @@ const Home = () => {
         Welcome,
       </Typography>
       <Typography variant='h2'>
-      {userData && cookieUser.username} 
+      {cookieUser && cookieUser.username} 
       </Typography>
 
       </Box>

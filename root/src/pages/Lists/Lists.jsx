@@ -49,6 +49,9 @@ const Lists = () => {
     <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowX: 'hidden'}}>
 
         <Typography variant="h4" color={'primary.main'} >Lists</Typography>
+
+        { myLists.assignedLists && console.log(myLists.assignedLists.title)}
+
         <ListsDisplay lists={myLists.assignedLists} />
 
         <IconButton onClick={() => {handleClickOpen()}} sx={{ position: 'absolute', bottom: '50px', width:'min-content', color: 'primary.main', backgroundColor: 'peru' }}>

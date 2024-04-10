@@ -28,13 +28,9 @@ const TaskDisplay = ({ list }) => {
 
  
 
-  const [ listState ] = useState({ list })
-  
-
   const handleTasks = async () => {
 
     const result = await getTasksFromList(list.id)
-    result.length && console.log(result)
     result && setTasks(result)
   }
 

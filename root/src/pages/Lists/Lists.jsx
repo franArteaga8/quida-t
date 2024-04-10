@@ -15,6 +15,7 @@ const Lists = () => {
     const [description, setDesc ] = useState('')
 
     const [createdList, setCreatedList ] = useState({})
+    const [ deletedList, setDeletedList ] = useState({})
 
 
     const handleClickOpen = () => {
@@ -53,7 +54,7 @@ const Lists = () => {
     useEffect(() => {
         handleMyLists()
         
-    }, [createdList])
+    }, [createdList, deletedList])
 
     
 
@@ -75,7 +76,7 @@ const Lists = () => {
         </IconButton>
         </Box>
         
-        <ListsDisplay lists={myLists} />
+        <ListsDisplay lists={myLists} setDeletedList={setDeletedList} />
 
 
         

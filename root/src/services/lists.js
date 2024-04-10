@@ -52,5 +52,15 @@ export const postListAssigned = async(listId, userId)=>{
     return data
 }
 
+export const deleteAList = async ({ listId }) => {
+    const { data } = await api.delete(`/lists/${listId}`, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+    console.log(data)
+    return data
+}
+
 
 

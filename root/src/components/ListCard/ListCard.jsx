@@ -1,11 +1,35 @@
 
 import PropTypes from 'prop-types'
-import { Accordion, AccordionSummary, AccordionDetails, Divider, Typography } from "@mui/material"
-import { ArrowDownward } from "@mui/icons-material"
+import { Accordion, AccordionSummary, AccordionDetails, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Typography } from "@mui/material"
+import { ArrowDownward, RemoveCircle } from "@mui/icons-material"
 import TaskDisplay from "../TaskDisplay.jsx/TaskDisplay"
+import { useState } from 'react'
+import { deleteAList } from '../../services/lists'
 
-const ListCard = ({ list }) => {
+const ListCard = ({ list, setDeletedList }) => {
 
+  
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+    const handleDeleteList = async () => {
+      const result = await deleteAList({listId: list.id})
+      result && console.log(result)
+      result && setDeletedList(result)
+     
+
+    }
+
+
+
+    
 
   return (
     <>
@@ -20,7 +44,9 @@ const ListCard = ({ list }) => {
           sx={{ backgroundColor: 'primary.main'}}
         >
           <Typography variant="h5" color={'secondary.main'}> {list.title} </Typography>
-          
+          <IconButton onClick={handleClickOpen} sx={{ width:'min-content', marginLeft:'auto', color: 'secondary.main',  }}>
+          <RemoveCircle sx={{ fontSize: '1em'}} />
+        </IconButton>
 
         </AccordionSummary>
         
@@ -37,13 +63,37 @@ const ListCard = ({ list }) => {
           
         </AccordionDetails>
       </Accordion>
+      <Dialog
+        fullWidth
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Delete List"}
+        </DialogTitle>
+        <DialogContent >
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you wanna delete this list: &apos;{list.title}&apos; ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Go back</Button>
+          <Button onClick={handleDeleteList} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
    
   )
 }
 
 ListCard.propTypes = {
-  list: PropTypes.object
+  list: PropTypes.object,
+  setDeletedList: PropTypes.func
 }
 
 export default ListCard

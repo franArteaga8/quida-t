@@ -10,6 +10,7 @@ import { getAllUsers, putPsychologist } from "../../services/user";
 import { TextField, Button, Divider } from "@mui/material";
 
 import { useCookies } from 'react-cookie'
+import { getMyLists, postListAssigned } from "../../services/lists";
 
 const Patients = () => {
 
@@ -18,6 +19,9 @@ const Patients = () => {
   const [listUser, setListUser] = useState([]);
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState('')
+
+  const [myList, setMylist] = useState([])
+  const [addListUser, setAddListUser] = useState('')
 
   const handleSearch = ()=>{
     setFilter(search)
@@ -35,13 +39,24 @@ const Patients = () => {
   }, [listUser])
 
   const addPatient = async(id)=>{
-    const result = await putPsychologist(id)
-    
+    await putPsychologist(id)
   }
 
-  const addList = (list)=>{
-    console.log('añadio lista' +  list)
+  const addList = async (l)=>{
+    setAddListUser(l)
+    const result = await getMyLists()
+    setMylist(result && result.createdLists)
+
   }
+
+  const addListAPatient = async (l)=>{
+    console.log(l)
+    console.log(addListUser && addListUser)
+    const result = await postListAssigned( l, addListUser)
+  
+    result && setMylist([])
+  }
+
   return (
 
     <Box  sx={{maxWidth: '1200px', minWidth: 'max-content', width: '90%',height: '90%', display: 'flex', 
@@ -74,6 +89,7 @@ const Patients = () => {
 
                 <PatientList  key={p.id} patient={p}/>
                 <Button  color="primary" variant="contained" onClick={()=> addPatient(p.id)}>Add</Button>
+
               </Box>
               
             )
@@ -82,16 +98,24 @@ const Patients = () => {
 
         <Typography variant="h5" color={'primary.main'} > My patients</Typography>
         <Divider/>     
-         
-        
+        {myList &&
+        <Box   sx={{display: 'flex', alignSelf: 'center', width: 'min-content', gap: '5px'}}>
+          {myList.map((l)=> <Button variant="outlined" sx={{width: 'min-content', alignSelf: 'center'}} key={l.id} onClick={()=> addListAPatient(l.id)}> {l.title} </Button>)}
+
+        </Box>
+        }
         {cookieUser && cookieUser.validation === true ? 
              listUser && listUser.filter((p)=> p['psychologist'] === cookieUser.id).map((p) => {
               return(
+               
                   <Box key={p.id} sx={{display: 'flex',alignItems: 'center', gap: '20px'}}>
 
                     <PatientList key={p.id} patient={p} />
-                    <Button  color="primary" variant="contained" onClick={()=> addList('2')} sx={{height: 'fit-content', fontSize: 'small'}}>Add List</Button>
+                    <Button  color="primary" variant="contained" onClick={()=> addList(p.id)} sx={{height: 'fit-content', fontSize: 'small'}}>Add List</Button>
+
+                    
                   </Box>
+                  
               )
            })
           

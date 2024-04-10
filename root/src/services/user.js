@@ -40,6 +40,6 @@ export const putPsychologist = async (id) =>{
             Authorization: localStorage.getItem('token')
         }
     })
-    
+   
     return data
 }

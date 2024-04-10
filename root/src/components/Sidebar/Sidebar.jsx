@@ -1,14 +1,13 @@
-import { AccountCircle, FormatListBulleted, Home as HomeIcon, People } from "@mui/icons-material";
+import { AccountCircle, FormatListBulleted, Home as HomeIcon, People } from "@mui/icons-material"
 import { Box, Button, CssBaseline} from "@mui/material"
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { UserContext } from "../../context/UserData";
+import { Link } from "react-router-dom"
+
+import { useCookies } from 'react-cookie'
 
 const Sidebar = () => {
  
-  const { userData } = useContext(UserContext)
+  const { user: cookieUser } = useCookies(['user'])[0]
 
-  console.log(userData.role)
   
 
   return (
@@ -37,7 +36,7 @@ const Sidebar = () => {
             </Button>
           </Link>
 
-          {userData && userData.validation === true ? 
+          {cookieUser && cookieUser.validation === true ? 
            <Link to={'/patients'} style={{ textDecoration: 'none', color: 'whitesmoke'}}>
            <Button color="secondary" variant="text" size="large" startIcon={<People/>  } >
              Patients

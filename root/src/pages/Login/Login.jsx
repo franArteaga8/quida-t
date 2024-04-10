@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"
 import { getProfile } from "../../services/user"
 import { UserContext } from "../../context/UserData"
 
+import { useCookies } from 'react-cookie'
+
 const Login = () => {
   const [email, setEmail] = useState('')
   const [pass, setPassword] = useState('')
@@ -13,6 +15,8 @@ const Login = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false)
 
   const { setUserData } = useContext(UserContext)
+
+  const [ cookies, setCookie ] = useCookies(['user'])
 
   const navigate = useNavigate()
 
@@ -40,8 +44,11 @@ const Login = () => {
       navigate('/')
 
       const user = await getProfile()
-      user && setUserData(user)
-      console.log(user)
+      //user && setUserData(user)
+
+      console.log(`log user: ${user.username}`)
+      user && setCookie('user', user)
+      console.log(`cookie log: ${cookies.username}`)
       
     }
   };

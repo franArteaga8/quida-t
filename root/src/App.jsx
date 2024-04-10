@@ -9,19 +9,44 @@ import { ThemeProvider } from '@emotion/react'
 import { useState } from 'react'
 import { UserContext } from './context/UserData.js'
 
+import { CookiesProvider, useCookies } from 'react-cookie'
+import { getProfile } from './services/user.js'
+
 
 function App() {
 
   const [ userData, setUserData ] = useState({})
 
+  const [ cookies, setCookie ] = useCookies(['user'])
+  const { user: cookieUser } = useCookies(['user'])[0]
+
+  const handleCookie = async () => {
+   
+    const user = await getProfile()
+      //user && setUserData(user)
+
+    console.log(`log user: ${user.username}`)
+    user && setCookie('user', user)
+
+    cookies && cookieUser && console.log(cookieUser.username)
+    
+  };
+
+  !cookieUser && localStorage.getItem('token') && handleCookie()
+
+
   return (
     <>
-      <UserContext.Provider value={{ userData, setUserData }} >
-        <ThemeProvider theme={customTheme} >
-          <CssBaseline/>
-            <RouterProvider router={router} />
-        </ThemeProvider>
-      </UserContext.Provider>
+      <CookiesProvider defaultSetOptions={{ path: '/'}} >
+
+        <UserContext.Provider value={{userData, setUserData}} >
+          <ThemeProvider theme={customTheme} >
+            <CssBaseline/>
+              <RouterProvider router={router} />
+          </ThemeProvider>
+        </UserContext.Provider>
+
+      </CookiesProvider>
     </>
   )
 }

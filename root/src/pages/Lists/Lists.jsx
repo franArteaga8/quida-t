@@ -6,8 +6,6 @@ import './Lists.css'
 import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Divider, List, ListItem, TextField, Typography, IconButton } from "@mui/material"
 import { AddCircle } from "@mui/icons-material"
 
-import { useCookies } from 'react-cookie'
-
 const Lists = () => {
     const [ myLists, setMyLists ] = useState([])
     const [ assignedLists, setAssignedLists ] = useState([])
@@ -18,7 +16,6 @@ const Lists = () => {
 
     const [createdList, setCreatedList ] = useState({})
 
-    const { user: cookieUser } = useCookies(['user'])[0]
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -38,7 +35,6 @@ const Lists = () => {
               
         })
       )
-
 
       const filteredAssignedLists = actualAssignedLists.filter((a) => {return (!result.createdLists.map((c) => c.id).includes(a.id))})
         filteredAssignedLists && setAssignedLists(filteredAssignedLists)
@@ -60,15 +56,17 @@ const Lists = () => {
     }, [createdList])
 
   return (
-    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowX: 'hidden'}}>
+    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowY: 'scroll', padding:'20px'}}>
 
-        <Typography variant="h4" color={'primary.main'} >Lists</Typography>
+        <Typography variant="h2" color={'primary.main'} >Lists</Typography>
+        <Divider sx={{ margin: '20px'}}/>
 
+        <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'}> Assigned Lists</Typography>
+        <ListsDisplay  lists={assignedLists} />
 
-        <Typography variant="h5" color={'primary.main'} > Assigned Lists</Typography>
-        <ListsDisplay lists={assignedLists} />
+        <Divider sx={{ margin: '20px'}}/>
 
-        <Typography variant="h5" color={'primary.main'} >My Lists</Typography>
+        <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'} >My Lists</Typography>
         <ListsDisplay lists={myLists} />
 
 

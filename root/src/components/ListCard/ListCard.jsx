@@ -4,6 +4,7 @@ import { getTasksFromList } from "../../services/tasks"
 import PropTypes from 'prop-types'
 import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material"
 import { ArrowDownward } from "@mui/icons-material"
+import TaskDisplay from "../TaskDisplay.jsx/TaskDisplay"
 
 const ListCard = ({ list }) => {
 
@@ -38,16 +39,16 @@ const ListCard = ({ list }) => {
           id="panel1-header"
           sx={{ backgroundColor: 'primary.main'}}
         >
-          <Typography color={'secondary.main'}>List {list.listId} {list.title} </Typography>
+          <Typography variant="h5" color={'secondary.main'}>List {list.listId} {list.title} </Typography>
+
         </AccordionSummary>
+        
         <AccordionDetails>
-        { tasks && tasks.map((t) => {
-          return (
-            <Typography key={t.id} textAlign={'left'} color={'primary.main'} > {t.title} </Typography>
-            
-          )
-        })
-      }
+
+          <TaskDisplay tasks={tasks}  >
+
+          </TaskDisplay>
+
           
         </AccordionDetails>
       </Accordion>

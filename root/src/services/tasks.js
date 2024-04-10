@@ -17,3 +17,14 @@ export const getTasksFromList = async (listId) => {
     })
     return data
 }
+
+export const postATask = async ({listId, taskData}) => {
+    const { data } = await api.post(`/tasks/${listId}`, taskData, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+
+    console.log(data)
+    return data
+}

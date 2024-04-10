@@ -1,6 +1,6 @@
 
 import PropTypes from 'prop-types'
-import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails, Divider, Typography } from "@mui/material"
 import { ArrowDownward } from "@mui/icons-material"
 import TaskDisplay from "../TaskDisplay.jsx/TaskDisplay"
 
@@ -12,7 +12,7 @@ const ListCard = ({ list }) => {
 
         
 
-    <Accordion sx={{ border: '1px solid', borderColor:'primary.main', borderRadius: '10px'}} >
+    <Accordion  sx={{ border: '1px solid', borderColor:'primary.main', borderRadius: '10px'}} >
         <AccordionSummary
           expandIcon={<ArrowDownward sx={{ color: 'secondary.main'}} />}
           aria-controls="panel1-content"
@@ -20,12 +20,17 @@ const ListCard = ({ list }) => {
           sx={{ backgroundColor: 'primary.main'}}
         >
           <Typography variant="h5" color={'secondary.main'}> {list.title} </Typography>
+          
 
         </AccordionSummary>
         
         <AccordionDetails>
+        
+        <Typography variant="subtitle2" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description} </Typography>
 
-         { list && <TaskDisplay list={list} >
+        <Divider/>
+
+        { list && <TaskDisplay list={list} >
 
           </TaskDisplay>}
 

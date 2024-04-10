@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, TextField } from "@mui/material"
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, TextField, Typography } from "@mui/material"
 import { useContext, useState } from "react"
 import { postLogin, postSignup } from "../../services/auth"
 import { useNavigate } from "react-router-dom"
@@ -58,8 +58,9 @@ const Login = () => {
 
   return (
     <Box backgroundColor={'primary.main'} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center',alignItems: 'center', width: '100vw', height: '100vh'}} >
-      <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'background.main', borderRadius: '5%', padding: '10px' }} raised={true} >
-        <CardHeader sx={{color: 'primary.main'}} title={showRegisterForm ?  'Register' : 'Login'} />
+      <Typography color={'secondary'} position={'absolute'} top={'20%'} variant="h1" margin={'20px'} >quida-t</Typography>
+      <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'background.main', borderRadius: '5%', padding: '30px' }} raised={true} >
+        <CardHeader sx={{color: 'primary.main'}} title={showRegisterForm ?  <Typography variant="h2" > Register </Typography> : <Typography variant="h2" > Login </Typography>} />
         <CardContent>
           {showRegisterForm && (
             <>
@@ -103,10 +104,10 @@ const Login = () => {
         </CardContent>
         <Divider />
         <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button onClick={handleFormToggle} variant="outlined" color="primary" sx={{ textTransform: 'none', color: 'black', borderColor: 'primary.main'}} >
+          <Button onClick={handleFormToggle} variant="outlined" color="primary" sx={{ textTransform: 'none', color: 'primary', borderColor: 'primary', borderRadius: '10px', padding:'10px 20px' }} >
             {showRegisterForm ? <span> Already have an account? Login </span> : <span> Don&apos;t have an account? Sign Up </span> }
           </Button>
-          <Button onClick={handleAction} variant="contained" color="primary" sx={{ color: 'whitesmoke'}} >
+          <Button onClick={handleAction} variant="contained" color="primary" sx={{ color: 'whitesmoke', padding:'10px 20px' , borderRadius: '1.2em'}} >
             {showRegisterForm ? 'Register' : 'Login'}
           </Button>
         </CardActions>

@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react"
-import { getMyLists, postAList } from "../../services/lists"
+import { getAList, getMyLists, postAList } from "../../services/lists"
 import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
 import './Lists.css'
 import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Divider, List, ListItem, TextField, Typography, IconButton } from "@mui/material"
 import { AddCircle } from "@mui/icons-material"
 
+import { useCookies } from 'react-cookie'
+
 const Lists = () => {
     const [ myLists, setMyLists ] = useState([])
+    const [ assignedLists, setAssignedLists ] = useState([])
 
     const [open, setOpen] = useState(false);
     const [title, setTitle ] = useState('')
     const [description, setDesc ] = useState('')
 
     const [createdList, setCreatedList ] = useState({})
+
+    const { user: cookieUser } = useCookies(['user'])[0]
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -24,10 +29,19 @@ const Lists = () => {
     };
 
     const handleMyLists = async () => {
-        const result = await getMyLists()
-        result && setMyLists(result)
+      const result = await getMyLists()
+
+      result && setMyLists(result.createdLists)
+      const actualAssignedLists = await Promise.all(
+        result.assignedLists.map(async (a) => {
+        return await getAList(a.listId)
+              
+        })
+      )
 
 
+      const filteredAssignedLists = actualAssignedLists.filter((a) => {return (!result.createdLists.map((c) => c.id).includes(a.id))})
+        filteredAssignedLists && setAssignedLists(filteredAssignedLists)
     }
 
     const handleCreateList = async () => {
@@ -50,9 +64,13 @@ const Lists = () => {
 
         <Typography variant="h4" color={'primary.main'} >Lists</Typography>
 
-        { myLists.assignedLists && console.log(myLists.assignedLists.title)}
 
-        <ListsDisplay lists={myLists.assignedLists} />
+        <Typography variant="h5" color={'primary.main'} > Assigned Lists</Typography>
+        <ListsDisplay lists={assignedLists} />
+
+        <Typography variant="h5" color={'primary.main'} >My Lists</Typography>
+        <ListsDisplay lists={myLists} />
+
 
         <IconButton onClick={() => {handleClickOpen()}} sx={{ position: 'absolute', bottom: '50px', width:'min-content', color: 'primary.main', backgroundColor: 'peru' }}>
           <AddCircle sx={{ fontSize: '2em'}} />

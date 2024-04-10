@@ -8,14 +8,13 @@ import { ArrowDownward } from "@mui/icons-material"
 const ListCard = ({ list }) => {
 
   const [ tasks , setTasks ] = useState([])
-  const [listId, setListId] = useState(list.listId)
 
-  const [ listState, setListState ] = useState({ list })
+  const [ listState ] = useState({ list })
   
 
   const handleTasks = async () => {
 
-    const result = await getTasksFromList(list.listId)
+    const result = await getTasksFromList(list.id)
     result && setTasks(result)
   }
 
@@ -39,7 +38,7 @@ const ListCard = ({ list }) => {
           id="panel1-header"
           sx={{ backgroundColor: 'primary.main'}}
         >
-          <Typography color={'secondary.main'}>List {list.listId} {listState.title} </Typography>
+          <Typography color={'secondary.main'}>List {list.listId} {list.title} </Typography>
         </AccordionSummary>
         <AccordionDetails>
         { tasks && tasks.map((t) => {

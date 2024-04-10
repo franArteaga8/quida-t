@@ -16,7 +16,7 @@ const TaskCard = ({ task }) => {
         </IconButton>
         </Box>
        <Divider/>
-        <Typography textAlign={'left'}>
+        <Typography margin={'10px'} textAlign={'left'}>
            description {task.description}
         </Typography>
     </Card>

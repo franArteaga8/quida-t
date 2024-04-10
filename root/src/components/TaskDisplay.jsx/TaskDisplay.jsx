@@ -8,7 +8,7 @@ import { postATask } from '../../services/tasks'
 
 const TaskDisplay = ({ tasks }) => {
 
-  
+
   const [open, setOpen] = useState(false);
   const [title, setTitle ] = useState('')
   const [description, setDesc ] = useState('')
@@ -23,10 +23,12 @@ const TaskDisplay = ({ tasks }) => {
     setOpen(false)
   }
 
-  tasks && console.log(tasks.listId)
+
 
   const handleCreateTask = async () => {
-    const result = await postATask(tasks.listId, {title, description})
+    console.log('a')
+    const result = await postATask( {listId: tasks[0]['listId'],  taskData: {title, description} })
+    console.log('e')
     result && console.log(result)
   }
 

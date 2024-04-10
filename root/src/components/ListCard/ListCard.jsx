@@ -45,9 +45,9 @@ const ListCard = ({ list }) => {
         
         <AccordionDetails>
 
-          <TaskDisplay tasks={tasks}  >
+         { tasks && <TaskDisplay tasks={tasks} >
 
-          </TaskDisplay>
+          </TaskDisplay>}
 
           
         </AccordionDetails>

@@ -90,7 +90,6 @@ const Home = () => {
         return (
           <>
                {oT.registryTasks.map((t) => <TaskCard key={t.id} task={t.task} checkeable={true} />)} 
-              {console.log(oT.registryTasks)}
           </>
 
 

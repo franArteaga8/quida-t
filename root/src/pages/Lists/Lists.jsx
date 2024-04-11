@@ -3,7 +3,7 @@ import { getAList, getMyLists, postAList } from "../../services/lists"
 import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
 import './Lists.css'
-import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Divider, List, ListItem, InputLabel, MenuItem, NativeSelect, Select, TextField, Typography, IconButton } from "@mui/material"
+import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Divider, List, ListItem,  MenuItem, TextField, Typography, IconButton } from "@mui/material"
 import { AddCircle } from "@mui/icons-material"
 
 const Lists = () => {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 import { Edit, RemoveCircle } from '@mui/icons-material'
-import { Box,  Card, Divider, IconButton, Typography } from '@mui/material'
+import { Box,Card, Checkbox, Divider, IconButton, Typography } from '@mui/material'
 import { deleteTask } from '../../services/tasks'
 
 const TaskCard = ({ task, editable, setDeleteTask }) => {
@@ -17,8 +17,8 @@ const TaskCard = ({ task, editable, setDeleteTask }) => {
 
   return (
     <Card sx={{ backgroundColor: 'peru', borderRadius:'10px', marginBottom: '20px', padding: '20px'}} >
-        <Box display={'flex'} justifyContent={'left'} alignItems={'left'}  >
-        <Typography variant='h6' >
+        <Box display={'flex'} justifyContent={'left'} alignItems={'center'}  >
+        <Typography variant='h6' marginRight={'auto'} >
             {task.title}
         </Typography>
 
@@ -33,14 +33,17 @@ const TaskCard = ({ task, editable, setDeleteTask }) => {
         </> 
         : null}
 
-        
-
 
         </Box>
        <Divider/>
-        <Typography margin={'10px'} textAlign={'left'}>
+
+       <Box display={'flex'} >
+       <Typography margin={'10px'} textAlign={'left'}>
           {task.description}
         </Typography>
+        <Checkbox color='primary' sx={{ marginLeft: 'auto'}} ></Checkbox>
+       </Box>
+        
     </Card>
     
   )

@@ -162,7 +162,8 @@ const TaskDisplay = ({ list, editable }) => {
 }
 
 TaskDisplay.propTypes = {
-  list: PropTypes.object
+  list: PropTypes.object,
+  editable: PropTypes.bool
 }
 
 export default TaskDisplay

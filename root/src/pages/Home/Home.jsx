@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 
 import { useCookies } from 'react-cookie'
 import { getAllOpenTasks } from '../../services/user';
-import TaskCard from '../../components/TaskCard/TaskCard';
+import OpenTasks from '../../components/OpenTasks/OpenTasks';
 
 
 
@@ -54,7 +54,7 @@ const Home = () => {
 
 
   return (
-    <Box width={'80%'} maxWidth={'1200px'} height={'100%'} overflowY={'scroll'} backgroundColor={'green'}  >
+    <Box width={'80%'} maxWidth={'1200px'} height={'100%'} overflowY={'scroll'}  >
       <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}  }>
 
         <Typography variant='h6'>
@@ -79,28 +79,14 @@ const Home = () => {
         </AppBar>
       </Box>
 
-      <Box  sx={{ scrollbarWidth:'none'}} >
+      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none'}} >
         <Typography variant='h1'>
         {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
         </Typography>
+
+        <OpenTasks oT={openTasks}/>
       
-        { openTasks && openTasks.map((oT) => {
-          return (
-            <Box key={oT.id} overflowY={'scroll'}  >
-
-              {oT.registryTasks.map((t) => { 
-                return(
-                <>
-                  <TaskCard key={t.id} task={t.task} taskRegistry={t.id} checkeable={true} checkbox={t.checkbox} />
-                  <Typography> checkbox status: {t.checkbox ? 'true' : 'false' }  </Typography>
-                  <Typography> task registry id: {t.id}  </Typography>
-                </>
-              )})} 
-
-            </Box>
-          
-          )
-        })} 
+        
         
       </Box>
     

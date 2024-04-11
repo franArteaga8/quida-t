@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
 import { useCookies } from 'react-cookie'
+import { getAllOpenTasks } from '../../services/user';
+import TaskCard from '../../components/TaskCard/TaskCard';
 
 
 
@@ -19,6 +21,8 @@ const Home = () => {
 
   const [date, setDate] = useState('')
   const [selectDate, setSelectDate] = useState('')
+
+  const [ openTasks, setOpenTasks ] = useState([])
 
  /*  const [taskDay, setTaskDay] = useState([])
   const [taskWeek, setTaskWeek] = useState([])
@@ -36,20 +40,21 @@ const Home = () => {
   const { user: cookieUser } = useCookies(['user'])[0]
 
 
-
+  
+  const handleOpenTasks = async () => {
+    const result = await getAllOpenTasks()
+    result && setOpenTasks(result.openTasks)
+  }
 
 
   useEffect(()=>{
     handleFormatDate()
-    
+    handleOpenTasks()
   },[])
 
 
   return (
     <>
-    
-      
-
     <Box width={'80%'} maxWidth={'1200px'} >
       <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}}>
 
@@ -59,6 +64,8 @@ const Home = () => {
       <Typography variant='h2'>
       {cookieUser && cookieUser.username} 
       </Typography>
+
+      
 
       </Box>
       
@@ -75,11 +82,24 @@ const Home = () => {
       </AppBar>
     </Box>
 
-    <Box>
+    <Box width={'80%'}  sx={{ backgroundColor:'pink', overflowY:'auto'}} >
       <Typography variant='h1'>
         {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
       </Typography>
+      { openTasks && openTasks.map((oT) => {
+        return (
+          <>
+               {oT.registryTasks.map((t) => <TaskCard key={t.id} task={t.task} checkeable={true} />)} 
+              {console.log(oT.registryTasks)}
+          </>
+
+
+          
+          
+        )
+      })} 
     </Box>
+    
     
     
     </>

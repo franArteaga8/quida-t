@@ -43,3 +43,13 @@ export const putPsychologist = async (id) =>{
    
     return data
 }
+
+export const getAllOpenTasks = async () => {
+    const { data } = await api.get('/users/tasks', {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+    console.log(data)
+    return data
+}

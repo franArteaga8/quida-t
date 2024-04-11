@@ -4,8 +4,9 @@ import { Edit, RemoveCircle } from '@mui/icons-material'
 import { Box,Card, Checkbox, Divider, IconButton, Typography } from '@mui/material'
 import { deleteTask } from '../../services/tasks'
 
-const TaskCard = ({ task, editable, setDeleteTask }) => {
+const TaskCard = ({ task, editable, setDeleteTask, checkeable }) => {
 
+  console.log(checkeable)
 
   const handleDeleteTask = async () => {
     console.log(task.id, task.listId)
@@ -41,7 +42,7 @@ const TaskCard = ({ task, editable, setDeleteTask }) => {
        <Typography margin={'10px'} textAlign={'left'}>
           {task.description}
         </Typography>
-        <Checkbox color='primary' sx={{ marginLeft: 'auto'}} ></Checkbox>
+        {checkeable ? <Checkbox color='primary' sx={{ marginLeft: 'auto'}} ></Checkbox> : null} 
        </Box>
         
     </Card>

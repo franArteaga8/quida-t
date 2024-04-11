@@ -3,7 +3,7 @@ import { getAList, getMyLists, postAList } from "../../services/lists"
 import ListsDisplay from "../../components/ListsDisplay/ListsDisplay"
 
 import './Lists.css'
-import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Divider, List, ListItem, TextField, Typography, IconButton } from "@mui/material"
+import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Divider, List, ListItem, InputLabel, MenuItem, NativeSelect, Select, TextField, Typography, IconButton } from "@mui/material"
 import { AddCircle } from "@mui/icons-material"
 
 const Lists = () => {
@@ -14,6 +14,8 @@ const Lists = () => {
     const [open, setOpen] = useState(false);
     const [title, setTitle ] = useState('')
     const [description, setDesc ] = useState('')
+    const [ cycle, setCycle ] = useState('')
+
 
     const [createdList, setCreatedList ] = useState({})
     const [ deletedList, setDeletedList ] = useState({})
@@ -43,9 +45,11 @@ const Lists = () => {
     }
 
     const handleCreateList = async () => {
-      const result = await postAList({ title, description})
+      const result = await postAList({ title, description, cycle})
       result && setCreatedList(result)
     }
+
+    
 
     // {
     //  "title": "patient list",
@@ -120,7 +124,7 @@ const Lists = () => {
             </ListItem>
 
          
-            <ListItem>
+            <ListItem sx={{ marginBottom: '50px'}}>
           <TextField
             autoFocus
             
@@ -134,6 +138,25 @@ const Lists = () => {
             onChange={(e) => setDesc(e.target.value)}
           />
           </ListItem>
+         
+
+          
+          <ListItem>
+          <TextField
+          required
+          fullWidth
+          id="standard-select-currency"
+          select
+          label="Tasks Cycle"
+          variant="standard"
+          onChange={(e) => setCycle(e.target.value)}
+        >
+         <MenuItem value={'Daily'}>Daily</MenuItem>
+          <MenuItem value={'Weekly'}>Weekly</MenuItem>
+          <MenuItem value={'Monthly'}>Monthly</MenuItem>
+          
+        </TextField>
+        </ListItem>
           <ListItem>
           <Divider variant="fullWidth"/>
           </ListItem>

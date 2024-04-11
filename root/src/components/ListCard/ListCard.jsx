@@ -1,14 +1,12 @@
 
 import PropTypes from 'prop-types'
-import { Accordion, AccordionSummary, AccordionDetails, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Typography } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Typography } from "@mui/material"
 import { ArrowDownward, RemoveCircle } from "@mui/icons-material"
 import TaskDisplay from "../TaskDisplay.jsx/TaskDisplay"
 import { useState } from 'react'
 import { deleteAList } from '../../services/lists'
 
 const ListCard = ({ list, setDeletedList, editable }) => {
-
-  console.log(editable)
 
   
   const [open, setOpen] = useState(false);
@@ -57,8 +55,14 @@ const ListCard = ({ list, setDeletedList, editable }) => {
         </AccordionSummary>
         
         <AccordionDetails>
+          <Box display={'flex'} margin={' 10px 10px'}  >
+          <Typography variant="subtitle1" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description} </Typography>
+
+          {list.cycle && <Chip color="primary" label={list.cycle} sx={{ marginLeft: 'auto' }} /> }
+          </Box>
         
-        <Typography variant="subtitle1" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description} </Typography>
+        
+
 
         <Divider/>
 

@@ -50,7 +50,6 @@ export const getAllOpenTasks = async () => {
             Authorization: localStorage.getItem('token')
         }
     })
-    console.log(data)
     return data
 }
 

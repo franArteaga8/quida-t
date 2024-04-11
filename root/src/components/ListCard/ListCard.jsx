@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types'
 import { Accordion, AccordionSummary, AccordionDetails, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Typography } from "@mui/material"
-import { ArrowDownward, RemoveCircle } from "@mui/icons-material"
+import { KeyboardArrowDown, RemoveCircle } from "@mui/icons-material"
 import TaskDisplay from "../TaskDisplay.jsx/TaskDisplay"
 import { useState } from 'react'
 import { deleteAList } from '../../services/lists'
@@ -38,7 +38,7 @@ const ListCard = ({ list, setDeletedList, editable }) => {
 
     <Accordion  sx={{ border: '1px solid', borderColor:'primary.main', borderRadius: '10px'}} >
         <AccordionSummary
-          expandIcon={<ArrowDownward sx={{ color: 'secondary.main'}} />}
+          expandIcon={<KeyboardArrowDown sx={{ color: 'secondary.main'}} />}
           aria-controls="panel1-content"
           id="panel1-header"
           sx={{ backgroundColor: 'primary.main'}}

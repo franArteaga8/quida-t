@@ -8,8 +8,6 @@ import { putTaskCheck } from '../../services/user'
 
 const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskRegistry }) => {
 
-  
-
   const [ checkboxStatus, setCheckboxStatus ] = useState(checkbox)
 
 
@@ -22,9 +20,7 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskReg
     const isCheked = e.target.checked
     setCheckboxStatus(isCheked)
    
-    console.log(isCheked)
-    const result = await putTaskCheck({id: taskRegistry, checkbox: isCheked == true ? 1 : 0})
-      console.log(result)
+    await putTaskCheck({id: taskRegistry, checkbox: isCheked == true ? 1 : 0})
   }
 
  

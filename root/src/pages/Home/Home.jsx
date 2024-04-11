@@ -54,23 +54,20 @@ const Home = () => {
 
 
   return (
-    <>
-    <Box width={'80%'} maxWidth={'1200px'} >
+    <Box width={'80%'} maxWidth={'1200px'} height={'100%'} overflowY={'scroll'} backgroundColor={'green'}  >
       <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}  }>
 
-      <Typography variant='h6'>
-        Welcome,
-      </Typography>
-      <Typography variant='h2'>
-      {cookieUser && cookieUser.username} 
-      </Typography>
+        <Typography variant='h6'>
+          Welcome,
+        </Typography>
+
+        <Typography variant='h2'>
+          {cookieUser && cookieUser.username} 
+        </Typography>
 
       
-
-      </Box>
-      
-      <AppBar position="static" sx={{borderRadius:'1em'}} >
-        <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
+        <AppBar position="static" sx={{borderRadius:'1em'}} >
+          <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
             <LocalizationProvider dateAdapter={AdapterDayjs}  >
               <DemoContainer components={['DatePicker']} sx={{padding: '20px', borderRadius:'20px'}}  >
                 <DatePicker value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
@@ -78,47 +75,37 @@ const Home = () => {
                
               </DemoContainer>
             </LocalizationProvider>
-        </Toolbar>
-      </AppBar>
-    </Box>
+          </Toolbar>
+        </AppBar>
+      </Box>
 
-    <Box width={'80%'}  sx={{ backgroundColor:'pink', overflowY:'auto', scrollbarWidth:'none'}} >
-      <Typography variant='h1'>
+      <Box  sx={{ scrollbarWidth:'none'}} >
+        <Typography variant='h1'>
         {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
-      </Typography>
+        </Typography>
       
-      
+        { openTasks && openTasks.map((oT) => {
+          return (
+            <Box key={oT.id} overflowY={'scroll'}  >
 
-      { openTasks && openTasks.map((oT) => {
-        return (
-          <Box key={oT.id}>
-               {oT.registryTasks.map((t) =>
-
-               { 
-
+              {oT.registryTasks.map((t) => { 
                 return(
                 <>
                   <TaskCard key={t.id} task={t.task} taskRegistry={t.id} checkeable={true} checkbox={t.checkbox} />
                   <Typography> checkbox status: {t.checkbox ? 'true' : 'false' }  </Typography>
                   <Typography> task registry id: {t.id}  </Typography>
-                </>)
-               
-              }
-                
-                )} 
+                </>
+              )})} 
 
-          </Box>
-
-
+            </Box>
           
-          
-        )
-      })} 
+          )
+        })} 
+        
+      </Box>
+    
     </Box>
     
-    
-    
-    </>
   )
 }
 

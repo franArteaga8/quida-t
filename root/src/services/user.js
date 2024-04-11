@@ -1,4 +1,3 @@
-import { Bolt } from "@mui/icons-material"
 import api from "./config"
 
 export const getProfile = async () => {
@@ -55,11 +54,15 @@ export const getAllOpenTasks = async () => {
     return data
 }
 
-export const putTaskCheck = async({id, checkbox})=>{
+export const putTaskCheck = async ({id, checkbox})=>{
     console.log(id)
     console.log(checkbox)
     console.log('aqui llega?')
-    const{ data} = await api.put(`/users/registry/${id}/${checkbox}`)
+    const { data } = await api.put(`/users/registry/${id}/${checkbox}`, {}, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
     console.log('here?')
     console.log(data)
     return data

@@ -6,7 +6,7 @@ import { deleteTask } from '../../services/tasks'
 import { useState } from 'react'
 import { putTaskCheck } from '../../services/user'
 
-const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox }) => {
+const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskRegistry }) => {
 
   
 
@@ -22,8 +22,8 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox }) => {
     const isCheked = e.target.checked
     setCheckboxStatus(isCheked)
    
-
-    const result = await putTaskCheck({id: task.id, checkbox: isCheked})
+    console.log(isCheked)
+    const result = await putTaskCheck({id: taskRegistry, checkbox: isCheked == true ? 1 : 0})
       console.log(result)
   }
 
@@ -79,7 +79,8 @@ TaskCard.propTypes = {
     editable: PropTypes.bool,
     setDeleteTask: PropTypes.func,
     checkeable: PropTypes.bool,
-    checkbox: PropTypes.bool
+    checkbox: PropTypes.bool,
+    taskRegistry: PropTypes.number
   }
 
 export default TaskCard

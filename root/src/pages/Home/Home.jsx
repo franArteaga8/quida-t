@@ -98,7 +98,7 @@ const Home = () => {
 
                 return(
                 <>
-                  <TaskCard key={t.id} task={t.task} checkeable={true} checkbox={t.checkbox} />
+                  <TaskCard key={t.id} task={t.task} taskRegistry={t.id} checkeable={true} checkbox={t.checkbox} />
                   <Typography> checkbox status: {t.checkbox ? 'true' : 'false' }  </Typography>
                   <Typography> task registry id: {t.id}  </Typography>
                 </>)

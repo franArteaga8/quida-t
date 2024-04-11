@@ -82,7 +82,7 @@ const Home = () => {
       </AppBar>
     </Box>
 
-    <Box width={'80%'}  sx={{ backgroundColor:'pink', overflowY:'auto'}} >
+    <Box width={'80%'}  sx={{ backgroundColor:'pink', overflowY:'auto', scrollbarWidth:'none'}} >
       <Typography variant='h1'>
         {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
       </Typography>

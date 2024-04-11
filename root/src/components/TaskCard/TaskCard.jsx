@@ -3,16 +3,23 @@ import PropTypes from 'prop-types'
 import { Edit, RemoveCircle } from '@mui/icons-material'
 import { Box,Card, Checkbox, Divider, IconButton, Typography } from '@mui/material'
 import { deleteTask } from '../../services/tasks'
+import { useState } from 'react'
 
 const TaskCard = ({ task, editable, setDeleteTask, checkeable }) => {
 
   console.log(checkeable)
+  const [ checkbox, setCheckbox ] = useState(false)
+
 
   const handleDeleteTask = async () => {
     console.log(task.id, task.listId)
     const result = await deleteTask({ listId: task.listId, taskId: task.id })
     console.log(result)
     result && setDeleteTask(result)
+  }
+
+  const handleCheckbox = async () => {
+
   }
 
 

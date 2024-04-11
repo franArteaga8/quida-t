@@ -30,11 +30,10 @@ const PatientList = ({patient}) => {
         })
       })
     })
-    console.log(listResult)
     setMylist(listResult.length > 0 && listResult);
   };
 
-  useEffect(()=>{addList(patient.id)},[])
+  useEffect(()=>{addList(patient.id)},[myList])
 
   return (
     <>

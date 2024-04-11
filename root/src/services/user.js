@@ -55,15 +55,10 @@ export const getAllOpenTasks = async () => {
 }
 
 export const putTaskCheck = async ({id, checkbox})=>{
-    console.log(id)
-    console.log(checkbox)
-    console.log('aqui llega?')
     const { data } = await api.put(`/users/registry/${id}/${checkbox}`, {}, {
         headers: {
             Authorization: localStorage.getItem('token')
         }
     })
-    console.log('here?')
-    console.log(data)
     return data
 }

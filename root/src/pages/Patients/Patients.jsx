@@ -47,8 +47,9 @@ const Patients = () => {
     const listAssigned = await getListAssigned();
     listAssigned.forEach((arrays)=>{
       arrays.forEach((element)=> {
-        console.log(element)
-        result.createdLists.forEach((r)=>console.log(r))
+        result.createdLists = result.createdLists.filter((r) => {
+          return !(element.userId === l && element.listId === r.id);
+        })
       })
     })
     setMylist(result && result.createdLists);
@@ -106,9 +107,41 @@ const Patients = () => {
         Search
       </Button>
 
+      {myList.length ? (
+          <Box
+            sx={{
+              display: "flex",
+              alignSelf: "center",
+              width: "min-content",
+              gap: "5px",
+              margin: "5px"
+            }}
+          >
+            {myList.map((l) => (
+              <Button
+                variant="outlined"
+                sx={{ width: "min-content", alignSelf: "center" }}
+                key={l.id}
+                onClick={() => addListAPatient(l.id)}
+              >
+                {" "}
+                {l.title}{" "}
+              </Button>
+            ))}
+            <Button
+              variant="outlined"
+              color="primary"
+              sx={{ width: "min-content", alignSelf: "center" }}
+              onClick={() => setMylist([])}
+            >
+              exit
+            </Button>
+          </Box>
+        ) : null}
       <Box
         sx={{
           overflowY: "auto",
+          scrollbarWidth: "none",
           display: "flex",
           flexDirection: "column",
           gap: "20px",
@@ -153,36 +186,7 @@ const Patients = () => {
         </Typography>
         <Divider />
 
-        {myList.length ? (
-          <Box
-            sx={{
-              display: "flex",
-              alignSelf: "center",
-              width: "min-content",
-              gap: "5px",
-            }}
-          >
-            {myList.map((l) => (
-              <Button
-                variant="outlined"
-                sx={{ width: "min-content", alignSelf: "center" }}
-                key={l.id}
-                onClick={() => addListAPatient(l.id)}
-              >
-                {" "}
-                {l.title}{" "}
-              </Button>
-            ))}
-            <Button
-              variant="outlined"
-              color="primary"
-              sx={{ width: "min-content", alignSelf: "center" }}
-              onClick={() => setMylist([])}
-            >
-              exit
-            </Button>
-          </Box>
-        ) : null}
+        
         {cookieUser && cookieUser.validation === true
           ? listUser &&
             listUser

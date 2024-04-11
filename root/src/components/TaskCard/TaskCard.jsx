@@ -27,6 +27,7 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskReg
       console.log(result)
   }
 
+ 
 
 
 

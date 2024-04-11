@@ -56,7 +56,7 @@ const Home = () => {
   return (
     <>
     <Box width={'80%'} maxWidth={'1200px'} >
-      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}}>
+      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}  }>
 
       <Typography variant='h6'>
         Welcome,
@@ -69,12 +69,12 @@ const Home = () => {
 
       </Box>
       
-      <AppBar position="static">
+      <AppBar position="static" sx={{borderRadius:'1em'}} >
         <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
             <LocalizationProvider dateAdapter={AdapterDayjs}  >
-              <DemoContainer components={['DatePicker']} sx={{padding: 1}}  >
+              <DemoContainer components={['DatePicker']} sx={{padding: '20px', borderRadius:'20px'}}  >
                 <DatePicker value={dayjs(date)} onChange={(e)=> {setSelectDate(e)
-                }} sx={{backgroundColor: 'secondary.main'}}/>
+                }} sx={{backgroundColor: 'secondary.main', borderRadius: '1em'}}/>
                
               </DemoContainer>
             </LocalizationProvider>

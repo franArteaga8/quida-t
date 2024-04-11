@@ -60,10 +60,12 @@ export const customTheme = createTheme({
         fontWeight: 'bold', // Example font weight for h6
       },
       subtitle1: {
+        fontFamily: 'Comfortaa, sans-serif',
         fontSize: '1rem', // Example font size for subtitle1
         fontWeight: 'bold', // Example font weight for subtitle1
       },
       subtitle2: {
+        fontFamily: 'Comfortaa, sans-serif',
         fontSize: '0.875rem', // Example font size for subtitle2
         fontWeight: 'bold', // Example font weight for subtitle2
       },

@@ -7,6 +7,7 @@ import { Box,Button, Dialog, DialogActions, DialogContent,DialogContentText, Dia
 import { AddCircle } from "@mui/icons-material"
 
 const Lists = () => {
+  
     const [ myLists, setMyLists ] = useState([])
     const [ assignedLists, setAssignedLists ] = useState([])
 
@@ -15,6 +16,7 @@ const Lists = () => {
     const [description, setDesc ] = useState('')
 
     const [createdList, setCreatedList ] = useState({})
+    const [ deletedList, setDeletedList ] = useState({})
 
 
     const handleClickOpen = () => {
@@ -53,26 +55,32 @@ const Lists = () => {
     useEffect(() => {
         handleMyLists()
         
-    }, [createdList])
+    }, [createdList, deletedList])
+
+    
 
   return (
-    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowY: 'scroll', padding:'20px'}}>
+    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowY: 'scroll', padding:'20px', scrollbarWidth: 'none'}}>
 
         <Typography variant="h2" color={'primary.main'} >Lists</Typography>
         <Divider sx={{ margin: '20px'}}/>
 
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'}> Assigned Lists</Typography>
-        <ListsDisplay  lists={assignedLists} />
+        <ListsDisplay  lists={assignedLists} editable= {false} />
 
         <Divider sx={{ margin: '20px'}}/>
 
+        <Box display={'flex'} alignItems={'center'} padding={'10px'} >
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'} >My Lists</Typography>
-        <ListsDisplay lists={myLists} />
-
-
-        <IconButton onClick={() => {handleClickOpen()}} sx={{ position: 'absolute', bottom: '50px', width:'min-content', color: 'primary.main', backgroundColor: 'peru' }}>
-          <AddCircle sx={{ fontSize: '2em'}} />
+        <IconButton onClick={() => {handleClickOpen()}} sx={{ width:'min-content', marginLeft:'auto', color: 'primary.main', backgroundColor: 'peru' }}>
+          <AddCircle sx={{ fontSize: '1.5em'}} />
         </IconButton>
+        </Box>
+        
+        <ListsDisplay lists={myLists} setDeletedList={setDeletedList} editable={true} />
+
+
+        
 
         <Dialog
         fullWidth

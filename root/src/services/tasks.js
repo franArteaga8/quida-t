@@ -19,14 +19,22 @@ export const getTasksFromList = async (listId) => {
 }
 
 export const postATask = async ({listId, taskData}) => {
-    console.log(listId)
-    console.log(taskData)
     const { data } = await api.post(`/tasks/${listId}`, taskData, {
         headers: {
             Authorization: localStorage.getItem('token')
         }
     })
 
+    return data
+}
+
+export const deleteTask = async ({ listId, taskId }) => {
+    console.log(listId)
+    const { data } = await api.delete(`/tasks/${listId}/${taskId}`, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
     console.log(data)
     return data
 }

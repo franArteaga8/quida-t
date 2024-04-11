@@ -1,64 +1,106 @@
-import { useEffect, useState } from "react"
-import { getTasksFromList } from "../../services/tasks"
 
 import PropTypes from 'prop-types'
-import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material"
-import { ArrowDownward } from "@mui/icons-material"
+import { Accordion, AccordionSummary, AccordionDetails, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Typography } from "@mui/material"
+import { ArrowDownward, RemoveCircle } from "@mui/icons-material"
 import TaskDisplay from "../TaskDisplay.jsx/TaskDisplay"
+import { useState } from 'react'
+import { deleteAList } from '../../services/lists'
 
-const ListCard = ({ list }) => {
+const ListCard = ({ list, setDeletedList, editable }) => {
 
-  const [ tasks , setTasks ] = useState([])
+  console.log(editable)
 
-  const [ listState ] = useState({ list })
   
+  const [open, setOpen] = useState(false);
 
-  const handleTasks = async () => {
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-    const result = await getTasksFromList(list.id)
-    result && setTasks(result)
-  }
+  const handleClose = () => {
+    setOpen(false);
+  };
 
- 
+    const handleDeleteList = async () => {
+      const result = await deleteAList({listId: list.id})
+      result && console.log(result)
+      result && setDeletedList(result)
+     
 
-  useEffect(() => {
-    handleTasks()
-  }, [listState])
+    }
 
 
+
+    
 
   return (
     <>
 
         
 
-    <Accordion sx={{ border: '1px solid', borderColor:'primary.main', borderRadius: '10px'}} >
+    <Accordion  sx={{ border: '1px solid', borderColor:'primary.main', borderRadius: '10px'}} >
         <AccordionSummary
           expandIcon={<ArrowDownward sx={{ color: 'secondary.main'}} />}
           aria-controls="panel1-content"
           id="panel1-header"
           sx={{ backgroundColor: 'primary.main'}}
         >
-          <Typography variant="h5" color={'secondary.main'}>List {list.listId} {list.title} </Typography>
+          <Typography variant="h5" color={'secondary.main'}> {list.title} </Typography>
+          { editable ? 
+          <IconButton onClick={handleClickOpen} sx={{ width:'min-content', marginLeft:'auto', color: 'secondary.main',  }}>
+          <RemoveCircle sx={{ fontSize: '1em'}} />
+        </IconButton>
+         :
+         null}
+          
 
         </AccordionSummary>
         
         <AccordionDetails>
+        
+        <Typography variant="subtitle1" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description} </Typography>
 
-         { tasks && <TaskDisplay tasks={tasks} >
+        <Divider/>
+
+        { list && <TaskDisplay list={list} editable={editable} >
 
           </TaskDisplay>}
 
           
         </AccordionDetails>
       </Accordion>
+      <Dialog
+        fullWidth
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Delete List"}
+        </DialogTitle>
+        <DialogContent >
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you wanna delete this list: &apos;{list.title}&apos; ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Go back</Button>
+          <Button onClick={handleDeleteList} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
    
   )
 }
 
 ListCard.propTypes = {
-  list: PropTypes.object
+  list: PropTypes.object,
+  setDeletedList: PropTypes.func,
+  editable: PropTypes.bool
 }
 
 export default ListCard

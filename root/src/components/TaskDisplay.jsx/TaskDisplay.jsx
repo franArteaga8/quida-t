@@ -3,11 +3,15 @@ import PropTypes from 'prop-types'
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton,List, ListItem, TextField, Typography } from '@mui/material'
 import TaskCard from '../TaskCard/TaskCard'
 import { AddCircle } from '@mui/icons-material'
-import { useState } from 'react'
-import { postATask } from '../../services/tasks'
+import { useEffect, useState } from 'react'
+import { getTasksFromList, postATask } from '../../services/tasks'
 
-const TaskDisplay = ({ tasks }) => {
+const TaskDisplay = ({ list, editable }) => {
 
+
+  const [ tasks , setTasks ] = useState([])
+
+  const [ deletedTask, setDeleteTask ] = useState({})
 
   const [open, setOpen] = useState(false);
   const [title, setTitle ] = useState('')
@@ -23,23 +27,48 @@ const TaskDisplay = ({ tasks }) => {
     setOpen(false)
   }
 
+ 
+
+  const handleTasks = async () => {
+
+    const result = await getTasksFromList(list.id)
+    result && setTasks(result)
+  }
+
+ 
+
+  useEffect(() => {
+    handleTasks()
+  },[createdTask, deletedTask])
+
+ /*  useEffect(()=>{
+    handleTasks()
+  },[deletedTask]) */
+
+
+
 
 
   const handleCreateTask = async () => {
     console.log('a')
-    const result = await postATask( {listId: tasks[0]['listId'],  taskData: {title, description} })
-    console.log('e')
+    tasks.length>1 && console.log(tasks)
+    const result = await postATask( {listId: list.id,  taskData: {title, description} })
+    console.log('ee')
     result && console.log(result)
+    result && setCreatedTask(result)
   }
 
-
+ 
   return (
     <Box  sx={{padding: '10px'}} >
       <Box display={'flex'} marginBottom={'10px'}>
       <Typography variant='h4' sx={{ margin: '10px'}}>
-          Tasks 
+          {tasks.length ? 'Tasks' : 'No tasks yet, mate'} 
        </Typography>
-       <IconButton onClick={() => {handleClickOpen()}} sx={{ marginLeft:'auto'}} >
+      
+      {editable ? 
+      <>
+         <IconButton onClick={() => {handleClickOpen()}} sx={{ marginLeft:'auto'}} >
             <AddCircle fontSize='large' color='primary' />
         </IconButton>
         <Dialog
@@ -105,10 +134,17 @@ const TaskDisplay = ({ tasks }) => {
 
           <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={handleCreateTask}>Create</Button>
+          <Button type="submit" onClick={() => handleCreateTask()}>Create</Button>
         </DialogActions>
 
       </Dialog>
+      </>
+      
+      :
+      null}
+
+
+      
       </Box>
 
       <Divider/>
@@ -116,7 +152,7 @@ const TaskDisplay = ({ tasks }) => {
       {tasks && tasks.map((t) => {
         return (
 
-           <TaskCard key={t.id} task={t} />
+           <TaskCard key={t.id} task={t} editable={editable} setDeleteTask={setDeleteTask} />
         
         )
       })}
@@ -126,7 +162,7 @@ const TaskDisplay = ({ tasks }) => {
 }
 
 TaskDisplay.propTypes = {
-  tasks: PropTypes.array
+  list: PropTypes.object
 }
 
 export default TaskDisplay

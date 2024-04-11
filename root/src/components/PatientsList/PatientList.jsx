@@ -11,9 +11,9 @@ import { ArrowDownward } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 
-const PatientList = ({patient}) => {
+const PatientList = ({patient, list}) => {
 
-
+  
 
   return (
     <>

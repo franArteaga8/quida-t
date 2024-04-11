@@ -58,9 +58,11 @@ const Login = () => {
 
   return (
     <Box backgroundColor={'primary.main'} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center',alignItems: 'center', width: '100vw', height: '100vh'}} >
-      <Typography color={'secondary'} position={'absolute'} top={'20%'} variant="h1" margin={'20px'} >quida-t</Typography>
-      <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'background.main', borderRadius: '5%', padding: '30px' }} raised={true} >
-        <CardHeader sx={{color: 'primary.main'}} title={showRegisterForm ?  <Typography variant="h2" > Register </Typography> : <Typography variant="h2" > Login </Typography>} />
+
+      <Typography color={'secondary'}  top={'20%'} variant="h1" marginBottom={'100px'} >quida-t</Typography>
+
+      <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'background.main', borderRadius: '1.5em', marginBottom:'10%',  padding: '30px' }} raised={true} >
+        <CardHeader sx={{color: 'primary.main'}} title={showRegisterForm ?  <Typography variant="h3" > Register </Typography> : <Typography variant="h3" > Login </Typography>} />
         <CardContent>
           {showRegisterForm && (
             <>
@@ -102,12 +104,12 @@ const Login = () => {
             onKeyDown={(e) => e.key === 'Enter' && handleAction()}
           />
         </CardContent>
-        <Divider />
-        <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button onClick={handleFormToggle} variant="outlined" color="primary" sx={{ textTransform: 'none', color: 'primary', borderColor: 'primary', borderRadius: '10px', padding:'10px 20px' }} >
+        <Divider sx={{margin:'auto'}} />
+        <CardActions sx={{ display: 'flex', justifyContent: 'flex-end', marginTop:'20px' }}>
+          <Button onClick={handleFormToggle} variant="outlined" color="primary" sx={{ textTransform: 'none', color: 'primary', borderColor: 'primary', borderRadius: '1em', padding:'10px 20px' }} >
             {showRegisterForm ? <span> Already have an account? Login </span> : <span> Don&apos;t have an account? Sign Up </span> }
           </Button>
-          <Button onClick={handleAction} variant="contained" color="primary" sx={{ color: 'whitesmoke', padding:'10px 20px' , borderRadius: '1.2em'}} >
+          <Button onClick={handleAction} variant="contained" color="primary" sx={{ color: 'whitesmoke', padding:'10px 20px' , borderRadius: '1em'}} >
             {showRegisterForm ? 'Register' : 'Login'}
           </Button>
         </CardActions>

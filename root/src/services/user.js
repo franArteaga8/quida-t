@@ -55,10 +55,12 @@ export const getAllOpenTasks = async () => {
     return data
 }
 
-export const putTaskCheck = async(id, bolean)=>{
-    console.log(bolean)
+export const putTaskCheck = async({id, checkbox})=>{
+    console.log(id)
+    console.log(checkbox)
     console.log('aqui llega?')
-    const{ data} = await api.put(`/users/registry/${id}/${true}`)
+    const{ data} = await api.put(`/users/registry/${id}/${checkbox}`)
+    console.log('here?')
     console.log(data)
     return data
 }

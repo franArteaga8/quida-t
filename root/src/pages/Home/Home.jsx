@@ -86,11 +86,28 @@ const Home = () => {
       <Typography variant='h1'>
         {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
       </Typography>
+      
+      
+
       { openTasks && openTasks.map((oT) => {
         return (
-          <>
-               {oT.registryTasks.map((t) => <TaskCard key={t.id} task={t.task} checkeable={true} />)} 
-          </>
+          <Box key={oT.id}>
+               {oT.registryTasks.map((t) =>
+
+               { 
+
+                return(
+                <>
+                  <TaskCard key={t.id} task={t.task} checkeable={true} checkbox={t.checkbox} />
+                  <Typography> checkbox status: {t.checkbox ? 'true' : 'false' }  </Typography>
+                  <Typography> task registry id: {t.id}  </Typography>
+                </>)
+               
+              }
+                
+                )} 
+
+          </Box>
 
 
           

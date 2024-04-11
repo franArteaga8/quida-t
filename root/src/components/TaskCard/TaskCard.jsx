@@ -6,11 +6,11 @@ import { deleteTask } from '../../services/tasks'
 import { useState } from 'react'
 import { putTaskCheck } from '../../services/user'
 
-const TaskCard = ({ task, editable, setDeleteTask, checkeable }) => {
+const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox }) => {
 
   
 
-  const [ checkbox, setCheckbox ] = useState()
+  const [ checkboxStatus, setCheckboxStatus ] = useState(checkbox)
 
 
   const handleDeleteTask = async () => {
@@ -18,15 +18,16 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable }) => {
     result && setDeleteTask(result)
   }
 
-  const handleCheckbox = async (e) => {
-    console.log('entra')
-    console.log(task.id)
+  const handleChange = async (e) => {
+    const isCheked = e.target.checked
+    setCheckboxStatus(isCheked)
+   
 
-    setCheckbox(!checkbox)
-    console.log(checkbox)
-      const result = await putTaskCheck(task.id,checkbox)
+    const result = await putTaskCheck({id: task.id, checkbox: isCheked})
       console.log(result)
   }
+
+
 
 
   return (
@@ -55,7 +56,17 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable }) => {
        <Typography margin={'10px'} textAlign={'left'}>
           {task.description}
         </Typography>
-        {checkeable ? <Checkbox color='primary' sx={{ marginLeft: 'auto'}} onClick={()=>handleCheckbox()}></Checkbox> : null} 
+        {checkeable ? 
+        
+        <Checkbox
+         color='primary' 
+         sx={{ marginLeft: 'auto'}} 
+         checked={checkboxStatus}
+         onClick={handleChange}
+        /> 
+         
+        : null} 
+
        </Box>
         
     </Card>
@@ -67,7 +78,8 @@ TaskCard.propTypes = {
     task: PropTypes.object,
     editable: PropTypes.bool,
     setDeleteTask: PropTypes.func,
-    checkeable: PropTypes.bool
+    checkeable: PropTypes.bool,
+    checkbox: PropTypes.bool
   }
 
 export default TaskCard

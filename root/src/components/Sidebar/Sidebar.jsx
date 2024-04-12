@@ -11,7 +11,11 @@ const Sidebar = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Box sx={{ textAlign:'left', backgroundColor: 'primary.main', display: 'flex', flexDirection: 'column', padding: 5, height: '100%'}}>
+      <Box sx={{ textAlign:'left', backgroundColor:'primary.main',
+      ...cookieUser.validation === true && {
+    
+      backgroundColor: 'black',
+    }, display: 'flex', flexDirection: 'column', padding: 5, height: '100%'}}>
 
         <Link to={'/'} style={{  textDecoration: 'none', color: 'whitesmoke'}}>
           <Button color="secondary" variant="text" size="large" startIcon={<HomeIcon/>}>

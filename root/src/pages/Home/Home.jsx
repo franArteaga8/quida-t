@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import { useCookies } from 'react-cookie'
 import { closeTasks, getAllOpenTasks } from '../../services/user';
 import OpenTasks from '../../components/OpenTasks/OpenTasks';
+import { getAList } from '../../services/lists';
 
 
 
@@ -36,6 +37,9 @@ const Home = () => {
     const fixedMonth = month < 9 ? '0' + month.toString() : month
     const year =  dateCurrent.getFullYear()
     setDate(`${year}-${fixedMonth}-${day}`)
+
+    //fecha del piker sin formatear
+    /* console.log(selectDate.$d) */
   }
 
 
@@ -45,6 +49,15 @@ const Home = () => {
   
   const handleOpenTasks = async () => {
     const result = await getAllOpenTasks()
+    //esto me da la lista de la tarea el id de la tarea, su titulo y la fecha de creacion, conestos  datos recupero la 
+    //lista y miro si es o no diaria semanal o mensual, luego miro el dia de creacion de la tarea y ago reversa con 
+    //fecha seleccionada agrupando las tareas en anteriores diarias, semanales, mensuales y luego las pinto
+    result.openTasks.map((registry)=> registry.registryTasks.map(async(task)=> { 
+      const result = await getAList(task.task.listId)
+      console.log(result)
+      result && result.map((list)=> console.log(list))
+     
+    }))
     result && setOpenTasks(result.openTasks)
   }
 
@@ -64,8 +77,8 @@ const Home = () => {
 
 
   return (
-    <Box width={'80%'} maxWidth={'1200px'} height={'100%'} overflow= {'none'}  >
-      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '50px'}  }>
+    <Box width={'80%'} maxWidth={'1200px'} height={'100%'}  >
+      <Box textAlign={'left'}  color={'primary.main'}  sx={{ marginBottom: '50px'} }>
 
         <Typography variant='h5'>
           Welcome,
@@ -90,7 +103,7 @@ const Home = () => {
       </Box>
       <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
-      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}} >
+      <Box   sx={{  scrollbarWidth:'none', height:'60%', padding:'20px', marginTop: '20px', marginBottom:'100px', border:'2px  solid', borderColor:'primary.main', borderRadius: '20px', overflowY: 'scroll'}} >
        
       
       { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}

@@ -1,12 +1,13 @@
 import { AccountCircle, FormatListBulleted, Home as HomeIcon, People } from "@mui/icons-material"
 import { Box, Button, CssBaseline, Typography} from "@mui/material"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { useCookies } from 'react-cookie'
 
 const Sidebar = () => {
  
   const { user: cookieUser } = useCookies(['user'])[0]
+  const navigate = useNavigate()
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -47,7 +48,7 @@ const Sidebar = () => {
          
         <Button variant="contained" color="secondary" sx={{ marginTop: 'auto', textTransform:'none' }} onClick={() => {
             localStorage.removeItem('token')
-            location.reload()
+            navigate('/')
         }}>
           <Typography variant="subtitle1" >Logout</Typography>
         </Button>

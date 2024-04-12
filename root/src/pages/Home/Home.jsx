@@ -49,14 +49,8 @@ const Home = () => {
   }
 
   const handleClose = async () => {
-    //condition openTasks.map(registryTask.map(createdAt !== dateCurrent)
-   console.log('close')
-   date && console.log(date)
-   console.log('aqui?')
-  
    
    openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId))
-
 
   }
 

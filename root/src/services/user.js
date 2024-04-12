@@ -61,3 +61,15 @@ export const putTaskCheck = async ({id, checkbox})=>{
     })
     return data
 }
+
+export const closeTasks = async (listId) => {
+    console.log('services')
+    const { data } = await api.put(`/users/close/${listId}`, {}, {
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    })
+    console.log('services 2')
+    console.log(data)
+    return data
+}

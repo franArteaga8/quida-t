@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
 import { useCookies } from 'react-cookie'
-import { getAllOpenTasks } from '../../services/user';
+import { closeTasks, getAllOpenTasks } from '../../services/user';
 import OpenTasks from '../../components/OpenTasks/OpenTasks';
 
 
@@ -32,8 +32,10 @@ const Home = () => {
     const dateCurrent = new Date()
     const day = dateCurrent.getDate()
     const month = dateCurrent.getMonth() + 1
+   
+    const fixedMonth = month < 9 ? '0' + month.toString() : month
     const year =  dateCurrent.getFullYear()
-    setDate(`${month}/${day}/${year}`)
+    setDate(`${year}-${fixedMonth}-${day}`)
   }
 
 
@@ -46,11 +48,26 @@ const Home = () => {
     result && setOpenTasks(result.openTasks)
   }
 
+  const handleClose = async () => {
+    //condition openTasks.map(registryTask.map(createdAt !== dateCurrent)
+   console.log('close')
+   date && console.log(date)
+   console.log('aqui?')
+   openTasks && openTasks.map((oT) => console.log(oT.listId))
+  
+   
+   openTasks && console.log(openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId)
+  ))
+
+
+  }
+
 
   useEffect(()=>{
     handleFormatDate()
     handleOpenTasks()
-  },[])
+    handleClose()
+  },[date])
 
 
   return (

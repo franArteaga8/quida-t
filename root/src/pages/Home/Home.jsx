@@ -54,7 +54,7 @@ const Home = () => {
 
 
   return (
-    <Box width={'80%'} maxWidth={'1200px'} height={'100%'} overflowY={'scroll'}  >
+    <Box width={'80%'} maxWidth={'1200px'} height={'90%'} overflow= {'none'}  >
       <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}  }>
 
         <Typography variant='h6'>
@@ -79,7 +79,7 @@ const Home = () => {
         </AppBar>
       </Box>
 
-      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none'}} >
+      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none', backgroundColor: 'red', height:'60%'}} >
         <Typography variant='h1'>
         {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
         </Typography>

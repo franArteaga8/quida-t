@@ -48,7 +48,7 @@ const Sidebar = () => {
          
         <Button variant="contained" color="secondary" sx={{ marginTop: 'auto', textTransform:'none' }} onClick={() => {
             localStorage.removeItem('token')
-            navigate('/')
+            !localStorage.getItem('token') && navigate('/login')
         }}>
           <Typography variant="subtitle1" >Logout</Typography>
         </Button>

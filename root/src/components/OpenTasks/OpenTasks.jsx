@@ -12,7 +12,7 @@ const OpenTasks = ({ oT }) => {
     <>
       {oT && oT.map((oTItem) => {
         return (
-          <Box key={oTItem.id} backgroundColor="pink" >
+          <Box key={oTItem.id} >
             {oTItem.registryTasks.map((task) => {
               return (
                 <div key={task.id}>

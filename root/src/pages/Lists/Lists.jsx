@@ -76,7 +76,7 @@ const Lists = () => {
 
         <Box display={'flex'} alignItems={'center'} padding={'10px'} >
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'} >My Lists</Typography>
-        <IconButton onClick={() => {handleClickOpen()}} sx={{ width:'min-content', marginLeft:'auto', color: 'primary.main', backgroundColor: 'peru' }}>
+        <IconButton onClick={() => {handleClickOpen()}} sx={{ width:'min-content', marginLeft:'auto', color: 'primary.main'}}>
           <AddCircle sx={{ fontSize: '1.5em'}} />
         </IconButton>
         </Box>

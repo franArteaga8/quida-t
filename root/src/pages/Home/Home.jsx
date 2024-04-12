@@ -70,19 +70,19 @@ const Home = () => {
 
 
   return (
-    <Box width={'80%'} maxWidth={'1200px'} height={'90%'} overflow= {'none'}  >
+    <Box width={'80%'} maxWidth={'1200px'} height={'70%'} overflow= {'none'}  >
       <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}  }>
 
-        <Typography variant='h6'>
+        <Typography variant='h5'>
           Welcome,
         </Typography>
 
-        <Typography variant='h2'>
-          {cookieUser && cookieUser.username} 
+        <Typography variant='h1'>
+          {cookieUser && cookieUser.name + ' ' + cookieUser.lastname} 
         </Typography>
 
       
-        <AppBar position="static" sx={{borderRadius:'1em'}} >
+        <AppBar position="static" sx={{borderRadius:'1em', margin:'30px 0'}} >
           <Toolbar sx={{display: 'flex', justifyContent: 'center'}} >
             <LocalizationProvider dateAdapter={AdapterDayjs}  >
               <DemoContainer components={['DatePicker']} sx={{padding: '20px', borderRadius:'20px'}}  >
@@ -94,10 +94,11 @@ const Home = () => {
           </Toolbar>
         </AppBar>
       </Box>
+      <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
-      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none', height:'60%'}} >
+      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none', height:'75%', padding:'20px', border:'2px solid', borderColor:'primary.main', borderRadius: '20px', marginTop: '20px'}} >
        
-
+      
       { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}
       
         

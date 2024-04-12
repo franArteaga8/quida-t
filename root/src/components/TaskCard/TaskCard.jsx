@@ -30,7 +30,7 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskReg
   return (
     <>
     
-  { task && <Card sx={{ backgroundColor: 'peru', borderRadius:'10px', marginBottom: '20px', padding: '20px'}} >
+  { task && <Card sx={{ borderRadius:'10px', marginBottom: '20px', padding: '20px', backgroundColor:'peru' }} >
         <Box display={'flex'} justifyContent={'left'} alignItems={'center'}  >
         <Typography variant='h6' marginRight={'auto'} >
             {task.title}

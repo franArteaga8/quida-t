@@ -51,10 +51,6 @@ const Lists = () => {
 
     
 
-    // {
-    //  "title": "patient list",
-    //  "description": "description patient list"
-    // }
 
     useEffect(() => {
         handleMyLists()
@@ -64,10 +60,8 @@ const Lists = () => {
     
 
   return (
-    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', overflowY: 'scroll', padding:'20px', scrollbarWidth: 'none'}}>
+    <Box sx={{ width: '80%', maxWidth: '1200px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', marginBottom: '150px', padding:'20px', scrollbarWidth: 'none'}}>
 
-        <Typography variant="h2" color={'primary.main'} >Lists</Typography>
-        <Divider sx={{ margin: '20px'}}/>
 
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'}> Assigned Lists</Typography>
         <ListsDisplay  lists={assignedLists} editable= {false} />

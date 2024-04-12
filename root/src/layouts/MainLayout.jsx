@@ -12,7 +12,10 @@ const MainLayout = () => {
       <div style={{ width:'100%', height:'100vh', display:'flex', flexDirection:'column', alignItems: 'center', gap: '2em' }}>
 
         <Header />
+        <div style={{ width:'100%', height: '100%', display:'flex', flexDirection:'column', alignItems: 'center', overflowY:'scroll'}} >
         <Outlet  />
+        </div>
+        
         
       </div>
 

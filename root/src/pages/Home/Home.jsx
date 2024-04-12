@@ -70,8 +70,8 @@ const Home = () => {
 
 
   return (
-    <Box width={'80%'} maxWidth={'1200px'} height={'70%'} overflow= {'none'}  >
-      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '30px'}  }>
+    <Box width={'80%'} maxWidth={'1200px'} height={'100%'} overflow= {'none'}  >
+      <Box textAlign={'left'}  color={'primary.main'} sx={{ marginBottom: '50px'}  }>
 
         <Typography variant='h5'>
           Welcome,
@@ -96,7 +96,7 @@ const Home = () => {
       </Box>
       <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
-      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none', height:'75%', padding:'20px', border:'2px solid', borderColor:'primary.main', borderRadius: '20px', marginTop: '20px'}} >
+      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}} >
        
       
       { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}

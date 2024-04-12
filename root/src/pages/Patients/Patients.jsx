@@ -77,6 +77,23 @@ const Patients = () => {
         Patients{" "}
       </Typography>
 
+      <Box sx={{display: 'flex', flexDirection: 'row-reverse',justifyContent: 'space-between'}}>
+
+      <Box  sx={{display: 'flex', flexDirection: 'row-reverse'}}>
+
+      <Button
+        color="primary"
+        onClick={() => handleSearch()}
+        sx={{
+          alignSelf: "center",
+          width: "max-content",
+          textTransform: "none",
+        }}
+        size="medium"
+        variant="contained"
+      >
+        Search
+      </Button>
       <TextField
         label="Search"
         variant="outlined"
@@ -93,34 +110,20 @@ const Patients = () => {
         onChange={(e) => setSearch(e.target.value)}
       ></TextField>
 
-      <Button
-        color="primary"
-        onClick={() => handleSearch()}
-        sx={{
-          alignSelf: "center",
-          width: "max-content",
-          textTransform: "none",
-        }}
-        size="medium"
-        variant="contained"
-      >
-        Search
-      </Button>
+      </Box>
+
+      
 
       {myList.length ? (
           <Box
-            sx={{
-              display: "flex",
-              alignSelf: "center",
-              width: "min-content",
-              gap: "5px",
-              margin: "5px"
-            }}
+            sx={
+              {display:'flex', justifyContent: 'center', alignItems: 'center', gap: 2, flexWrap: 'wrap', width: '50%', margin: '8px 0'}
+            }
           >
             {myList.map((l) => (
               <Button
                 variant="outlined"
-                sx={{ width: "min-content", alignSelf: "center" }}
+                sx={{ width: "fit-content", alignSelf: "center"}}
                 key={l.id}
                 onClick={() => addListAPatient(l.id)}
               >
@@ -138,6 +141,8 @@ const Patients = () => {
             </Button>
           </Box>
         ) : null}
+
+      </Box>
       <Box
         sx={{
           overflowY: "auto",

@@ -53,20 +53,19 @@ const Home = () => {
    console.log('close')
    date && console.log(date)
    console.log('aqui?')
-   openTasks && openTasks.map((oT) => console.log(oT.listId))
   
    
-   openTasks && console.log(openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId)
-  ))
+   openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId))
 
 
   }
 
 
   useEffect(()=>{
+    handleClose()
     handleFormatDate()
     handleOpenTasks()
-    handleClose()
+    
   },[date])
 
 
@@ -96,12 +95,10 @@ const Home = () => {
         </AppBar>
       </Box>
 
-      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none', backgroundColor: 'red', height:'60%'}} >
-        <Typography variant='h1'>
-        {selectDate && (parseInt(selectDate.$d.getMonth()) + 1)+ '/'+ selectDate.$d.getDate() + '/'+ selectDate.$d.getFullYear()}
-        </Typography>
+      <Box   sx={{ overflowY:'scroll', scrollbarWidth:'none', height:'60%'}} >
+       
 
-        <OpenTasks oT={openTasks}/>
+      { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}
       
         
         

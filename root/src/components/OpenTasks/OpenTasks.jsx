@@ -1,11 +1,16 @@
 import { Box } from "@mui/material"
 import TaskCard from "../TaskCard/TaskCard"
 import PropTypes from "prop-types"
+import { useEffect } from "react"
 
 const OpenTasks = ({ oT }) => {
+  useEffect(() => {
+    console.log("Debuggin: ", oT)
+    }, [])
+  
   return (
     <>
-      {oT.map((oTItem) => {
+      {oT && oT.map((oTItem) => {
         return (
           <Box key={oTItem.id} backgroundColor="pink" >
             {oTItem.registryTasks.map((task) => {

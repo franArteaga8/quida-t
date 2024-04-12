@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { Edit, RemoveCircle } from '@mui/icons-material'
 import { Box,Card, Checkbox, Divider, IconButton, Typography } from '@mui/material'
 import { deleteTask } from '../../services/tasks'
-import { useState } from 'react'
+import {  useState } from 'react'
 import { putTaskCheck } from '../../services/user'
 
 const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskRegistry }) => {
 
   const [ checkboxStatus, setCheckboxStatus ] = useState(checkbox)
+
 
 
   const handleDeleteTask = async () => {
@@ -24,11 +25,12 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskReg
   }
 
  
-
-
+  
 
   return (
-    <Card sx={{ backgroundColor: 'peru', borderRadius:'10px', marginBottom: '20px', padding: '20px'}} >
+    <>
+    
+  { task && <Card sx={{ backgroundColor: 'peru', borderRadius:'10px', marginBottom: '20px', padding: '20px'}} >
         <Box display={'flex'} justifyContent={'left'} alignItems={'center'}  >
         <Typography variant='h6' marginRight={'auto'} >
             {task.title}
@@ -66,7 +68,9 @@ const TaskCard = ({ task, editable, setDeleteTask, checkeable, checkbox, taskReg
 
        </Box>
         
-    </Card>
+    </Card>}
+
+    </>
     
   )
 }

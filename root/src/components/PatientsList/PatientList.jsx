@@ -4,10 +4,20 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Divider
+  Divider,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Button,
+  Card,
+  CardActions,
+  Box,
+  List,
+  ListItemText,
+  ListItem
 } from "@mui/material";
 
-import { ArrowDownward } from "@mui/icons-material";
+import { ArrowDownward, Face } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { getListAssigned, getMyLists } from "../../services/lists";
@@ -36,9 +46,9 @@ const PatientList = ({patient}) => {
   useEffect(()=>{addList(patient.id)},[myList])
 
   return (
-    <>
+    <Box width={'100%'}>
     
-      <Accordion
+     {/* <Accordion
           sx={{
             border: "1px green solid",
             borderColor: "primary.main",
@@ -66,10 +76,48 @@ const PatientList = ({patient}) => {
             {myList && myList.map((l, idx)=> <Typography key={idx} textAlign={'left'} color={'primary.main'} > { l.title }  </Typography>)}
 
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */ } 
+
+        
+        <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
+
+      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
+        <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
+        <Typography variant="h4" >
+              {patient.username}
+        </Typography>
+        <Face sx={{ fontSize: '2em', marginLeft:'auto'}} />
+        
+      </CardContent>
+
+
+    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
+
+ 
+ 
+            <Typography variant="h6" color={'secondary.main'} >{ myList.length ? 'Lists Assigned' : 'No lists assigned'}</Typography>
+            <Divider sx={{ border:'1px solid', opacity: 0.6 , color:'secondary.main' }}/>
+
+            <List>
+            {myList && myList.map((l, idx)=> <Typography key={idx} textAlign={'left'} color={'secondary.main'} > { 
+             <ListItem disablePadding>
+             <ListItemText primary={l.title} />
+            </ListItem>
+            
+            
+            }  </Typography>)}
+          
+        </List>
+            
+  
+ 
+  </CardContent>
+ 
+
+</Card>
     
         
-    </>
+    </Box>
   );
 };
 

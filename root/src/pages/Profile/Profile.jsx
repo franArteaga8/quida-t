@@ -24,6 +24,7 @@ const Profile = () => {
     if(colegiate) update.colegiate = colegiate
 
     const result = await putProfile(update)
+     result && setProfile(result) 
      result && handleEditToggle() 
   }
 

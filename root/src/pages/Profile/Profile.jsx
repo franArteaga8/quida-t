@@ -24,6 +24,7 @@ const Profile = () => {
     if(colegiate) update.colegiate = colegiate
 
     const result = await putProfile(update)
+     result && setProfile(result) 
      result && handleEditToggle() 
   }
 
@@ -41,7 +42,11 @@ const Profile = () => {
   }, [])
 
   return (
-    <Box sx={{ width: '100%', display: 'flex', height:'100%', justifyContent: 'center',  backgroundColor: 'background.default'}} >
+    <>
+    
+    { profile &&
+      
+      <Box sx={{ width: '100%', display: 'flex', height:'100%', justifyContent: 'center',  backgroundColor: 'background.default'}} >
       <Card  sx={{ width:'80%', maxWidth:'1200px' ,minWidth: 275, display:'flex', gap:'20px', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
 
         <CardMedia sx={{ display: 'flex', flexDirection: 'column' , alignItems:'center', padding: '10px', width: 'min-content'}} >
@@ -173,8 +178,8 @@ const Profile = () => {
           </CardContent>
       
       </Card>
-    </Box>
-    
+    </Box>}
+    </>
     
   )
 }

@@ -4,8 +4,9 @@ export const customTheme = createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#44259D',
-      light: '#5863a2',
+      main: '#4B2C8D',
+      light: '#B2A5C9',
+      darker: '#221B37'
     },
     secondary: {
       main: '#FCFAE6',

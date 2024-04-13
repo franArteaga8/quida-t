@@ -9,13 +9,19 @@ const Sidebar = () => {
   const { user: cookieUser } = useCookies(['user'])[0]
   const navigate = useNavigate()
 
+  // {cookieUser && cookieUser.validation== true ?'a' : 'b' }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Box sx={{ textAlign:'left', backgroundColor:'primary.main',
+
+      
+     { cookieUser &&
+     
+     <Box sx={{ textAlign:'left', backgroundColor:'primary.main',
       ...cookieUser.validation === true && {
     
-      backgroundColor: 'black',
+      backgroundColor: 'primary.darker',
     }, display: 'flex', flexDirection: 'column', padding: 5, height: '100%'}}>
 
         <Link to={'/'} style={{  textDecoration: 'none', color: 'whitesmoke'}}>
@@ -54,8 +60,11 @@ const Sidebar = () => {
         </Button>
           
       </Box>
+
+    }
      
     </Box>
+    
   )
 }
 

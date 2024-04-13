@@ -21,6 +21,7 @@ const Home = () => {
   
 
   const [date, setDate] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [selectDate, setSelectDate] = useState('')
 
   const [ openTasks, setOpenTasks ] = useState([])
@@ -73,6 +74,7 @@ const Home = () => {
     handleFormatDate()
     handleOpenTasks()
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[date])
 
 
@@ -103,7 +105,11 @@ const Home = () => {
       </Box>
       <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
+<<<<<<< HEAD
       <Box   sx={{  scrollbarWidth:'none', height:'60%', padding:'20px', marginTop: '20px', marginBottom:'100px', border:'2px  solid', borderColor:'primary.main', borderRadius: '20px', overflowY: 'scroll'}} >
+=======
+      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
+>>>>>>> main
        
       
       { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}

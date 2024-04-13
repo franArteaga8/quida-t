@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 130 130">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4b2c8d;
+      }
+
+      .cls-2 {
+        fill: #fcfae6;
+        font-family: Comfortaa-Bold, Comfortaa;
+        font-size: 150px;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+      }
+
+      .cls-3, .cls-4 {
+        fill: none;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <circle class="cls-3" cx="65" cy="65" r="65"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <circle class="cls-1" cx="65" cy="65" r="65"/>
+      <g class="cls-4">
+        <text class="cls-2" transform="translate(15.28 102.87)"><tspan x="0" y="0">q</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

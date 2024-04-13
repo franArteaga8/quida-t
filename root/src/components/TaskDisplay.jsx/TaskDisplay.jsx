@@ -63,7 +63,7 @@ const TaskDisplay = ({ list, editable }) => {
     <Box  sx={{padding: '10px'}} >
       <Box display={'flex'} marginBottom={'10px'}>
       <Typography  variant={tasks.length ? 'h4' : 'h6'} sx={{ margin: '10px'}}>
-          {tasks.length ? 'Tasks' : 'No tasks yet, mate'} 
+          {tasks.length ? 'Tasks' : 'No tasks yet.'} 
        </Typography>
       
       {editable ? 

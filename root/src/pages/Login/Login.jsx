@@ -25,7 +25,6 @@ const Login = () => {
   };
 
   const handleAction = async () => {
-    console.log('entró')
     if (showRegisterForm) {
       const signupRes = await postSignup({ email, pass, name, username });
       console.log(signupRes)
@@ -37,7 +36,6 @@ const Login = () => {
       
     } else {
       const loginRes = await postLogin({ email, pass });
-      console.log(loginRes)
       
       localStorage.setItem('token', loginRes.token)
 
@@ -45,11 +43,8 @@ const Login = () => {
       navigate('/')
 
       const user = await getProfile()
-      //user && setUserData(user)
 
-      console.log(`log user: ${user.username}`)
       user && setCookie('user', user)
-      console.log(`cookie log: ${cookies.username}`)
       
     }
   };

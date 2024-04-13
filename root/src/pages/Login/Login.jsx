@@ -1,4 +1,5 @@
-import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, TextField, Typography } from "@mui/material"
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Icon, IconButton, InputAdornment, TextField, Typography } from "@mui/material"
+import { Lock, Mail, Visibility, VisibilityOff } from '@mui/icons-material'
 import { useContext, useState } from "react"
 import { postLogin, postSignup } from "../../services/auth"
 import { useNavigate } from "react-router-dom"
@@ -13,6 +14,8 @@ const Login = () => {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [showRegisterForm, setShowRegisterForm] = useState(false)
+
+  const [isPassVisible, setIsPassVisible]  = useState(false)
 
   const { setUserData } = useContext(UserContext)
 
@@ -36,10 +39,9 @@ const Login = () => {
       
     } else {
       const loginRes = await postLogin({ email, pass });
-      
+
       localStorage.setItem('token', loginRes.token)
-
-
+      
       navigate('/')
 
       const user = await getProfile()
@@ -87,16 +89,43 @@ const Login = () => {
             fullWidth={true}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment>
+                  <Icon sx={{ marginRight:'10px'}}>
+                    <Mail color="primary" />
+                  </Icon>
+                </InputAdornment>
+              )}}
           />
           <TextField
             label="Password"
             variant="outlined"
             margin="dense"
             fullWidth={true}
-            type="password"
+            type={isPassVisible ? 'text' : 'password'}
             value={pass}
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAction()}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment>
+                  <Icon color="primary"  sx={{ marginRight:'10px'}}>
+                    <Lock />
+                  </Icon>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment  >
+                  <IconButton color="primary"
+                   onClick={() => {
+                    setIsPassVisible((oldState) => !oldState)
+                  }}>
+                     {isPassVisible ? <Visibility  /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
           />
         </CardContent>
         <Divider sx={{margin:'auto'}} />
@@ -106,9 +135,12 @@ const Login = () => {
           </Button>
           <Button onClick={handleAction} variant="contained" color="primary" sx={{ color: 'whitesmoke', padding:'10px 20px' , borderRadius: '1em'}} >
             {showRegisterForm ? 'Register' : 'Login'}
+            
           </Button>
         </CardActions>
+        
       </Card>
+      
     </Box>
   )
 }

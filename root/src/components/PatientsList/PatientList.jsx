@@ -79,29 +79,16 @@ const PatientList = ({patient}) => {
         </Accordion> */ } 
 
         
-        <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
+     
 
-      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
-        <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
-        <Typography variant="h4" >
-              {patient.username}
-        </Typography>
-        <Face sx={{ fontSize: '2em', marginLeft:'auto'}} />
-        
-      </CardContent>
+          <Typography variant="h6" color={'secondary.main'} >{ myList.length ? 'Lists Assigned' : 'No lists assigned'}</Typography>
+          
+          <Divider sx={{ border:'1px solid', opacity: 0.6 , color:'secondary.main' }}/>
 
-
-    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
-
- 
- 
-            <Typography variant="h6" color={'secondary.main'} >{ myList.length ? 'Lists Assigned' : 'No lists assigned'}</Typography>
-            <Divider sx={{ border:'1px solid', opacity: 0.6 , color:'secondary.main' }}/>
-
-            <List>
+          <List>
             {myList && myList.map((l, idx)=> <Typography key={idx} textAlign={'left'} color={'secondary.main'} > { 
-             <ListItem disablePadding>
-             <ListItemText primary={l.title} />
+            <ListItem key={idx} sx={{textAlign:'left', color:'secondary.main'}} disablePadding>
+              <ListItemText primary={l.title} />
             </ListItem>
             
             
@@ -111,10 +98,7 @@ const PatientList = ({patient}) => {
             
   
  
-  </CardContent>
- 
 
-</Card>
     
         
     </Box>

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material";
 
 import PatientList from "../../components/PatientsList/PatientList";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import {
   getMyLists,
   postListAssigned,
 } from "../../services/lists";
+import { Face } from "@mui/icons-material";
 
 const Patients = () => {
   const { user: cookieUser } = useCookies(["user"])[0];
@@ -202,7 +203,43 @@ const Patients = () => {
                     key={p.id}
                     sx={{ display: "flex", alignItems: "center", gap: "20px" }}
                   >
-                    <PatientList key={p.id} patient={p} />
+                     <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
+
+        <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
+          <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
+          <Typography variant="h4" >
+              {p.username}
+          </Typography>
+          <Button
+                      color="primary"
+                      variant="contained"
+                      onClick={() => addList(p.id)}
+                      sx={{ height: "fit-content", fontSize: "small" }}
+                    >
+                      Add List
+                    </Button>
+          
+        
+        </CardContent>
+
+
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
+                  
+                  
+                  <PatientList key={p.id} patient={p} /> 
+
+
+         
+          
+          
+            
+  
+ 
+  </CardContent>
+ 
+
+</Card>
+                    
                     <Button
                       color="primary"
                       variant="contained"

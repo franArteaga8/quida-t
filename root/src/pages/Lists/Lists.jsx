@@ -66,7 +66,7 @@ const Lists = () => {
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'}> Assigned Lists</Typography>
         <ListsDisplay  lists={assignedLists} editable= {false} />
 
-        <Divider sx={{ margin: '20px'}}/>
+        <Divider sx={{ padding: '30px'}}/>
 
         <Box display={'flex'} alignItems={'center'} padding={'10px'} >
         <Typography variant="h3" textAlign={'left'} color={'primary.main'} margin={'20px'} >My Lists</Typography>

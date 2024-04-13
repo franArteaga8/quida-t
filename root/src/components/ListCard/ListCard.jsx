@@ -36,7 +36,7 @@ const ListCard = ({ list, setDeletedList, editable }) => {
 
         
 
-    <Accordion  sx={{ border: '1px solid', borderColor:'primary.main', borderRadius: '10px'}} >
+    <Accordion  elevation={10}  >
         <AccordionSummary
           expandIcon={<KeyboardArrowDown sx={{ color: 'secondary.main'}} />}
           aria-controls="panel1-content"
@@ -54,9 +54,9 @@ const ListCard = ({ list, setDeletedList, editable }) => {
 
         </AccordionSummary>
         
-        <AccordionDetails>
-          <Box display={'flex'} margin={' 10px 10px'}  >
-          <Typography variant="subtitle1" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description} </Typography>
+        <AccordionDetails >
+          <Box display={'flex'} margin={'10px'}  >
+          <Typography variant="subtitle1" color={'primary.main'} textAlign={'left'} margin={'10px'} > {list.description ? list.description : "There is no description yet"} </Typography>
 
           {list.cycle && <Chip color="primary" label={list.cycle} sx={{ marginLeft: 'auto' }} /> }
           </Box>
@@ -73,6 +73,7 @@ const ListCard = ({ list, setDeletedList, editable }) => {
           
         </AccordionDetails>
       </Accordion>
+
       <Dialog
         fullWidth
         open={open}

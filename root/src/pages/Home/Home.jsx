@@ -90,7 +90,7 @@ const Home = () => {
       </Box>
       <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
-      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}} >
+      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
        
       
       { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}

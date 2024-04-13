@@ -1,5 +1,5 @@
 import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Icon, IconButton, InputAdornment, TextField, Typography } from "@mui/material"
-import { Lock, Mail, Visibility, VisibilityOff } from '@mui/icons-material'
+import { Face, Lock, Mail, Person, Visibility, VisibilityOff } from '@mui/icons-material'
 import { useContext, useState } from "react"
 import { postLogin, postSignup } from "../../services/auth"
 import { useNavigate } from "react-router-dom"
@@ -13,6 +13,7 @@ const Login = () => {
   const [pass, setPassword] = useState('')
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
+  const [lastname, setLastname] = useState('')
   const [showRegisterForm, setShowRegisterForm] = useState(false)
 
   const [isPassVisible, setIsPassVisible]  = useState(false)
@@ -29,7 +30,7 @@ const Login = () => {
 
   const handleAction = async () => {
     if (showRegisterForm) {
-      const signupRes = await postSignup({ email, pass, name, username });
+      const signupRes = await postSignup({ email, pass, name, lastname, username });
       console.log(signupRes)
       localStorage.setItem('token', signupRes.token)
       navigate('/')
@@ -56,9 +57,9 @@ const Login = () => {
   return (
     <Box backgroundColor={'primary.main'} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'center',alignItems: 'center', width: '100vw', height: '100vh'}} >
 
-      <Typography color={'secondary'}  top={'20%'} variant="h1" marginBottom={'100px'} >quida-t</Typography>
+      <Typography color={'secondary'}  variant="h1"  >quida-t</Typography>
 
-      <Card sx={{ maxWidth: '500px', height: 'min-content', backgroundColor: 'background.main', borderRadius: '1.5em', marginBottom:'10%',  padding: '30px' }} raised={true} >
+      <Card sx={{ maxWidth: '500px', backgroundColor: 'background.main', borderRadius: '1.5em', padding:'20px', margin:'5vh'}} raised={true} >
         <CardHeader sx={{color: 'primary.main'}} title={showRegisterForm ?  <Typography variant="h3" > Register </Typography> : <Typography variant="h3" > Login </Typography>} />
         <CardContent>
           {showRegisterForm && (
@@ -70,6 +71,32 @@ const Login = () => {
                 fullWidth={true}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment>
+                      <Icon  sx={{ marginRight:'10px'}} >
+                        <Face color="primary" />
+                      </Icon>
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <TextField
+                label="Lastname"
+                variant="outlined"
+                margin="dense"
+                fullWidth={true}
+                value={name}
+                onChange={(e) => setLastname(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment>
+                      <Icon  sx={{ marginRight:'10px'}} >
+                        <Face color="primary" />
+                      </Icon>
+                    </InputAdornment>
+                  )
+                }}
               />
               <TextField
                 label="Username"
@@ -78,7 +105,15 @@ const Login = () => {
                 fullWidth={true}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment>
+                      <Icon  sx={{ marginRight:'10px'}} >
+                        <Person color="primary" />
+                      </Icon>
+                    </InputAdornment>
+                  )
+                }}
               />
             </>
           )}
@@ -131,7 +166,7 @@ const Login = () => {
         <Divider sx={{margin:'auto'}} />
         <CardActions sx={{ display: 'flex', justifyContent: 'flex-end', marginTop:'20px' }}>
           <Button onClick={handleFormToggle} variant="outlined" color="primary" sx={{ textTransform: 'none', color: 'primary', borderColor: 'primary', borderRadius: '1em', padding:'10px 20px' }} >
-            {showRegisterForm ? <span> Already have an account? Login </span> : <span> Don&apos;t have an account? Sign Up </span> }
+            {showRegisterForm ? <span> Already have an account? Log In </span> : <span> Don&apos;t have an account? Sign Up </span> }
           </Button>
           <Button onClick={handleAction} variant="contained" color="primary" sx={{ color: 'whitesmoke', padding:'10px 20px' , borderRadius: '1em'}} >
             {showRegisterForm ? 'Register' : 'Login'}

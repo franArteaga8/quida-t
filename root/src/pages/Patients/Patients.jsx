@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Card, CardContent, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 
 import PatientList from "../../components/PatientsList/PatientList";
 import { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ import {
   getMyLists,
   postListAssigned,
 } from "../../services/lists";
-import { Face } from "@mui/icons-material";
+import { Face, MoreVert as MoreVertIcon} from "@mui/icons-material";
 
 const Patients = () => {
   const { user: cookieUser } = useCookies(["user"])[0];
@@ -22,6 +22,37 @@ const Patients = () => {
 
   const [myList, setMylist] = useState([]);
   const [addListUser, setAddListUser] = useState("");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const options = [
+    'None',
+    'Atria',
+    'Callisto',
+    'Dione',
+    'Ganymede',
+    'Hangouts Call',
+    'Luna',
+    'Oberon',
+    'Phobos',
+    'Pyxis',
+    'Sedna',
+    'Titania',
+    'Triton',
+    'Umbriel',
+  ];
+  
+  const ITEM_HEIGHT = 48;
+
+
 
   const handleSearch = () => {
     setFilter(search);
@@ -118,7 +149,7 @@ const Patients = () => {
       {myList.length ? (
           <Box
             sx={
-              {display:'flex', justifyContent: 'center', alignItems: 'center', gap: 2, flexWrap: 'wrap', width: '50%', margin: '8px 0'}
+              {display:'flex', justifyContent: 'center', alignItems: 'center', gap: 2, flexWrap: 'wrap', width: '50%', margin: '8px 0', backgroundColor:'green'}
             }
           >
             {myList.map((l) => (
@@ -143,8 +174,8 @@ const Patients = () => {
           </Box>
         ) : null}
 
-      </Box>
-      <Box
+    </Box>
+    <Box
         sx={{
           overflowY: "auto",
           scrollbarWidth: "none",
@@ -157,7 +188,7 @@ const Patients = () => {
           borderColor: "primary.main",
           borderRadius: "20px",
         }}
-      >
+        >
         <Typography variant="h5" color={"primary.main"}>
           {" "}
           Patients
@@ -191,17 +222,17 @@ const Patients = () => {
 
 
 
-</CardContent>
+              </CardContent>
 
 
-<CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
+            <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
 
   
 
-</CardContent>
+              </CardContent>
 
 
-</Card>
+              </Card>
                   
                 </Box>
               );
@@ -212,52 +243,90 @@ const Patients = () => {
           My patients
         </Typography>
         <Divider />
-
         
-        {cookieUser && cookieUser.validation === true
-          ? listUser &&
-            listUser
-              .filter((p) => p["psychologist"] === cookieUser.id)
-              .map((p) => {
-                return (
-                  <Box
-                    key={p.id}
-                    sx={{ display: "flex", alignItems: "center", gap: "20px" }}
-                  >
-                     <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
-
-                      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
-                      <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
-                      <Typography variant="h4" >
-                          {p.username}
-                      </Typography>
-                      <Button
-                      color="primary"
-                      variant="contained"
-                      onClick={() => addList(p.id)}
-                      sx={{ height: "fit-content", fontSize: "small" }}
-                      >
-                      Add List
-                      </Button>
-          
         
-                      </CardContent>
-
-
-                      <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
+        
+        <Box width={'100%'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={'2em'} >
+            
+            {cookieUser && cookieUser.validation === true
+              ? listUser &&
+              listUser
+                .filter((p) => p["psychologist"] === cookieUser.id)
+                .map((p) => {
+                  return (
                   
-                        <PatientList key={p.id} patient={p} /> 
- 
-                      </CardContent>
- 
+                      <Card key={p.id} sx={{width: '100%', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
 
-                    </Card>
+                        <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
+                        <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
+                        <Typography variant="h4" >
+                            {p.username}
+                        </Typography>
+                        <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={() => addList(p.id)}
+                        sx={{ height: "fit-content", fontSize: "small" }}
+                        >
+                        Add List
+                        </Button>
+
+                        <IconButton
+                          aria-label="more"
+                          id="long-button"
+                          aria-controls={open ? 'long-menu' : undefined}
+                          aria-expanded={open ? 'true' : undefined}
+                          aria-haspopup="true"
+                          onClick={(e) => {
+                            handleClick(e)
+                            addList(p.id)
+                           
+                          }}
+                        >
+                          <MoreVertIcon />
+                        </IconButton>
+                        <Menu
+                          id="long-menu"
+                          MenuListProps={{
+                            'aria-labelledby': 'long-button',
+                          }}
+                          anchorEl={anchorEl}
+                          open={open}
+                          onClose={handleClose}
+                          PaperProps={{
+                            style: {
+                              maxHeight: ITEM_HEIGHT * 4.5,
+                              width: '20ch',
+                            },
+                          }}
+                        >
+                          {options.map((option) => (
+                            <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                              {option}
+                            </MenuItem>
+                          ))}
+                        </Menu>
+            
+          
+                        </CardContent>
+
+
+                        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
                     
-                    
-                  </Box>
-                );
-              })
-          : null}
+                          <PatientList key={p.id} patient={p} /> 
+  
+                        </CardContent>
+  
+
+                      </Card>
+                      
+                      
+                      
+                  
+                  );
+                })
+            : null}
+          </Box>
       </Box>
     </Box>
   );

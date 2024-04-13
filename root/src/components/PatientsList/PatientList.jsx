@@ -1,23 +1,13 @@
 
 import {
   Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Divider,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Button,
-  Card,
-  CardActions,
   Box,
   List,
   ListItemText,
   ListItem
 } from "@mui/material";
 
-import { ArrowDownward, Face } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { getListAssigned, getMyLists } from "../../services/lists";

@@ -20,6 +20,7 @@ const Home = () => {
   
 
   const [date, setDate] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [selectDate, setSelectDate] = useState('')
 
   const [ openTasks, setOpenTasks ] = useState([])
@@ -60,6 +61,7 @@ const Home = () => {
     handleFormatDate()
     handleOpenTasks()
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[date])
 
 

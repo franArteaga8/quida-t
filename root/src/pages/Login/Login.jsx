@@ -20,6 +20,7 @@ const Login = () => {
 
   const { setUserData } = useContext(UserContext)
 
+  // eslint-disable-next-line no-unused-vars
   const [ cookies, setCookie ] = useCookies(['user'])
 
   const navigate = useNavigate()

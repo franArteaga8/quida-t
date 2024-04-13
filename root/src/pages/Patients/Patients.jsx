@@ -172,16 +172,37 @@ const Patients = () => {
               return (
                 <Box
                   key={p.id}
-                  sx={{ display: "flex", alignItems: "center", gap: "20px" }}
+                  sx={{ display: "flex", alignItems: "center", gap: "20px", backgroundColor:'pink' }}
                 >
-                  <PatientList key={p.id} patient={p} list={myList} />
-                  <Button
+                     <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'green' }}>
+
+                      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
+                      <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
+                      <Typography variant="h4" >
+                          {p.username}
+                      </Typography>
+                      <Button
                     color="primary"
                     variant="contained"
                     onClick={() => addPatient(p.id)}
                   >
                     Add
                   </Button>
+
+
+
+</CardContent>
+
+
+<CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
+
+  
+
+</CardContent>
+
+
+</Card>
+                  
                 </Box>
               );
             })}
@@ -205,49 +226,34 @@ const Patients = () => {
                   >
                      <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
 
-        <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
-          <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
-          <Typography variant="h4" >
-              {p.username}
-          </Typography>
-          <Button
+                      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
+                      <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
+                      <Typography variant="h4" >
+                          {p.username}
+                      </Typography>
+                      <Button
                       color="primary"
                       variant="contained"
                       onClick={() => addList(p.id)}
                       sx={{ height: "fit-content", fontSize: "small" }}
-                    >
+                      >
                       Add List
-                    </Button>
+                      </Button>
           
         
-        </CardContent>
+                      </CardContent>
 
 
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
+                      <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
                   
-                  
-                  <PatientList key={p.id} patient={p} /> 
-
-
-         
-          
-          
-            
-  
+                        <PatientList key={p.id} patient={p} /> 
  
-  </CardContent>
+                      </CardContent>
  
 
-</Card>
+                    </Card>
                     
-                    <Button
-                      color="primary"
-                      variant="contained"
-                      onClick={() => addList(p.id)}
-                      sx={{ height: "fit-content", fontSize: "small" }}
-                    >
-                      Add List
-                    </Button>
+                    
                   </Box>
                 );
               })

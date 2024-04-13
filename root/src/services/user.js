@@ -69,7 +69,5 @@ export const closeTasks = async (listId) => {
             Authorization: localStorage.getItem('token')
         }
     })
-    console.log('services 2')
-    console.log(data)
     return data
 }

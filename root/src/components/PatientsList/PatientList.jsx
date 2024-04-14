@@ -11,6 +11,7 @@ import {
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { getListAssigned, getMyLists } from "../../services/lists";
+import { ChecklistRtl } from "@mui/icons-material";
 
 
 const PatientList = ({patient}) => {
@@ -77,7 +78,8 @@ const PatientList = ({patient}) => {
 
           <List>
             {myList && myList.map((l, idx)=> <Typography key={idx} textAlign={'left'} color={'secondary.main'} > { 
-            <ListItem key={idx} sx={{textAlign:'left', color:'secondary.main'}} disablePadding>
+            <ListItem key={idx} sx={{textAlign:'left', color:'secondary.main', mb:'5px'}} disablePadding>
+              <ChecklistRtl sx={{ mr:'10px' }}/>
               <ListItemText primary={l.title} />
             </ListItem>
             

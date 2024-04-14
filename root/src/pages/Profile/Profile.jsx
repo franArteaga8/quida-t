@@ -11,7 +11,6 @@ const Profile = () => {
     "Every setback is a setup for a comeback.",
     "Progress, not perfection.",
     "You are enough.",
-    "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
     "Embrace the journey.",
     "You have the power to create positive change in your life.",
     "Your potential is limitless.",

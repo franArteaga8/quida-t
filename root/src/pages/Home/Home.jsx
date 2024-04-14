@@ -45,11 +45,18 @@ const Home = () => {
 
   
   const handleOpenTasks = async () => {
+    console.log('opentasks')
     const result = await getAllOpenTasks()
     result && setOpenTasks(result.openTasks)
+
+    result && console.log('oTresult')
+    result && console.log(result)
   }
 
   const handleClose = async () => {
+
+    console.log(date)
+    
    
    openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId))
 
@@ -95,7 +102,7 @@ const Home = () => {
       <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
        
       
-      { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}
+      { openTasks > 0  ? <OpenTasks oT={openTasks}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
       
         
         

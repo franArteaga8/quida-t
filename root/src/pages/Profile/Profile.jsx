@@ -181,7 +181,7 @@ const Profile = () => {
                 { profile.role }
               </Typography>
 
-              {!(profile.colegiate === null) &&
+              {(profile.role === 'psychologist') &&
               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
                 {profile.colegiate}
               </Typography>}

@@ -39,7 +39,6 @@ const Home = () => {
     setDate(`${year}-${fixedMonth}-${day}`)
   }
 
-
   const { user: cookieUser } = useCookies(['user'])[0]
 
 
@@ -55,10 +54,15 @@ const Home = () => {
 
   const handleClose = async () => {
 
+    console.log('handleclose')
+    openTasks && openTasks.map(async (oT) => console.log(oT.registryTasks[0].createdAt.split('T')[0]))
     console.log(date)
+    openTasks && openTasks.map(async (oT) => console.log(oT.registryTasks[0].createdAt.split('T')[0] > date))
     
+    openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] > date) && console.log('close'))
+    openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] > date) && await closeTasks(oT.listId))
    
-   openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId))
+   
 
   }
 
@@ -69,7 +73,7 @@ const Home = () => {
     handleOpenTasks()
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[date])
+  },[date, cookies, cookieUser])
 
 
   return (
@@ -102,7 +106,7 @@ const Home = () => {
       <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
        
       
-      { openTasks > 0  ? <OpenTasks oT={openTasks}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
+      { openTasks.length > 0  ? <OpenTasks oT={openTasks}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
       
         
         

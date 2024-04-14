@@ -204,7 +204,7 @@ const Profile = () => {
           
           </CardContent>
           <CardContent sx={{ width: '50%', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center', border: '1px whitesmoke solid', borderRadius:'10px', margin:'20px' }}>
-            <Typography noWrap variant="body2" sx={{ mb: 1, padding: '20px', fontSize: '1em', textDecoration:'underline' }} >
+            <Typography noWrap variant="subtitle2" sx={{ mb: 1, padding: '20px', fontSize: '1em', textDecoration:'underline' }} >
               {currentMessage}
             </Typography>
           </CardContent>

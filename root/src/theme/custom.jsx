@@ -68,7 +68,9 @@ export const customTheme = createTheme({
       subtitle2: {
         fontFamily: 'Comfortaa, sans-serif',
         fontSize: '0.875rem', // Example font size for subtitle2
-        fontWeight: 'bold', // Example font weight for subtitle2
+        fontWeight: 'bold',
+        fontStyle: 'italic', // Example font weight for subtitle2
+
       },
       body1: {
         fontSize: '1rem', // Example font size for body1

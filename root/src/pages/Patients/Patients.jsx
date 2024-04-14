@@ -160,7 +160,7 @@ const Patients = () => {
           Patients
         </Typography>
         <Divider />
-        <>
+        {filter.length > 0 && <>
         <Paper
                   
                   elevation={5}
@@ -182,16 +182,20 @@ const Patients = () => {
                 <Card key={p.id} sx={{width: '400px', minWidth: 275, color: 'secondary.main', borderRadius:'20px' }}>
 
                   <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center', borderRadius:'20px',  backgroundColor:'primary.main'}} >
-                    <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
-                    <Typography variant="h6" >
+                    <Face sx={{ fontSize: '2.5em',  marginRight:'10px'}} />
+                    <Typography variant="h6" mr={'auto'} >
                             {p.username}
                     </Typography>
                     <IconButton
                             color="secondary"
                             variant="contained"
-                            onClick={() => addPatient(p.id)}
+                            onClick={() => {
+
+                              addPatient(p.id)
+                              setFilter('')
+                            }}
                     >
-                      <AddCircle sx={{fontSize:'1.5em' }} ></AddCircle>
+                      <AddCircle sx={{fontSize:'1em' }} ></AddCircle>
                     </IconButton>
 
                   </CardContent>
@@ -202,7 +206,7 @@ const Patients = () => {
             })}
             </Box>
              </Paper>
-            </>
+            </>}
 
         <Typography variant="h3" textAlign={'left'} color={"primary.main"}>
           {" "}

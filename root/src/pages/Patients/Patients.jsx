@@ -268,13 +268,14 @@ const Patients = () => {
                                           handleClose()
                                         }}
                                       >
+
                                         {" "}
                                         {l.title}{" "} 
                                       </MenuItem>
                                     ))}
                                   
                                     </>
-                        ) : null}
+                        ) : <Typography variant="h6" padding={'10px 20px'} >No lists left to add.</Typography>}
                           
                         </Menu>
             

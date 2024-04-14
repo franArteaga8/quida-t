@@ -3,7 +3,7 @@ import { Box, Card, CardContent, IconButton, Menu, MenuItem, Paper, Typography }
 import PatientList from "../../components/PatientsList/PatientList";
 import { useEffect, useState } from "react";
 import { getAllUsers, putPsychologist } from "../../services/user";
-import { TextField, Button, Divider } from "@mui/material";
+import { TextField, Divider } from "@mui/material";
 
 import { useCookies } from "react-cookie";
 import {
@@ -33,24 +33,8 @@ const Patients = () => {
     setAnchorEl(null);
   };
 
-  const options = [
-    'None',
-    'Atria',
-    'Callisto',
-    'Dione',
-    'Ganymede',
-    'Hangouts Call',
-    'Luna',
-    'Oberon',
-    'Phobos',
-    'Pyxis',
-    'Sedna',
-    'Titania',
-    'Triton',
-    'Umbriel',
-  ];
-  
-  const ITEM_HEIGHT = 48;
+   
+  const ITEM_HEIGHT = 52;
 
 
 

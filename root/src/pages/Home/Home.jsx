@@ -44,12 +44,9 @@ const Home = () => {
 
   
   const handleOpenTasks = async () => {
-    console.log('opentasks')
     const result = await getAllOpenTasks()
     result && setOpenTasks(result.openTasks)
 
-    result && console.log('oTresult')
-    result && console.log(result)
   }
 
   const handleClose = async () => {

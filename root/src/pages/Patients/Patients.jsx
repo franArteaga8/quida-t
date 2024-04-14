@@ -11,7 +11,7 @@ import {
   getMyLists,
   postListAssigned,
 } from "../../services/lists";
-import { AddCircle, Face, MoreVert as MoreVertIcon} from "@mui/icons-material";
+import { AddCircle, Face, MoreVert as MoreVertIcon, Search} from "@mui/icons-material";
 
 const Patients = () => {
   const { user: cookieUser } = useCookies(["user"])[0];
@@ -107,9 +107,9 @@ const Patients = () => {
       
       <Box sx={{display: 'flex', flexDirection: 'row-reverse',justifyContent: 'space-between'}}>
 
-      <Box  sx={{display: 'flex', flexDirection: 'row-reverse'}}>
+      <Box  sx={{display: 'flex', flexDirection: 'row-reverse',gap:'10px'}}>
 
-      <Button
+      <IconButton
         color="primary"
         
         onClick={() => handleSearch()}
@@ -117,26 +117,27 @@ const Patients = () => {
           alignSelf: "center",
           width: "max-content",
           textTransform: "none",
+          borderRadius:'10px',
+          
         }}
-        size="medium"
+        size="large"
         variant="contained"
       >
-        Search
-      </Button>
+        <Search fontSize="large" />
+      </IconButton>
       <TextField
-        label="Search"
+        label="Search Patients"
         variant="outlined"
         margin="dense"
         fullWidth={true}
         sx={{
           display: "flex",
           alignSelf: "center",
-          color: "whitesmoke",
           width: " max-content",
-          border: "1px inset whitesmoke",
-          borderRadius: 2,
+          
         }}
         onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
       ></TextField>
 
       </Box>
@@ -169,9 +170,9 @@ const Patients = () => {
                   borderColor: "primary.main",
                   borderRadius: "20px", mb:'50px' }}
                 >
-                  <Typography variant="h6" color={'primary.main'} textAlign={'left'} mr={'auto'} >Patients found: </Typography>
+                  <Typography variant="h5" color={'primary.main'} textAlign={'left'} mr={'auto'} padding={'20px'} >Patients found: </Typography>
 
-                  <Box display={'flex'} width={'900px'} alignItems={'center'} gap={'20px'} padding={'20px'} flexWrap={'wrap'} >
+                  <Box display={'flex'} width={'100%'} alignItems={'center'} gap={'20px'} padding={'20px'} flexWrap={'wrap'} >
         {filter && 
           listUser
             .filter((p) => p["username"].includes(filter) || " " === filter)
@@ -179,7 +180,7 @@ const Patients = () => {
             .map((p) => {
               return (
                 
-                <Card key={p.id} sx={{width: '400px', minWidth: 275, color: 'secondary.main', borderRadius:'20px' }}>
+                <Card key={p.id} sx={{width: 'auto', minWidth: 275, color: 'secondary.main', borderRadius:'20px' }}>
 
                   <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center', borderRadius:'20px',  backgroundColor:'primary.main'}} >
                     <Face sx={{ fontSize: '2.5em',  marginRight:'10px'}} />

@@ -236,6 +236,7 @@ const Patients = () => {
                         </IconButton>
                         <Menu
                           id="long-menu"
+                          
                           MenuListProps={{
                             'aria-labelledby': 'long-button',
                           }}
@@ -245,7 +246,7 @@ const Patients = () => {
                           PaperProps={{
                             style: {
                               maxHeight: ITEM_HEIGHT * 4.5,
-                              width: '20ch',
+                              width: 'max-content',
                             },
                           }}
                         >

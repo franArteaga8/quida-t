@@ -26,9 +26,9 @@ const Home = () => {
 
   const [ openTasks, setOpenTasks ] = useState([])
 
- /*  const [taskDay, setTaskDay] = useState([])
+  const [taskDay, setTaskDay] = useState([])
   const [taskWeek, setTaskWeek] = useState([])
-  const [taskMonth, setTaskMonth] = useState([]) */
+  const [taskMonth, setTaskMonth] = useState([])
 
   const handleFormatDate = ()=>{
     const dateCurrent = new Date()
@@ -48,21 +48,38 @@ const Home = () => {
 
   
   const handleOpenTasks = async () => {
-    console.log('opentasks')
-    const result = await getAllOpenTasks()
-    //esto me da la lista de la tarea el id de la tarea, su titulo y la fecha de creacion, conestos  datos recupero la 
-    //lista y miro si es o no diaria semanal o mensual, luego miro el dia de creacion de la tarea y ago reversa con 
-    //fecha seleccionada agrupando las tareas en anteriores diarias, semanales, mensuales y luego las pinto
-    result.openTasks.map((registry)=> registry.registryTasks.map(async(task)=> { 
-      const result = await getAList(task.task.listId)
-      console.log(result)
-      result && result.map((list)=> console.log(list))
-     
-    }))
-    result && setOpenTasks(result.openTasks)
 
-    result && console.log('oTresult')
-    result && console.log(result)
+    const registryList = []
+    const result = await getAllOpenTasks()
+
+    result.openTasks.map((registry)=> registry.registryTasks.map(async(task)=> { 
+
+      const myLists = await getAList(task.task.listId)
+
+      if(!registryList.includes(registry.id)){
+        registryList.push(registry.id)
+        
+        switch (myLists.cycle) {
+          case 'Daily':
+              setTaskDay(prevState => [...prevState, task.task]);
+              break;
+          case 'Weekly':
+              setTaskWeek(prevState => [...prevState, task.task]);
+              break;
+          case 'Monthly':
+              setTaskMonth(prevState => [...prevState, task.task]);
+              break;
+          /* case null:
+              setTaskDay(prevState => [...prevState, task.task]);
+              break; */
+      }
+      }
+      
+      
+    }))
+
+    result && setOpenTasks(result.openTasks)
+    console.log(taskDay)
   }
 
   const handleClose = async () => {
@@ -107,10 +124,20 @@ const Home = () => {
       </Box>
       <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
-      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
+      {/* <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
        
       
       { openTasks.length > 0  ? <OpenTasks oT={openTasks}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
+      
+        
+        
+      </Box> */}
+
+      {taskDay.length > 0 ? console.log(taskDay): console.log('vacio')}
+      <Box   sx={{border: '5px solid red',  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
+       
+      
+      { taskDay.length > 0  ? <OpenTasks oT={taskDay}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
       
         
         

@@ -214,8 +214,8 @@ const Patients = () => {
 
                         <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',  borderRadius: '20px', backgroundColor:'primary.main'}} >
                         <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
-                        <Typography variant="h4" >
-                            {p.username}
+                        <Typography variant="h4" mr={'auto'} >
+                            {p.username} - {p.name} {p.lastname}
                         </Typography>
                         
                         <IconButton

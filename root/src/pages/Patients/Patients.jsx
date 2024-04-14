@@ -96,8 +96,8 @@ const Patients = () => {
     <Box
       sx={{
         maxWidth: "1200px",
-        minWidth: "max-content",
-        width: "90%",
+        
+        width: "80%",
         height: "90%",
         display: "flex",
         flexDirection: "column",
@@ -164,13 +164,14 @@ const Patients = () => {
         <Paper
                   
                   elevation={5}
-                  sx={{ display: "flex",flexDirection:'column', alignItems: "center",padding:'20px', gap: "20px", border: "2px  solid",
+                  
+                  sx={{ width:'100%', display: "flex",flexDirection:'column', alignItems: "center",padding:'20px', gap: "20px", border: "2px  solid",
                   borderColor: "primary.main",
                   borderRadius: "20px", mb:'50px' }}
                 >
                   <Typography variant="h6" color={'primary.main'} textAlign={'left'} mr={'auto'} >Patients found: </Typography>
 
-                  <Box display={'flex'} width={'1200px'} gap={'20px'} flexWrap={'wrap'}>
+                  <Box display={'flex'} width={'900px'} alignItems={'center'} gap={'20px'} padding={'20px'} flexWrap={'wrap'} >
         {filter && 
           listUser
             .filter((p) => p["username"].includes(filter) || " " === filter)
@@ -178,7 +179,7 @@ const Patients = () => {
             .map((p) => {
               return (
                 
-                <Card key={p.id} sx={{width: '500px', minWidth: 275, color: 'secondary.main', borderRadius:'20px' }}>
+                <Card key={p.id} sx={{width: '400px', minWidth: 275, color: 'secondary.main', borderRadius:'20px' }}>
 
                   <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center', borderRadius:'20px',  backgroundColor:'primary.main'}} >
                     <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />

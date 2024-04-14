@@ -1,13 +1,13 @@
 
 import {
   Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Divider
+  Divider,
+  Box,
+  List,
+  ListItemText,
+  ListItem
 } from "@mui/material";
 
-import { ArrowDownward } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { getListAssigned, getMyLists } from "../../services/lists";
@@ -36,9 +36,9 @@ const PatientList = ({patient}) => {
   useEffect(()=>{addList(patient.id)},[myList])
 
   return (
-    <>
+    <Box width={'100%'}>
     
-      <Accordion
+     {/* <Accordion
           sx={{
             border: "1px green solid",
             borderColor: "primary.main",
@@ -66,10 +66,32 @@ const PatientList = ({patient}) => {
             {myList && myList.map((l, idx)=> <Typography key={idx} textAlign={'left'} color={'primary.main'} > { l.title }  </Typography>)}
 
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */ } 
+
+        
+     
+
+          <Typography variant="h6" color={'secondary.main'} >{ myList.length ? 'Lists Assigned' : 'No lists assigned'}</Typography>
+          
+          <Divider sx={{ border:'1px solid', opacity: 0.6 , color:'secondary.main' }}/>
+
+          <List>
+            {myList && myList.map((l, idx)=> <Typography key={idx} textAlign={'left'} color={'secondary.main'} > { 
+            <ListItem key={idx} sx={{textAlign:'left', color:'secondary.main'}} disablePadding>
+              <ListItemText primary={l.title} />
+            </ListItem>
+            
+            
+            }  </Typography>)}
+          
+        </List>
+            
+  
+ 
+
     
         
-    </>
+    </Box>
   );
 };
 

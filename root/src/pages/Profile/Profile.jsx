@@ -181,9 +181,16 @@ const Profile = () => {
               </Typography>
 
               {(profile.role === 'psychologist') &&
-              <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
+              <>
+              Colegiate:
+               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
                 {profile.colegiate}
-              </Typography>}
+              </Typography>
+              </>
+              }
+              
+              
+             
 
            </>}
           
@@ -202,8 +209,8 @@ const Profile = () => {
           
           
           </CardContent>
-          <CardContent sx={{ width: '50%', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center', border: '1px whitesmoke solid', borderRadius:'10px', margin:'20px' }}>
-            <Typography noWrap variant="subtitle2" sx={{ mb: 1, padding: '20px', fontSize: '1em', textDecoration:'underline' }} >
+          <CardContent sx={{ width: 'auto', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center', border: '1px whitesmoke solid', borderRadius:'10px', margin:'20px' }}>
+            <Typography variant="subtitle2" sx={{ mb: 1, padding: '20px', fontSize: '1em', textDecoration:'underline' }} >
               {currentMessage}
             </Typography>
           </CardContent>

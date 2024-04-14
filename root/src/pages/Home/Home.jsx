@@ -12,8 +12,7 @@ import dayjs from 'dayjs';
 import { useCookies } from 'react-cookie'
 import { closeTasks, getAllOpenTasks } from '../../services/user';
 import OpenTasks from '../../components/OpenTasks/OpenTasks';
-import { getAList } from '../../services/lists';
-import TaskCard from '../../components/TaskCard/TaskCard';
+
 
 
 
@@ -27,10 +26,10 @@ const Home = () => {
 
   const [ openTasks, setOpenTasks ] = useState([])
 
-  const [taskDay, setTaskDay] = useState([])
+/*   const [taskDay, setTaskDay] = useState([])
   const [taskWeek, setTaskWeek] = useState([])
   const [taskMonth, setTaskMonth] = useState([])
-  const [registryList, setregistryList] = useState([])
+  const [registryList, setregistryList] = useState([]) */
 
   const handleFormatDate = ()=>{
     const dateCurrent = new Date()
@@ -50,43 +49,9 @@ const Home = () => {
 
   
   const handleOpenTasks = async () => {
-
     const result = await getAllOpenTasks()
-
-    result.openTasks.map((registry)=> registry.registryTasks.map(async(task)=> { 
-
-      const myLists = await getAList(task.task.listId)
-      /* console.log('esta es la tarea',task)
-      console.log('esto es el registro',registry)
-      console.log('esta es la lista', myLists)
-       */
-      if(!registryList.includes(task.task.id)){
-
-        setregistryList(...registryList,task.task.id)
-     
-
-        switch (myLists.cycle) {
-          case 'Daily':
-              setTaskDay(task.task);
-              break;
-          case 'Weekly':
-              setTaskWeek(taskWeek.push(task.task));
-              break;
-          case 'Monthly':
-              setTaskMonth(taskMonth.push(task.task));
-              break;
-          case null:
-              setTaskDay([...taskDay, task.task]);
-              break; 
-            
-      }
-      }
-      
-      
-    }))
-
     result && setOpenTasks(result.openTasks)
-    
+
   }
 
   const handleClose = async () => {
@@ -131,28 +96,16 @@ const Home = () => {
       </Box>
       <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
-      {/* <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
+      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
        
       
       { openTasks.length > 0  ? <OpenTasks oT={openTasks}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
       
         
         
-      </Box> */}
+      </Box>
 
-{/*       {taskDay.length > 0 ? console.log(taskDay): console.log('vacio')}
- */}     {/*  <Box   sx={{border: '5px solid red',  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
-       
-      
-      { taskDay.length > 0  ? <OpenTasks oT={taskDay}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
-      
-        
-        
-      </Box> */}
-      {taskDay.length  &&
-      console.log(taskDay[0])
-      } 
-    
+
     </Box>
     
   )

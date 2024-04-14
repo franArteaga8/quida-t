@@ -73,7 +73,7 @@ const Home = () => {
     handleOpenTasks()
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[date, cookies, cookieUser])
+  },[date])
 
 
   return (

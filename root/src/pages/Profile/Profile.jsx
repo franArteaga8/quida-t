@@ -49,15 +49,15 @@ const Profile = () => {
       <Box sx={{ width: '100%', display: 'flex', height:'100%', justifyContent: 'center',  backgroundColor: 'background.default'}} >
       <Card  sx={{ width:'80%', maxWidth:'1200px' ,minWidth: 275, display:'flex', gap:'20px', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
 
-        <CardMedia sx={{ display: 'flex', flexDirection: 'column' , alignItems:'center', padding: '10px', width: 'min-content'}} >
-          <Face sx={{ fontSize: '8em'}} />
-          <Button color="secondary" onClick={handleEditToggle} sx={{ marginTop: 'auto', width: 'max-content', textTransform: 'none'}} size="medium" variant="contained" >
+        <CardMedia sx={{ display: 'flex', flexDirection: 'column' , alignItems:'center', padding: '10px', width: 'min-content',}} >
+          <Face sx={{ fontSize: '8em', color:'secondary.main'}} />
+          <Button color="secondary" onClick={handleEditToggle} sx={{ marginTop: 'auto', width: 'max-content', textTransform: 'none'}} size="medium" variant="outlined" >
             {showEditProfile ? 'See Profile' : 'Edit Profile'}
           </Button>
         </CardMedia>
 
 
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left', width: 'max-content'}}>
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left', width: '100%'}}>
 
           <CardHeader title={showEditProfile ? 'Edit' : 'Profile'}  />
 
@@ -69,7 +69,7 @@ const Profile = () => {
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               sx={{color: 'whitesmoke', border: '1px inset whitesmoke', borderRadius: 2}}
                inputProps={
                 {style: { color: '#fff'}
                }}
@@ -87,7 +87,7 @@ const Profile = () => {
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               sx={{color: 'whitesmoke', border: '1px inset whitesmoke', borderRadius: 2}}
                inputProps={
                 {style: { color: '#fff'}
                }}
@@ -104,7 +104,7 @@ const Profile = () => {
                variant="outlined"
                margin="dense"
                fullWidth={true}
-               sx={{color: 'whitesmoke', width:' max-content', border: '1px inset whitesmoke', borderRadius: 2}}
+               sx={{color: 'whitesmoke', border: '1px inset whitesmoke', borderRadius: 2}}
                inputProps={
                 {style: { color: '#fff'}
                }}
@@ -118,8 +118,8 @@ const Profile = () => {
               </TextField>
 
 
-              <TextField
-               label="Number colegiate"
+              { !(profile.colegiate === null) && <TextField
+               label="Colegiate Number"
                variant="outlined"
                margin="dense"
                fullWidth={true}
@@ -133,8 +133,12 @@ const Profile = () => {
                defaultValue={colegiate ? colegiate : profile.colegiate}
                onChange={(e)=> setColegiate(e.target.value)}
               >
-              </TextField>
-              <Button className="button "variant="contained" color="secondary" onClick={()=>edit()}>submit changes</Button>
+              </TextField>}
+
+               <Box display={'flex'} justifyContent={'end'}>
+               <Button className="button "variant="contained" color="secondary"  sx={{ marginTop:'20px', width:'max-content', textTransform:'none'}} onClick={()=>edit()}>Submit Changes</Button>
+               </Box>
+              
 
               
               
@@ -144,9 +148,11 @@ const Profile = () => {
               <Typography variant="h2"  gutterBottom>
                 {profile.username}
               </Typography>
+              Full name:
               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
                 { profile.name } { profile.lastname } 
               </Typography>
+              Rol:
               <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }} >
                 { profile.role }
               </Typography>
@@ -161,18 +167,20 @@ const Profile = () => {
          
           
           {!showEditProfile && 
-           <Typography variant="h5"  sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }}>
+          <>
+          Email:
+           <Typography variant="h5" sx={{ mb: 1, padding: '10px', border: '1px whitesmoke solid', borderRadius:'10px' }}>
            { profile.email}
-         </Typography> }
+         </Typography> 
+         </>}
          
          
           
           
-          <CardActions>
-        </CardActions>
+          
           </CardContent>
-          <CardContent sx={{ width: '100%', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center'}}>
-            <Typography variant="body2" sx={{ mb: 1, padding: '20px', border: '1px whitesmoke solid', borderRadius:'10px', fontSize: '1em' }} >
+          <CardContent sx={{ width: 'min-content', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center', border: '1px whitesmoke solid', borderRadius:'10px', }}>
+            <Typography noWrap variant="body2" sx={{ mb: 1, padding: '20px', fontSize: '1em' }} >
               well meaning and kindly.
             </Typography>
           </CardContent>

@@ -145,35 +145,6 @@ const Patients = () => {
       </Box>
 
       
-
-      {myList.length ? (
-          <Box
-            sx={
-              {display:'flex', justifyContent: 'center', alignItems: 'center', gap: 2, flexWrap: 'wrap', width: '50%', margin: '8px 0', backgroundColor:'green'}
-            }
-          >
-            {myList.map((l) => (
-              <Button
-                variant="outlined"
-                sx={{ width: "fit-content", alignSelf: "center"}}
-                key={l.id}
-                onClick={() => addListAPatient(l.id)}
-              >
-                {" "}
-                {l.title}{" "}
-              </Button>
-            ))}
-            <Button
-              variant="outlined"
-              color="primary"
-              sx={{ width: "min-content", alignSelf: "center" }}
-              onClick={() => setMylist([])}
-            >
-              exit
-            </Button>
-          </Box>
-        ) : null}
-
     </Box>
     <Box
         sx={{
@@ -207,7 +178,7 @@ const Patients = () => {
                 >
                      <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'green' }}>
 
-                      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
+                      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'primary.main'}} >
                       <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
                       <Typography variant="h4" >
                           {p.username}
@@ -255,24 +226,17 @@ const Patients = () => {
                 .map((p) => {
                   return (
                   
-                      <Card key={p.id} sx={{width: '100%', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.main' }}>
+                      <Card key={p.id} sx={{width: '100%', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'primary.light' }}>
 
-                        <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'peru'}} >
+                        <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',  borderRadius: '20px', backgroundColor:'primary.main'}} >
                         <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
                         <Typography variant="h4" >
                             {p.username}
                         </Typography>
-                        <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={() => addList(p.id)}
-                        sx={{ height: "fit-content", fontSize: "small" }}
-                        >
-                        Add List
-                        </Button>
-
+                        
                         <IconButton
                           aria-label="more"
+                          
                           id="long-button"
                           aria-controls={open ? 'long-menu' : undefined}
                           aria-expanded={open ? 'true' : undefined}
@@ -283,7 +247,8 @@ const Patients = () => {
                            
                           }}
                         >
-                          <MoreVertIcon />
+                          
+                          <MoreVertIcon sx={{ color: 'secondary.main'}} />
                         </IconButton>
                         <Menu
                           id="long-menu"
@@ -300,11 +265,32 @@ const Patients = () => {
                             },
                           }}
                         >
-                          {options.map((option) => (
-                            <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                              {option}
-                            </MenuItem>
-                          ))}
+                          {myList.length ?
+                          
+                          (
+                            <>
+                                
+                                <Typography variant="h6" ml={2}>Lists</Typography>
+                                 
+                                <Divider/>
+                                 {   myList.map((l) => (
+                                      <MenuItem
+                                        
+                                        sx={{  alignSelf: "center"}}
+                                        key={l.id}
+                                        onClick={() => {
+                                          addListAPatient(l.id)
+                                          handleClose()
+                                        }}
+                                      >
+                                        {" "}
+                                        {l.title}{" "} 
+                                      </MenuItem>
+                                    ))}
+                                  
+                                    </>
+                        ) : null}
+                          
                         </Menu>
             
           

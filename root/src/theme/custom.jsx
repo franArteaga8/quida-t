@@ -4,8 +4,9 @@ export const customTheme = createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#44259D',
-      light: '#5863a2',
+      main: '#4B2C8D',
+      light: '#B2A5C9',
+      darker: '#221B37'
     },
     secondary: {
       main: '#FCFAE6',
@@ -67,7 +68,9 @@ export const customTheme = createTheme({
       subtitle2: {
         fontFamily: 'Comfortaa, sans-serif',
         fontSize: '0.875rem', // Example font size for subtitle2
-        fontWeight: 'bold', // Example font weight for subtitle2
+        fontWeight: 'bold',
+        fontStyle: 'italic', // Example font weight for subtitle2
+
       },
       body1: {
         fontSize: '1rem', // Example font size for body1

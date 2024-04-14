@@ -20,6 +20,7 @@ const Home = () => {
   
 
   const [date, setDate] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [selectDate, setSelectDate] = useState('')
 
   const [ openTasks, setOpenTasks ] = useState([])
@@ -38,28 +39,31 @@ const Home = () => {
     setDate(`${year}-${fixedMonth}-${day}`)
   }
 
-
   const { user: cookieUser } = useCookies(['user'])[0]
 
 
   
   const handleOpenTasks = async () => {
+    console.log('opentasks')
     const result = await getAllOpenTasks()
     result && setOpenTasks(result.openTasks)
+
+    result && console.log('oTresult')
+    result && console.log(result)
   }
 
   const handleClose = async () => {
-   
-   openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId))
+
+    openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] > date) && await closeTasks(oT.listId))
 
   }
-
 
   useEffect(()=>{
     handleClose()
     handleFormatDate()
     handleOpenTasks()
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[date])
 
 
@@ -90,10 +94,10 @@ const Home = () => {
       </Box>
       <Typography variant='h3' color={'primary'} textAlign={'left'}>My Daily Tasks</Typography>
 
-      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}} >
+      <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
        
       
-      { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}
+      { openTasks.length > 0  ? <OpenTasks oT={openTasks}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
       
         
         

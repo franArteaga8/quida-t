@@ -21,7 +21,7 @@ const Sidebar = () => {
      <Box sx={{ textAlign:'left', backgroundColor:'primary.main',
       ...cookieUser.validation === true && {
     
-      backgroundColor: 'black',
+      backgroundColor: 'primary.darker',
     }, display: 'flex', flexDirection: 'column', padding: 5, height: '100%'}}>
 
         <Link to={'/'} style={{  textDecoration: 'none', color: 'whitesmoke'}}>

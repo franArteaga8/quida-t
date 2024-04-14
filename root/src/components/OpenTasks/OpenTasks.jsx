@@ -3,11 +3,6 @@ import TaskCard from "../TaskCard/TaskCard"
 import PropTypes from "prop-types"
 
 const OpenTasks = ({ oT }) => {
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> main
   
   return (
     <>

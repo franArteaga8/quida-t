@@ -43,12 +43,12 @@ const Home = () => {
     /* console.log(selectDate.$d) */
   }
 
-
   const { user: cookieUser } = useCookies(['user'])[0]
 
 
   
   const handleOpenTasks = async () => {
+    console.log('opentasks')
     const result = await getAllOpenTasks()
     //esto me da la lista de la tarea el id de la tarea, su titulo y la fecha de creacion, conestos  datos recupero la 
     //lista y miro si es o no diaria semanal o mensual, luego miro el dia de creacion de la tarea y ago reversa con 
@@ -60,14 +60,16 @@ const Home = () => {
      
     }))
     result && setOpenTasks(result.openTasks)
+
+    result && console.log('oTresult')
+    result && console.log(result)
   }
 
   const handleClose = async () => {
-   
-   openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] < date) && await closeTasks(oT.listId))
+
+    openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] > date) && await closeTasks(oT.listId))
 
   }
-
 
   useEffect(()=>{
     handleClose()
@@ -108,7 +110,7 @@ const Home = () => {
       <Box   sx={{  scrollbarWidth:'none', height:'75%', padding:'20px', marginTop: '20px', marginBottom:'100px'}}  >
        
       
-      { openTasks.length > 1 && <OpenTasks oT={openTasks}/>}
+      { openTasks.length > 0  ? <OpenTasks oT={openTasks}/> : <Typography variant='h5' color={'primary'} > No tasks for today</Typography>}
       
         
         

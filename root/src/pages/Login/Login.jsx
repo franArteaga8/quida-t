@@ -87,7 +87,7 @@ const Login = () => {
                 variant="outlined"
                 margin="dense"
                 fullWidth={true}
-                value={name}
+                value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
                 InputProps={{
                   startAdornment: (

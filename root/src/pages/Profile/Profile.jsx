@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getProfile, putProfile } from "../../services/user"
-import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia,  TextField,  Typography } from "@mui/material"
+import { Box, Button, Card, CardContent, CardHeader, CardMedia,  TextField,  Typography } from "@mui/material"
 import { Face } from "@mui/icons-material"
 
 

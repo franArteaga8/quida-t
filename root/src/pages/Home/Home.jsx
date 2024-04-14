@@ -54,18 +54,9 @@ const Home = () => {
 
   const handleClose = async () => {
 
-    console.log('handleclose')
-    openTasks && openTasks.map(async (oT) => console.log(oT.registryTasks[0].createdAt.split('T')[0]))
-    console.log(date)
-    openTasks && openTasks.map(async (oT) => console.log(oT.registryTasks[0].createdAt.split('T')[0] > date))
-    
-    openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] > date) && console.log('close'))
     openTasks && openTasks.map(async (oT) => (oT.registryTasks[0].createdAt.split('T')[0] > date) && await closeTasks(oT.listId))
-   
-   
 
   }
-
 
   useEffect(()=>{
     handleClose()

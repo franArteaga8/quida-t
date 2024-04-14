@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types'
 import ListCard from '../ListCard/ListCard'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 const ListsDisplay = ({ lists, setDeletedList, editable }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column',height:'content', gap: '20px', color:'primary.main'}} >
-        { lists && lists.map((l) => {
+        { lists.length ? lists.map((l) => {
             return(
                 <ListCard key={l.id} list={l} setDeletedList={setDeletedList} editable={editable} />
             )
          })
+         :
+         <Typography variant='h6' textAlign={'left'} ml={'30px'}>
+           {editable ? 'No created lists yet.' : 'No assigned lists yet.'}
+         </Typography>
+         
         }
 
     </Box>

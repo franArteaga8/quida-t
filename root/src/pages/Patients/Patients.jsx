@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { Box, Card, CardContent, IconButton, Menu, MenuItem, Paper, Typography } from "@mui/material";
 
 import PatientList from "../../components/PatientsList/PatientList";
 import { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ import {
   getMyLists,
   postListAssigned,
 } from "../../services/lists";
-import { Face, MoreVert as MoreVertIcon} from "@mui/icons-material";
+import { AddCircle, Face, MoreVert as MoreVertIcon} from "@mui/icons-material";
 
 const Patients = () => {
   const { user: cookieUser } = useCookies(["user"])[0];
@@ -104,17 +104,14 @@ const Patients = () => {
         justifyContent: "start",
       }}
     >
-      <Typography variant="h4" color={"primary.main"}>
-        {" "}
-        Patients{" "}
-      </Typography>
-
+      
       <Box sx={{display: 'flex', flexDirection: 'row-reverse',justifyContent: 'space-between'}}>
 
       <Box  sx={{display: 'flex', flexDirection: 'row-reverse'}}>
 
       <Button
         color="primary"
+        
         onClick={() => handleSearch()}
         sx={{
           alignSelf: "center",
@@ -155,61 +152,58 @@ const Patients = () => {
           gap: "20px",
           color: "primary.main",
           padding: "20px",
-          border: "2px  solid",
-          borderColor: "primary.main",
-          borderRadius: "20px",
+        
         }}
         >
-        <Typography variant="h5" color={"primary.main"}>
+        <Typography variant="h3" textAlign={'left'} color={"primary.main"}>
           {" "}
           Patients
         </Typography>
         <Divider />
+        <>
+        <Paper
+                  
+                  elevation={5}
+                  sx={{ display: "flex",flexDirection:'column', alignItems: "center",padding:'20px', gap: "20px", border: "2px  solid",
+                  borderColor: "primary.main",
+                  borderRadius: "20px", mb:'50px' }}
+                >
+                  <Typography variant="h6" color={'primary.main'} textAlign={'left'} mr={'auto'} >Patients found: </Typography>
 
-        {filter &&
+                  <Box display={'flex'} width={'1200px'} gap={'20px'} flexWrap={'wrap'}>
+        {filter && 
           listUser
             .filter((p) => p["username"].includes(filter) || " " === filter)
             .filter((p) => p["psychologist"] !== cookieUser.id)
             .map((p) => {
               return (
-                <Box
-                  key={p.id}
-                  sx={{ display: "flex", alignItems: "center", gap: "20px", backgroundColor:'pink' }}
-                >
-                     <Card  sx={{width: '500px', minWidth: 275, display:'flex', flexDirection:'column', padding: '10px', borderRadius: '20px', height: 'min-content',color: 'white', backgroundColor: 'green' }}>
+                
+                <Card key={p.id} sx={{width: '500px', minWidth: 275, color: 'secondary.main', borderRadius:'20px' }}>
 
-                      <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center',   backgroundColor:'primary.main'}} >
-                      <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
-                      <Typography variant="h4" >
-                          {p.username}
-                      </Typography>
-                      <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={() => addPatient(p.id)}
-                  >
-                    Add
-                  </Button>
+                  <CardContent sx={{ width:'100%', display: 'flex', flexDirection: 'row' , justifyContent:'space-between', alignItems:'center', borderRadius:'20px',  backgroundColor:'primary.main'}} >
+                    <Face sx={{ fontSize: '3em',  marginRight:'10px'}} />
+                    <Typography variant="h6" >
+                            {p.username}
+                    </Typography>
+                    <IconButton
+                            color="secondary"
+                            variant="contained"
+                            onClick={() => addPatient(p.id)}
+                    >
+                      <AddCircle sx={{fontSize:'1.5em' }} ></AddCircle>
+                    </IconButton>
 
-
-
-              </CardContent>
-
-
-            <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left'}}>
-
-  
-
-              </CardContent>
-
-
-              </Card>
+                  </CardContent>
+                </Card>
                   
-                </Box>
+               
               );
             })}
+            </Box>
+             </Paper>
+            </>
 
-        <Typography variant="h5" color={"primary.main"}>
+        <Typography variant="h3" textAlign={'left'} color={"primary.main"}>
           {" "}
           My patients
         </Typography>

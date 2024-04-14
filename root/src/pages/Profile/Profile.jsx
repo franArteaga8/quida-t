@@ -6,6 +6,29 @@ import { Face } from "@mui/icons-material"
 
 
 const Profile = () => {
+  const positiveMessages = [
+    "You are capable of more than you know.",
+    "Every setback is a setup for a comeback.",
+    "Progress, not perfection.",
+    "You are enough.",
+    "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+    "Embrace the journey.",
+    "You have the power to create positive change in your life.",
+    "Your potential is limitless.",
+    "You are not alone.",
+    "Celebrate your strengths and achievements."
+  ];
+
+  // State to store the currently displayed message
+  const [currentMessage, setCurrentMessage] = useState('');
+
+  // Function to generate random message
+  const generateRandomMessage = () => {
+    const randomIndex = Math.floor(Math.random() * positiveMessages.length);
+    setCurrentMessage(positiveMessages[randomIndex]);
+  };
+
+ 
 
   const [showEditProfile, setShowEditProfile ] = useState(false)
   const [ profile, setProfile ] = useState({})
@@ -39,6 +62,7 @@ const Profile = () => {
 
   useEffect(() => {
     handleProfile()
+    generateRandomMessage()
   }, [])
 
   return (
@@ -57,7 +81,7 @@ const Profile = () => {
         </CardMedia>
 
 
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left', width: '100%'}}>
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', textAlign: 'left', width: '50%'}}>
 
           <CardHeader title={showEditProfile ? 'Edit' : 'Profile'}  />
 
@@ -179,9 +203,9 @@ const Profile = () => {
           
           
           </CardContent>
-          <CardContent sx={{ width: 'min-content', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center', border: '1px whitesmoke solid', borderRadius:'10px', }}>
-            <Typography noWrap variant="body2" sx={{ mb: 1, padding: '20px', fontSize: '1em' }} >
-              well meaning and kindly.
+          <CardContent sx={{ width: '50%', display: 'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center', border: '1px whitesmoke solid', borderRadius:'10px', margin:'20px' }}>
+            <Typography noWrap variant="body2" sx={{ mb: 1, padding: '20px', fontSize: '1em', textDecoration:'underline' }} >
+              {currentMessage}
             </Typography>
           </CardContent>
       
